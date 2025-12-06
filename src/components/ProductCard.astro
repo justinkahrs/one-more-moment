@@ -1,0 +1,97 @@
+---
+import type { Product } from "../data/products";
+
+interface Props {
+    product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<div
+    class="card group bg-base-100 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+>
+    <figure class="relative overflow-hidden">
+        <img
+            src={product.image}
+            alt={product.name}
+            class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div class="absolute top-2 right-2">
+            <span class="badge badge-primary badge-sm">{product.category}</span>
+        </div>
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title text-lg">{product.name}</h2>
+        <p class="text-sm opacity-70">{product.description}</p>
+        <div class="card-actions mt-4 items-center justify-between">
+            <div class="text-primary text-2xl font-bold">
+                ${product.price.toFixed(2)}
+            </div>
+            <button
+                class="add-to-cart-btn btn btn-primary btn-sm"
+                data-product-id={product.id}
+                data-product-name={product.name}
+                data-product-price={product.price}
+                data-product-image={product.image}
+            >
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function initializeAddToCart() {
+        const buttons = document.querySelectorAll(".add-to-cart-btn");
+        buttons.forEach((button) => {
+            if (!(button as HTMLElement).dataset.initialized) {
+                (button as HTMLElement).dataset.initialized = "true";
+                button.addEventListener("click", (e) => {
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    const productData = {
+                        id: btn.dataset.productId!,
+                        name: btn.dataset.productName!,
+                        price: parseFloat(btn.dataset.productPrice!),
+                        image: btn.dataset.productImage!,
+                        quantity: 1,
+                    };
+
+                    // Get existing cart from localStorage
+                    const cart = JSON.parse(
+                        localStorage.getItem("cart") || "[]",
+                    );
+
+                    // Check if product already exists in cart
+                    const existingIndex = cart.findIndex(
+                        (item: any) => item.id === productData.id,
+                    );
+
+                    if (existingIndex >= 0) {
+                        cart[existingIndex].quantity += 1;
+                    } else {
+                        cart.push(productData);
+                    }
+
+                    // Save updated cart
+                    localStorage.setItem("cart", JSON.stringify(cart));
+
+                    // Dispatch custom event to update cart display
+                    window.dispatchEvent(new CustomEvent("cartUpdated"));
+
+                    // Visual feedback
+                    btn.textContent = "Added!";
+                    btn.classList.add("btn-success");
+                    setTimeout(() => {
+                        btn.textContent = "Add to Cart";
+                        btn.classList.remove("btn-success");
+                    }, 1000);
+                });
+            }
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener("astro:page-load", initializeAddToCart);
+    initializeAddToCart();
+</script>

@@ -1,0 +1,122 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ShoppingCart from "../components/ShoppingCart.astro";
+import { products, categories } from "../data/products";
+---
+
+<Base title="Products">
+    <!-- Hero Section -->
+    <section
+        class="hero from-primary/20 via-secondary/20 to-accent/20 bg-gradient-to-br py-20"
+    >
+        <div class="hero-content text-center">
+            <div class="max-w-2xl">
+                <h1
+                    class="from-primary to-secondary bg-gradient-to-r bg-clip-text text-5xl font-bold text-transparent"
+                >
+                    Our Products
+                </h1>
+                <p class="py-6 text-lg opacity-80">
+                    Discover our curated collection of premium products. Each
+                    item is selected for quality, design, and value.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="bg-base-100 sticky top-16 z-40 py-6 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-2">
+                {
+                    categories.map((category) => (
+                        <button
+                            class={`category-filter-btn btn btn-sm ${category === "All" ? "btn-primary" : "btn-ghost"}`}
+                            data-category={category}
+                        >
+                            {category}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="container mx-auto px-4 py-12">
+        <div
+            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            id="products-grid"
+        >
+            {
+                products.map((product) => (
+                    <div class="product-item" data-category={product.category}>
+                        <ProductCard product={product} />
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Shopping Cart Widget -->
+    <ShoppingCart />
+</Base>
+
+<script>
+    function initCategoryFilter() {
+        const filterButtons = document.querySelectorAll(".category-filter-btn");
+        const productItems = document.querySelectorAll(".product-item");
+
+        filterButtons.forEach((button) => {
+            if (!(button as HTMLElement).dataset.initialized) {
+                (button as HTMLElement).dataset.initialized = "true";
+                button.addEventListener("click", (e) => {
+                    const category = (e.currentTarget as HTMLElement).dataset
+                        .category;
+
+                    // Update active button state
+                    filterButtons.forEach((btn) => {
+                        btn.classList.remove("btn-primary");
+                        btn.classList.add("btn-ghost");
+                    });
+                    (e.currentTarget as HTMLElement).classList.remove(
+                        "btn-ghost",
+                    );
+                    (e.currentTarget as HTMLElement).classList.add(
+                        "btn-primary",
+                    );
+
+                    // Filter products with animation
+                    productItems.forEach((item) => {
+                        const itemCategory = (item as HTMLElement).dataset
+                            .category;
+                        if (category === "All" || itemCategory === category) {
+                            item.classList.remove("hidden");
+                            (item as HTMLElement).style.animation =
+                                "fadeIn 0.5s ease-in";
+                        } else {
+                            item.classList.add("hidden");
+                        }
+                    });
+                });
+            }
+        });
+    }
+
+    document.addEventListener("astro:page-load", initCategoryFilter);
+    initCategoryFilter();
+</script>
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

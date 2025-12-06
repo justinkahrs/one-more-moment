@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes:
+    light, dark, cupcake, bumblebee, emerald, corporate, synthwave, retro,
+    cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel,
+    fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid,
+    lemonade, night, coffee, winter, dim, nord, sunset, caramellatte, abyss,
+    silk;
+  base: false;
+  utils: false;
+  logs: false;
+  include:
+    badge, collapse, carousel, card, button, dropdown, navbar, footer, select,
+    link, menu, hover, card, hero, textarea, label, input, form, drawer, indicator;
+}
+
+:root {
+  --font-body:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji, sans-serif;
+}
+
+html {
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+/* Modern Design Tokens */
+:root {
+  /* Vibrant Gradient Colors */
+  --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-blue: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-pink: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-orange: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-green: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  --gradient-sunset: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
+  
+  /* Animated Gradient for Hero */
+  --gradient-animated: linear-gradient(
+    -45deg,
+    #667eea,
+    #764ba2,
+    #f093fb,
+    #4facfe
+  );
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  
+  /* Premium Shadows */
+  --shadow-glow-purple: 0 0 40px rgba(102, 126, 234, 0.5);
+  --shadow-glow-blue: 0 0 40px rgba(79, 172, 254, 0.5);
+  --shadow-glow-pink: 0 0 40px rgba(240, 147, 251, 0.5);
+  --shadow-lift: 0 20px 60px rgba(0, 0, 0, 0.3);
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate-gradient {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Utility Classes */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.gradient-text {
+  background: var(--gradient-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hover-lift {
+  transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lift);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
+.animate-gradient-bg {
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+
+/* Staggered animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Smooth transitions for all interactive elements */
+button, a, .card {
+  transition: var(--transition-smooth);
+}
+

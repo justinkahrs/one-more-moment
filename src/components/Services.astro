@@ -1,0 +1,89 @@
+---
+import { frontmatter as metadata } from "../data/metadata.mdx";
+
+const servicesSection = metadata.servicesSection ?? {};
+const { title, items: services = [] } = servicesSection;
+
+// Icon emojis for each service
+const serviceIcons = ["🎨", "⚡", "🚀", "💡", "🔧", "📱"];
+---
+
+<section class="mx-auto max-w-6xl p-6 py-20">
+  <h2 class="mb-12 text-center text-4xl md:text-5xl font-bold gradient-text animate-fade-in-up">
+    {title}
+  </h2>
+  <div class="grid md:grid-cols-3 gap-8">
+    {
+      services.map((s: any, index: number) => (
+        <div 
+          class={`service-card relative group hover-lift animate-fade-in-up stagger-${(index % 6) + 1}`}
+          style="opacity: 0;"
+        >
+          <!-- Gradient border effect -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative bg-base-100 rounded-2xl p-8 m-[2px] h-full hover:bg-opacity-95 transition-all duration-500">
+            <!-- Icon with gradient background -->
+            <div class="w-16 h-16 rounded-full mb-6 flex items-center justify-center text-3xl transform group-hover:scale-110 transition-transform duration-500" 
+                 style={`background: linear-gradient(135deg, ${
+                   index % 3 === 0 ? '#667eea, #764ba2' : 
+                   index % 3 === 1 ? '#f093fb, #f5576c' : 
+                   '#4facfe, #00f2fe'
+                 }); box-shadow: 0 10px 30px rgba(0,0,0,0.2);`}>
+              {serviceIcons[index % serviceIcons.length]}
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500">
+              {s.title}
+            </h3>
+            
+            <p class="text-base-content/80 mb-6 leading-relaxed">
+              {s.description}
+            </p>
+            
+            {s.cta && (
+              <div class="card-actions justify-start">
+                <button class="btn btn-sm text-white border-0 rounded-full px-6 hover-lift" 
+                        style={`background: linear-gradient(135deg, ${
+                          index % 3 === 0 ? '#667eea, #764ba2' : 
+                          index % 3 === 1 ? '#f093fb, #f5576c' : 
+                          '#4facfe, #00f2fe'
+                        });`}>
+                  {s.cta}
+                  <svg class="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .service-card:hover {
+    box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+  }
+  
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    padding: 2px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .service-card:hover::before {
+    opacity: 1;
+    animation: rotate-gradient 3s linear infinite;
+  }
+</style>

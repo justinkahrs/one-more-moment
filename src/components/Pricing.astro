@@ -1,0 +1,216 @@
+---
+import { frontmatter as metadata } from "../data/metadata.mdx";
+
+const pricingSection = metadata.pricingSection ?? {};
+const { title, items: plans = [] } = pricingSection;
+
+// Gradient colors for each plan
+const planGradients = [
+  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+  "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+];
+---
+
+<section
+  id="pricing-plans"
+  class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-10 py-20 text-center dark:from-gray-900 dark:to-gray-800"
+>
+  <h2
+    class="gradient-text animate-fade-in-up mb-6 text-4xl font-bold md:text-5xl"
+  >
+    {title}
+  </h2>
+  <p
+    class="text-base-content/70 animate-fade-in-up stagger-1 mx-auto mb-16 max-w-2xl text-lg"
+    style="opacity: 0;"
+  >
+    Choose the perfect plan for your needs
+  </p>
+  <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+    {
+      plans.map((plan: any, index: number) => (
+        <div
+          class={`pricing-card group hover-lift animate-fade-in-up relative transform transition-all duration-500 stagger-${index + 2}`}
+          id={plan.id}
+          style="opacity: 0;"
+        >
+          {/* Animated gradient border for highlighted plan */}
+          {plan.highlight && (
+            <div class="animate-gradient-rotate absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 opacity-75" />
+          )}
+
+          <div
+            class={`card relative overflow-hidden rounded-3xl shadow-2xl ${
+              plan.highlight ? "m-[3px]" : ""
+            }`}
+            style={
+              plan.highlight
+                ? ""
+                : `background: ${planGradients[index % planGradients.length]};`
+            }
+          >
+            {/* Background for non-highlighted cards */}
+            {!plan.highlight && (
+              <div
+                class="absolute inset-0 opacity-95"
+                style={`background: ${planGradients[index % planGradients.length]};`}
+              />
+            )}
+
+            {/* Content */}
+            <div
+              class={`card-body relative z-10 p-8 ${plan.highlight ? "bg-gradient-to-br from-purple-600 to-pink-600" : ""}`}
+            >
+              {/* Badge */}
+              {plan.badge && (
+                <div class="badge-wrapper absolute -top-2 left-1/2 -translate-x-1/2 transform">
+                  <div class="badge badge-lg animate-pulse border-0 bg-yellow-400 px-6 py-3 font-bold text-yellow-900 shadow-lg">
+                    {plan.badge}
+                  </div>
+                </div>
+              )}
+
+              <h2 class="card-title mt-6 mb-4 justify-center text-3xl font-bold text-white">
+                {plan.name}
+              </h2>
+
+              <p class="mb-2 text-white/90">{plan.tagline}</p>
+
+              <div class="my-6 text-5xl font-bold text-white">{plan.price}</div>
+
+              {/* Features list placeholder */}
+              <ul class="mb-8 space-y-3 text-left text-white/90">
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="h-5 w-5 text-green-300"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span>Full access to features</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="h-5 w-5 text-green-300"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span>24/7 support</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="h-5 w-5 text-green-300"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span>Premium updates</span>
+                </li>
+              </ul>
+
+              <div class="card-actions justify-center">
+                <button
+                  class="btn btn-lg hover-lift transform rounded-full border-0 px-8 font-bold text-white shadow-xl transition-all duration-300 hover:scale-110"
+                  style={`background: ${plan.highlight ? "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)" : "rgba(255, 255, 255, 0.2)"};`}
+                  data-target={plan.id}
+                >
+                  Select {plan.name}
+                  <svg
+                    class="ml-2 inline-block h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .pricing-card {
+    perspective: 1000px;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-12px) scale(1.02);
+  }
+
+  .pricing-card:hover .card {
+    transform: rotateY(5deg);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes animate-gradient-rotate {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  .animate-gradient-rotate {
+    animation: animate-gradient-rotate 3s linear infinite;
+  }
+
+  .badge-wrapper .badge {
+    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.5);
+  }
+</style>
+
+<script is:inline>
+  const section = document.getElementById("pricing-plans");
+  if (section) {
+    const buttons = section.querySelectorAll("button[data-target]");
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Find all pricing cards
+        const cards = section.querySelectorAll(".pricing-card");
+
+        // Reset all cards
+        cards.forEach((card) => {
+          card.classList.remove("ring-4", "ring-yellow-400");
+        });
+
+        // Highlight selected card
+        const targetId = button.dataset.target;
+        const selectedCard = document.getElementById(targetId);
+        if (selectedCard) {
+          selectedCard.classList.add("ring-4", "ring-yellow-400");
+
+          // Smooth scroll to top of section
+          section.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    });
+  }
+</script>

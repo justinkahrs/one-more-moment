@@ -1,0 +1,9 @@
+---
+import ContentLayout from "../layouts/Content.astro";
+import ContactMDX, { frontmatter } from "../data/Contact.mdx";
+const { title } = frontmatter;
+---
+
+<ContentLayout title={title}>
+  <ContactMDX />
+</ContentLayout>
