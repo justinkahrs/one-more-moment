@@ -1,0 +1,154 @@
+---
+import Base from "../layouts/Base.astro";
+import { events } from "../data/events";
+
+const upcomingEvents = events.filter((e) => e.isUpcoming);
+const pastEvents = events.filter((e) => !e.isUpcoming);
+---
+
+<Base title="Volunteer">
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-serif font-bold mb-4">Volunteer</h1>
+      <p class="text-lg opacity-80 max-w-2xl mx-auto">
+        Join us in making a difference.
+      </p>
+    </div>
+
+    {/* Upcoming Events */}
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Upcoming Volunteer Opportunities</h2>
+      {
+        upcomingEvents.length > 0 ? (
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {upcomingEvents.map((event) => (
+              <a
+                href={`/events/${event.slug}`}
+                class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 border border-base-200"
+              >
+                  {event.image && (
+                      <figure class="h-48 overflow-hidden">
+                          <img src={event.image} alt={event.title} class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                      </figure>
+                  )}
+                <div class="card-body">
+                  <h3 class="card-title text-xl font-medium leading-tight">
+                    {event.title}
+                  </h3>
+                   <div class="text-sm opacity-70 mt-2 font-mono">
+                      {event.date}
+                  </div>
+                  <div class="card-actions justify-end mt-4">
+                      <div class="badge badge-neutral">Details</div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p class="italic opacity-60">
+            No upcoming opportunities at the moment. Please check back later.
+          </p>
+        )
+      }
+    </section>
+
+    {/* Recent Events */}
+    <section class="mb-20">
+      <h2 class="text-2xl font-serif mb-6">Recent Volunteer Opportunities</h2>
+      <div class="space-y-8">
+        {
+          pastEvents.map((event) => (
+            <a
+              href={`/events/${event.slug}`}
+              class="flex flex-col sm:flex-row gap-6 group"
+            >
+              <div class="flex-1 space-y-2">
+                <div class="text-sm opacity-60 font-mono">{event.date}</div>
+                <h3 class="text-2xl font-serif font-medium group-hover:underline decoration-1 underline-offset-4 leading-tight">
+                  {event.title}
+                </h3>
+              </div>
+              <div class="sm:w-48 aspect-[4/3] bg-base-200 rounded-2xl overflow-hidden shrink-0">
+                {event.image && (
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* Get Involved Form */}
+    <section>
+      <h2 class="text-4xl font-serif mb-8">Get Involved</h2>
+      <form
+        action="#"
+        method="POST"
+        class="flex flex-col gap-6"
+        onsubmit="alert('Thank you for volunteering! (This is a demo setup)'); return false;"
+      >
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Type here"
+            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+            required
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Type here"
+            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+            required
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">How can you help?</span>
+          </label>
+          <textarea
+            name="help"
+            class="textarea textarea-bordered h-32 rounded-none focus:outline-offset-0 w-full"
+            placeholder="Tell us about your skills and interests"
+          ></textarea>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Availability</span>
+          </label>
+          <input
+            type="text"
+            name="availability"
+            placeholder="e.g. Weekends, Tuesday evenings"
+            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+          />
+        </div>
+
+        <div class="mt-4">
+          <button type="submit" class="btn btn-neutral px-8 min-w-[120px]">
+            Submit
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</Base>

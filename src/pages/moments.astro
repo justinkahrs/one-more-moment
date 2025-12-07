@@ -1,0 +1,115 @@
+---
+import Base from "../layouts/Base.astro";
+import { XMLParser } from "fast-xml-parser";
+
+const RSS_URL =
+  "https://www.youtube.com/feeds/videos.xml?channel_id=UCNiuY3dRukTTWzjSHvESbFA";
+
+interface Video {
+  id: string;
+  title: string;
+  link: string;
+  published: string;
+  thumbnail: string;
+}
+
+let videos: Video[] = [];
+let error = null;
+
+try {
+  const response = await fetch(RSS_URL);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch RSS feed: ${response.statusText}`);
+  }
+  const xmlText = await response.text();
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: "@_",
+  });
+  const parsed = parser.parse(xmlText);
+  const entries = parsed.feed.entry || [];
+
+  videos = entries.map((entry: any) => ({
+    id: entry["yt:videoId"],
+    title: entry.title,
+    link: entry.link["@_href"],
+    published: new Date(entry.published).toLocaleDateString(),
+    thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
+  }));
+} catch (e) {
+  console.error("Error fetching YouTube feed:", e);
+  error = "Unable to load videos at the moment.";
+}
+---
+
+<Base title="Moments | Latest Videos">
+  <div class="container mx-auto px-4 py-12">
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+        Moments
+      </h1>
+      <p class="text-lg text-base-content/70">
+        Catch up on the latest from our channel.
+      </p>
+    </div>
+
+    {
+      error ? (
+        <div class="alert alert-error shadow-lg">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{error}</span>
+          </div>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {videos.map((video) => (
+            <a
+              href={video.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="card bg-base-100 shadow-xl transition-transform hover:scale-105 hover:shadow-2xl duration-300"
+            >
+              <figure class="relative aspect-video overflow-hidden">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                   <svg class="w-16 h-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                   </svg>
+                </div>
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title text-lg leading-snug line-clamp-2">
+                  {video.title}
+                </h2>
+                <div class="card-actions justify-end mt-4">
+                    <span class="text-xs text-base-content/60 font-mono self-center mr-auto">
+                        {video.published}
+                    </span>
+                   <div class="badge badge-primary">Watch</div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</Base>

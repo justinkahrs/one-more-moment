@@ -1,86 +1,39 @@
 ---
-import heroImage from "../assets/heroBG.webp";
 import { frontmatter as metadata } from "../data/metadata.mdx";
 const HeroData = metadata.hero ?? {};
-const { title, content } = HeroData;
+const { title, content, cta, subContent } = HeroData;
 ---
 
-<div class="hero relative min-h-screen overflow-hidden">
-  <img
-    src={heroImage.src}
-    width={heroImage.width}
-    height={heroImage.height}
-    alt="a blurry city skyline"
-    class="absolute inset-0 h-full w-full object-cover blur-xs"
-    fetchpriority="high"
-  />
-  <!-- Animated Gradient Overlay - Theme Aware -->
+<div
+  class="hero relative flex min-h-screen flex-col items-center justify-center bg-[#FFFBF6] text-[#1D1D1F]"
+>
   <div
-    class="hero-overlay from-primary via-secondary to-accent animate-gradient-bg absolute inset-0 bg-gradient-to-br opacity-90"
+    class="hero-content flex max-w-4xl flex-grow flex-col justify-center px-4 text-center"
   >
+    <h1
+      class="mb-6 text-4xl font-bold tracking-tight text-[#2B2B40] md:text-6xl"
+    >
+      {title}
+    </h1>
+    <p
+      class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#333333] md:text-xl"
+    >
+      {content}
+    </p>
+    <a
+      href="/donate"
+      class="btn transform rounded-md border-0 bg-[#D9776E] px-8 py-3 text-lg font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#c5665d]"
+    >
+      {cta}
+    </a>
   </div>
 
-  <!-- Floating particles decoration -->
-  <div class="absolute inset-0 opacity-20">
+  <div class="w-full max-w-4xl px-4 pb-12">
     <div
-      class="animate-float absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-white blur-3xl"
+      class="flex items-center justify-center gap-4 border-t border-gray-200 pt-8 text-sm font-medium text-[#4A4A4A] md:text-base"
     >
-    </div>
-    <div
-      class="animate-float absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-purple-300 blur-3xl"
-      style="animation-delay: 2s; animation-duration: 8s;"
-    >
+     {subContent.map((item) => (
+      <span>• {item}</span>
+     ))}
     </div>
   </div>
-
-  <div class="hero-content relative z-10 px-4 text-center">
-    <div
-      class="glass-card animate-float max-w-3xl rounded-3xl p-8 text-white md:p-12"
-      style="animation-duration: 8s;"
-    >
-      <h1
-        class="animate-fade-in-up stagger-1 mb-6 text-5xl font-bold md:text-7xl"
-        style="opacity: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.3);"
-      >
-        {title}
-      </h1>
-      <p
-        class="animate-fade-in-up stagger-2 mb-8 text-lg md:text-xl"
-        style="opacity: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);"
-      >
-        {content}
-      </p>
-      <a
-        role="button"
-        class="btn btn-lg hover-lift animate-fade-in-up stagger-3 rounded-full border-0 px-8 py-4 font-semibold text-white"
-        style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); opacity: 0; box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);"
-        href="/contact"
-      >
-        Contact Us
-        <svg
-          class="ml-2 inline-block h-5 w-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-        </svg>
-      </a>
-    </div>
-  </div>
-</div>
-
-<style>
-  .hero-content .glass-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
-  }
-
-  .btn.hover-lift:hover {
-    box-shadow: 0 20px 60px rgba(245, 87, 108, 0.6) !important;
-  }
-</style>

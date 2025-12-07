@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Base.astro";
+import { frontmatter as metadata } from "../data/metadata.mdx";
+
+const { title, subTitle } = metadata.donationPage;
+const { name } = metadata;
+---
+
+<Layout title={`Donate | ${name}`} description={subTitle}>
+    <div class="min-h-screen bg-[#FFFBF6] px-6 pt-24 pb-12">
+        <div class="mx-auto max-w-6xl">
+            {/* Header Section */}
+            <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
+                {title}
+            </h1>
+            <p
+                class="mb-16 max-w-2xl text-xl leading-relaxed text-[#333333] md:text-2xl"
+            >
+                {subTitle}
+            </p>
+        <iframe style="height: 100vh; width: 98%;" src="https://www.pledge.to/website-donation-form-7458" scrolling="yes"></iframe>
+        </div>
+    </div>
+</Layout>

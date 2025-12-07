@@ -7,7 +7,7 @@ const { title, items: faqs = [] } = FaqData;
 
 <section class="bg-base-100 mx-auto max-w-3xl p-10 py-20">
   <h2
-    class="gradient-text animate-fade-in-up mb-12 text-center text-4xl font-bold md:text-5xl"
+    class="animate-fade-in-up mb-12 text-center text-4xl font-bold md:text-5xl"
   >
     {title}
   </h2>
@@ -20,13 +20,13 @@ const { title, items: faqs = [] } = FaqData;
           style="opacity: 0;"
         >
           <div class="collapse-title flex items-center gap-3 text-lg font-bold">
-            <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white">
-              {index + 1}
-            </span>
-            <span class="gradient-text-hover">{item.q}</span>
+            <span >{item.q}</span>
           </div>
           <div class="collapse-content">
-            <p class="text-base-content/80 pl-11 leading-relaxed">{item.a}</p>
+            <div
+              class="text-base-content/80 pl-11 leading-relaxed"
+              set:html={item.a}
+            />
           </div>
         </div>
       ))

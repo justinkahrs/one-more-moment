@@ -1,0 +1,53 @@
+---
+import Base from "../../layouts/Base.astro";
+import { events } from "../../data/events";
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+---
+
+<Base title={event.title}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    {
+      event.image && (
+        <div class="mb-12 rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] bg-base-200">
+          <img
+            src={event.image}
+            alt={event.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )
+    }
+
+    <div class="max-w-2xl mx-auto text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">
+        {event.title}
+      </h1>
+
+      <div class="space-y-2 text-lg">
+        <p class="font-medium">{event.date}</p>
+        <p>{event.time}</p>
+        <p class="opacity-75">{event.location}</p>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto prose prose-lg font-serif">
+      <p>{event.description}</p>
+      
+       <div class="not-prose mt-12 pt-8 border-t border-base-200">
+           <h3 class="text-2xl font-bold font-sans mb-4">Want to participate?</h3>
+            <p class="mb-6 opacity-80 font-sans">
+              Volunteers involved in the wish fulfillment process need training and collaboration.
+            </p>
+            <a href="/volunteer" class="btn btn-neutral px-8">Get Involved</a>
+       </div>
+    </div>
+  </div>
+</Base>

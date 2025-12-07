@@ -5,7 +5,7 @@ const { title = "Page" } = Astro.props;
 
 <Base title={title}>
   <div class="flex items-start justify-center p-10">
-    <article class="prose dark:prose-invert md:prose-lg text-left">
+    <article class="prose dark:prose-invert md:prose-lg max-w-4xl text-left">
       <slot />
     </article>
   </div>
