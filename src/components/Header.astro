@@ -10,7 +10,7 @@ const { navItems = [], cta, sticky } = HeaderData;
 
 <div
   class={clsx(
-    "navbar bg-base-100/90 backdrop-blur-sm z-[100]",
+    "navbar bg-base-100/90 backdrop-blur-sm z-[100] shadow-lg",
     sticky && "sticky top-0",
   )}
 >
@@ -69,14 +69,14 @@ const { navItems = [], cta, sticky } = HeaderData;
       <img
         src={Logo.src}
         alt={companyName}
-        class="h-32 w-auto object-contain"
+        class="h-24 w-auto object-contain lg:h-32"
         loading="eager"
       />
     </a>
   </div>
 
   <div class="navbar-end hidden w-full lg:flex">
-    <ul class="menu menu-horizontal px-1 font-semibold text-lg">
+    <ul class="menu menu-horizontal px-1 text-lg font-semibold">
       {
         navItems.map((item) =>
           item.children ? (

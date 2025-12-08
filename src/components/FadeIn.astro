@@ -1,0 +1,36 @@
+<div
+  class="fade-in-section fill-mode-forwards translate-y-8 opacity-0 transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:hover:transform-none"
+>
+  <slot />
+</div>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("opacity-0", "translate-y-8");
+        entry.target.classList.add("opacity-100", "translate-y-0");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll(".fade-in-section");
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  });
+
+  // Initial load support
+  const sections = document.querySelectorAll(".fade-in-section");
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+</script>
