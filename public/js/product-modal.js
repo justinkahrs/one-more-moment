@@ -117,10 +117,11 @@ function renderOptions(product) {
              btn.dataset.group = label;
              btn.dataset.value = val;
              
-             // Auto-select if single option
-             if(values.size === 1) {
-                 btn.classList.add("btn-active");
-                 selectedOptions[label.toLowerCase()] = val; 
+             // Auto-select first one, or if single option
+             // Also check if we already have a selection for this group (e.g. from previous render? unlikely here as we clear)
+             if(!selectedOptions[label.toLowerCase()]) {
+                 btn.classList.add("btn-active", "btn-primary"); // Add btn-primary for consistency with selectOption
+                 selectedOptions[label.toLowerCase()] = val;
              }
              
              btn.onclick = () => selectOption(label, val, btn);
