@@ -25,11 +25,6 @@ try {
     const targetCollection = allCollection || collections[0];
     const slug = targetCollection.slug;
 
-    console.log(`[Build] Target Collection Slug: ${slug}`);
-    console.log(
-      `[Build] Using Token: ${STOREFRONT_TOKEN ? STOREFRONT_TOKEN.substring(0, 10) + "..." : "MISSING"}`,
-    );
-
     const productsRes = await fetch(
       `${STOREFRONT_URL}/collections/${slug}/products?storefront_token=${STOREFRONT_TOKEN}&limit=500`,
     );
@@ -38,7 +33,6 @@ try {
 
     const productsData = await productsRes.json();
     products = productsData.results || productsData;
-    console.log(`[Build] Found ${products.length} products.`);
   } else {
     // If no collections, maybe try empty search? But logic implies collections exist.
     console.warn("No collections found.");
