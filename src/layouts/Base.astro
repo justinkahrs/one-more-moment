@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import { fade } from "astro:transitions";
 import { frontmatter as meta } from "../data/metadata.mdx";
 
-const { title = "Site" } = Astro.props;
+const { title = "Site", overlayHeader = false } = Astro.props;
 
 const seo = meta.seo || {};
 
@@ -59,7 +59,7 @@ const keywords = [
   </head>
 
   <body class="bg-base-100 text-base-content flex min-h-screen flex-col">
-    <Header />
+    <Header overlay={overlayHeader} />
     <main class="flex-1" transition:animate={fade({ duration: 250 })}>
       <slot />
     </main>

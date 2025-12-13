@@ -6,12 +6,16 @@ import Logo from "../assets/OneMoreMoment_horz_Logo_2019-e1555076394163.png";
 const HeaderData = metadata.header ?? {};
 const companyName = metadata.name;
 const { navItems = [], cta, sticky } = HeaderData;
+const { overlay = false } = Astro.props;
 ---
 
 <div
   class={clsx(
-    "navbar bg-base-100/90 backdrop-blur-sm z-[100] shadow-lg",
-    sticky && "sticky top-0",
+    "navbar z-[100] shadow-lg backdrop-blur-md transition-all duration-300",
+    overlay
+      ? "fixed top-0 w-full bg-white/70 border-b border-white/20"
+      : "bg-base-100/90",
+    !overlay && sticky && "sticky top-0",
   )}
 >
   <div class="navbar-start">
