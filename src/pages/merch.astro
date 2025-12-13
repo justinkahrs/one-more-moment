@@ -26,7 +26,7 @@ try {
     const slug = targetCollection.slug;
 
     const productsRes = await fetch(
-      `${STOREFRONT_URL}/collections/${slug}/products?storefront_token=${STOREFRONT_TOKEN}`,
+      `${STOREFRONT_URL}/collections/${slug}/products?storefront_token=${STOREFRONT_TOKEN}&limit=500`,
     );
     if (!productsRes.ok)
       throw new Error(`Failed to fetch products: ${productsRes.status}`);
