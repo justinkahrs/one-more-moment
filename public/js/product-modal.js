@@ -151,23 +151,22 @@ function selectOption(group, value, clickedBtn) {
 function getSelectedVariant() {
     if(!currentProduct) return null;
     
-    // Find variant that matches ALL selected options
-    // Assuming we need all option keys present in attributesMap (calculated implicitly)
-    // Actually, we iterate variants and check if they include the selected entries
-    
     return currentProduct.variants.find(v => {
         const attrs = v.attributes || {};
+        
         // Check if every selected option matches this variant's attribute
         for(const [key, val] of Object.entries(selectedOptions)) {
-             const vAttr = attrs[key]; // { name: "Black" }
+             // Find matching key in attrs (case-insensitive)
+             const attrKey = Object.keys(attrs).find(k => k.toLowerCase() === key.toLowerCase());
+             
+             if(!attrKey) return false; // Attribute group missing in this variant
+             
+             const vAttr = attrs[attrKey]; 
              const vVal = vAttr?.name || vAttr;
+             
              if(vVal !== val) return false;
         }
         
-        // Ensure we selected ALL required attributes for this product?
-        // Simple check: if variant has attribute keys that define it, do we have them?
-        // For now, loose matching: if it matches what we selected, it's a candidate.
-        // We might want to prioritise "Select all options" validation.
         return true;
     });
 }
