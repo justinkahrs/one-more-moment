@@ -21,8 +21,12 @@ try {
   const collections = collectionsData.results || collectionsData; // Handle potential wrapper
 
   if (collections.length > 0) {
-    // 2. Get Products from the first collection (or specific one)
-    const slug = collections[0].slug;
+    const allCollection = collections.find((c: any) => c.slug === "all");
+    const targetCollection = allCollection || collections[0];
+    const slug = targetCollection.slug;
+
+    console.log(`[Server] Fetching products from collection: ${slug}`);
+
     const productsRes = await fetch(
       `${STOREFRONT_URL}/collections/${slug}/products?storefront_token=${STOREFRONT_TOKEN}`,
     );

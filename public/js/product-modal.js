@@ -44,6 +44,9 @@ function openProductModal(productId) {
     
     if(!currentProduct) return;
 
+    console.log("[ProductModal] Opening product:", currentProduct.name);
+    console.log("[ProductModal] Variants count:", currentProduct.variants?.length);
+
     // Reset State
     selectedOptions = {};
     currentQty = 1;
@@ -68,31 +71,30 @@ function renderOptions(product) {
     const container = document.getElementById("modal-options");
     container.innerHTML = "";
     
-    // Calculate available attributes from variants
-    // Variants have "attributes": { "description": "...", "color": { "name": "Black" }, "size": { "name": "S" } }
-    // We need to group them.
-    
-    const attributesMap = {}; // { "Color": Set("Black", "Red"), "Size": Set("S", "M") }
+    console.log("[ProductModal] Rendering options for variants:", product.variants);
+
+    const attributesMap = {}; 
     
     product.variants?.forEach(v => {
         const attrs = v.attributes;
         if(!attrs) return;
         
-        // Loop keys in attributes (skip 'description')
         for(const key in attrs) {
-            if(key === 'description') continue;
+            if(key.toLowerCase() === 'description') continue;
             
-            const valObj = attrs[key]; // { name: "Black", swatch: "..." }
-            const valName = valObj.name || valObj; // Sometimes just a string? Schema says object with name.
+            const valObj = attrs[key]; 
+            const valName = valObj.name || valObj; 
             
-            // Allow Title Case for key display? key is usually lowercase "color", "size"
-            const label = key.charAt(0).toUpperCase() + key.slice(1);
+            // Normalize Key to Title Case
+            const label = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
             
             if(!attributesMap[label]) attributesMap[label] = new Set();
             attributesMap[label].add(valName);
         }
     });
     
+    console.log("[ProductModal] Computed Attributes Map:", attributesMap);
+
     // Generate UI
     for(const [label, values] of Object.entries(attributesMap)) {
          if(values.size === 0) continue;
@@ -115,8 +117,7 @@ function renderOptions(product) {
              btn.dataset.group = label;
              btn.dataset.value = val;
              
-             // Pre-select first one? Or wait for user?
-             // Let's wait for user to be safe, or auto-select if only 1 option
+             // Auto-select if single option
              if(values.size === 1) {
                  btn.classList.add("btn-active");
                  selectedOptions[label.toLowerCase()] = val; 
@@ -129,12 +130,6 @@ function renderOptions(product) {
          
          wrapper.appendChild(choicesDiv);
          container.appendChild(wrapper);
-    }
-    
-    // If no attributes found (e.g. single variant product), verify if we just have 1 variant
-    if(Object.keys(attributesMap).length === 0 && product.variants?.length === 1) {
-       // Auto-select the only variant
-       // No options to show.
     }
 }
 
