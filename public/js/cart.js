@@ -223,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const checkoutUrl = `${baseUrl}/checkout/?cartCurrency=${currency}&cartId=${cartId}`;
             
-            console.log("Redirecting to checkout:", checkoutUrl);
             window.location.href = checkoutUrl;
         });
     }

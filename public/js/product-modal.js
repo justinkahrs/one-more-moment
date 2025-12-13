@@ -44,8 +44,6 @@ function openProductModal(productId) {
     
     if(!currentProduct) return;
 
-    console.log("[ProductModal] Opening product:", currentProduct.name);
-    console.log("[ProductModal] Variants count:", currentProduct.variants?.length);
 
     // Reset State
     selectedOptions = {};
@@ -70,9 +68,6 @@ function openProductModal(productId) {
 function renderOptions(product) {
     const container = document.getElementById("modal-options");
     container.innerHTML = "";
-    
-    console.log("[ProductModal] Rendering options for variants:", product.variants);
-
     const attributesMap = {}; 
     
     product.variants?.forEach(v => {
@@ -93,8 +88,6 @@ function renderOptions(product) {
         }
     });
     
-    console.log("[ProductModal] Computed Attributes Map:", attributesMap);
-
     // Generate UI
     for(const [label, values] of Object.entries(attributesMap)) {
          if(values.size === 0) continue;
@@ -117,11 +110,12 @@ function renderOptions(product) {
              btn.dataset.group = label;
              btn.dataset.value = val;
              
-             // Auto-select first one, or if single option
-             // Also check if we already have a selection for this group (e.g. from previous render? unlikely here as we clear)
-             if(!selectedOptions[label.toLowerCase()]) {
+             // Auto-select first one
+             // Also check if we already have a selection for this group
+             const groupKey = label.toLowerCase();
+             if(selectedOptions[groupKey] === undefined) {
                  btn.classList.add("btn-active", "btn-primary"); // Add btn-primary for consistency with selectOption
-                 selectedOptions[label.toLowerCase()] = val;
+                 selectedOptions[groupKey] = val;
              }
              
              btn.onclick = () => selectOption(label, val, btn);
