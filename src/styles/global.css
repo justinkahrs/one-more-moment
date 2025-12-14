@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "@tailwindcss/typography";
-@plugin "daisyui" {}
+@plugin "daisyui" {
+}
 
 :root {
   --font-body:
@@ -13,6 +14,10 @@
 html {
   font-family: var(--font-body);
   scroll-behavior: smooth;
+  background-color: #fffbf6;
+}
+body {
+  background-color: #fffbf6;
 }
 
 /* Modern Design Tokens */

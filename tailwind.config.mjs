@@ -11,15 +11,6 @@ export default {
         xl: null,
         "2xl": null,
       },
-    },
-    daisyui: {
-      themes: [
-        {
-          light: {
-            primary: "#D9776E",
-          },
-        }
-      ],
-    },
+    }
   },
 };

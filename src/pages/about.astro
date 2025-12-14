@@ -1,9 +1,103 @@
 ---
-import ContentLayout from "../layouts/Content.astro";
-import AboutMDX, { frontmatter } from "../data/About.mdx";
-const { title } = frontmatter;
+import Base from "../layouts/Base.astro";
+import FadeIn from "../components/FadeIn.astro";
+import { Image } from "astro:assets";
+import { frontmatter as metadata } from "../data/metadata.mdx";
+
+import aboutPageImg from "../assets/about-page.jpg";
+import jasonImg from "../assets/Jason-Pohlonski-Headshot-1024x683.jpg";
+import simoneImg from "../assets/Simone-Goga-Headshot.jpeg";
+import carrieImg from "../assets/Carrie-House-Headshot-1024x683.jpg";
+import andyImg from "../assets/Andy-Thompson-Headshot-1024x683.jpg";
+
+const { about } = metadata;
+const { mission, story, whatWeDo, team } = about;
+
+const teamImages = {
+  jasonImg,
+  simoneImg,
+  carrieImg,
+  andyImg,
+};
 ---
 
-<ContentLayout title={title}>
-  <AboutMDX />
-</ContentLayout>
+<Base title={about.title}>
+  <div class="flex justify-center p-10 prose-h1:font-normal">
+    <article class="prose md:prose-lg max-w-6xl">
+      <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl text-center">
+        {about.title}
+      </h1>
+
+      {/* Mission Section */}
+      <div class="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <h2>{mission.title}</h2>
+          <p>{mission.content}</p>
+        </div>
+        <div>
+          <Image
+            src={aboutPageImg}
+            alt="Woman sits with child in the grass in front of a fence"
+            class="rounded-lg"
+          />
+        </div>
+      </div>
+
+      {/* Story Section */}
+      <h2>{story.title}</h2>
+
+      {story.intro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+
+      <blockquote>{story.quote}</blockquote>
+
+      {story.outro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+
+      {/* What We Do Section */}
+      <h2>{whatWeDo.title}</h2>
+
+      {whatWeDo.content.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+
+      {/* Team Section */}
+      <h2>{team.title}</h2>
+
+      <iframe
+        class="aspect-video w-full"
+        src={team.video}
+        title="YouTube Video Player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+      <div class="mt-12 space-y-12">
+        {
+          team.members.map((member, index) => (
+            <FadeIn>
+              <div class="grid items-center gap-8 md:grid-cols-2">
+                <div class={index % 2 !== 0 ? "order-2 md:order-1" : ""}>
+                  {index % 2 !== 0 ? (
+                    <>
+                      <h3>{member.name}</h3>
+                      <p>{member.bio}</p>
+                    </>
+                  ) : (
+                    <Image src={teamImages[member.image]} alt={member.name} class="rounded-lg" />
+                  )}
+                </div>
+                <div class={index % 2 !== 0 ? "order-1 md:order-2" : ""}>
+                  {index % 2 !== 0 ? (
+                    <Image src={teamImages[member.image]} alt={member.name} class="rounded-lg" />
+                  ) : (
+                    <>
+                      <h3>{member.name}</h3>
+                      <p>{member.bio}</p>
+                    </>
+                  )}
+                </div>
+              </div>
+            </FadeIn>
+          ))
+        }
+      </div>
+    </article>
+  </div>
+</Base>

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { frontmatter as metadata } from "../data/metadata.mdx";
 import { XMLParser } from "fast-xml-parser";
 
 const RSS_URL =
@@ -40,16 +41,18 @@ try {
   console.error("Error fetching YouTube feed:", e);
   error = "Unable to load videos at the moment.";
 }
+
+const { title, subTitle } = metadata.momentsPage;
 ---
 
 <Base title="Moments | Latest Videos">
   <div class="container mx-auto px-4 py-12">
     <div class="mb-12 text-center">
       <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
-        Moments
+        {title}
       </h1>
       <p class="text-base-content/70 text-lg">
-        Catch up on the latest from our channel.
+        {subTitle}
       </p>
     </div>
 
