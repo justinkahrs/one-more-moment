@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { events } from "../../data/events";
+import { Image } from "astro:assets";
 
 export function getStaticPaths() {
   return events.map((event) => ({
@@ -13,21 +14,21 @@ const { event } = Astro.props;
 ---
 
 <Base title={event.title}>
-  <div class="container mx-auto px-4 py-12 max-w-4xl">
+  <div class="container mx-auto max-w-4xl px-4 py-12">
     {
       event.image && (
-        <div class="mb-12 rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] bg-base-200">
-          <img
+        <div class="bg-base-200 mb-12 aspect-video overflow-hidden rounded-3xl md:aspect-[21/9]">
+          <Image
             src={event.image}
             alt={event.title}
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
         </div>
       )
     }
 
-    <div class="max-w-2xl mx-auto text-center mb-16">
-      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">
+    <div class="mx-auto mb-16 max-w-2xl text-center">
+      <h1 class="mb-8 font-serif text-4xl leading-tight font-bold md:text-5xl">
         {event.title}
       </h1>
 
@@ -38,16 +39,17 @@ const { event } = Astro.props;
       </div>
     </div>
 
-    <div class="max-w-2xl mx-auto prose prose-lg font-serif">
+    <div class="prose prose-lg mx-auto max-w-2xl font-serif">
       <p>{event.description}</p>
-      
-       <div class="not-prose mt-12 pt-8 border-t border-base-200">
-           <h3 class="text-2xl font-bold font-sans mb-4">Want to participate?</h3>
-            <p class="mb-6 opacity-80 font-sans">
-              Volunteers involved in the wish fulfillment process need training and collaboration.
-            </p>
-            <a href="/volunteer" class="btn btn-primary px-8">Get Involved</a>
-       </div>
+
+      <div class="not-prose border-base-200 mt-12 border-t pt-8">
+        <h3 class="mb-4 font-sans text-2xl font-bold">Want to participate?</h3>
+        <p class="mb-6 font-sans opacity-80">
+          Volunteers involved in the wish fulfillment process need training and
+          collaboration.
+        </p>
+        <a href="/volunteer" class="btn btn-primary px-8">Get Involved</a>
+      </div>
     </div>
   </div>
 </Base>

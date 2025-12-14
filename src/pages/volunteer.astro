@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { events } from "../data/events";
+import { Image } from "astro:assets";
 
 const upcomingEvents = events.filter((e) => e.isUpcoming);
 const pastEvents = events.filter((e) => !e.isUpcoming);
@@ -30,7 +31,7 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
               >
                 {event.image && (
                   <figure class="h-48 overflow-hidden">
-                    <img
+                    <Image
                       src={event.image}
                       alt={event.title}
                       class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -45,7 +46,9 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
                     {event.date}
                   </div>
                   <div class="card-actions mt-4 justify-end">
-                    <div class="badge bg-[#D9776E] text-white rounded-md hover:bg-[#c5665d]">Details</div>
+                    <div class="badge rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]">
+                      Details
+                    </div>
                   </div>
                 </div>
               </a>
@@ -77,11 +80,10 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
               </div>
               <div class="bg-base-200 aspect-[4/3] shrink-0 overflow-hidden rounded-2xl sm:w-48">
                 {event.image && (
-                  <img
+                  <Image
                     src={event.image}
                     alt={event.title}
                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
                   />
                 )}
               </div>
@@ -149,7 +151,10 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
         </div>
 
         <div class="mt-4">
-          <button type="submit" class="btn bg-[#D9776E] text-white rounded-md hover:bg-[#c5665d] min-w-[120px] px-8">
+          <button
+            type="submit"
+            class="btn min-w-[120px] rounded-md bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+          >
             Submit
           </button>
         </div>
