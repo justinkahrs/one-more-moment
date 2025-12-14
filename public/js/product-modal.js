@@ -114,7 +114,7 @@ function renderOptions(product) {
              // Also check if we already have a selection for this group
              const groupKey = label.toLowerCase();
              if(selectedOptions[groupKey] === undefined) {
-                 btn.classList.add("btn-active", "btn-primary"); // Add btn-primary for consistency with selectOption
+                 btn.classList.add("btn-active", "bg-[#D9776E]", "text-white", "border-[#D9776E]");
                  selectedOptions[groupKey] = val;
              }
              
@@ -135,10 +135,10 @@ function selectOption(group, value, clickedBtn) {
     // Visual Update
     // 1. Deselect siblings
     const parent = clickedBtn.parentNode;
-    parent.querySelectorAll(".btn").forEach(b => b.classList.remove("btn-active", "btn-primary"));
+    parent.querySelectorAll(".btn").forEach(b => b.classList.remove("btn-active", "bg-[#D9776E]", "text-white", "border-[#D9776E]"));
     
     // 2. Select clicked
-    clickedBtn.classList.add("btn-active", "btn-primary");
+    clickedBtn.classList.add("btn-active", "bg-[#D9776E]", "text-white", "border-[#D9776E]");
     
     updateModalState();
 }

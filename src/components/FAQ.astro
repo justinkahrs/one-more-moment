@@ -20,7 +20,7 @@ const { title, items: faqs = [] } = FaqData;
           style="opacity: 0;"
         >
           <div class="collapse-title flex items-center gap-3 text-lg font-bold">
-            <span >{item.q}</span>
+            <span>{item.q}</span>
           </div>
           <div class="collapse-content">
             <div
@@ -37,18 +37,13 @@ const { title, items: faqs = [] } = FaqData;
 <style>
   .faq-item:focus,
   .faq-item:has(input:checked) {
-    border-color: #667eea;
-    background: linear-gradient(
-      to right,
-      rgba(102, 126, 234, 0.05),
-      rgba(118, 75, 162, 0.05)
-    );
-    box-shadow: 0 0 30px rgba(102, 126, 234, 0.2);
+    border-color: #d9776e;
+    box-shadow: 0 0 20px rgba(217, 119, 110, 0.2);
   }
 
   .faq-item:hover {
-    border-color: rgba(102, 126, 234, 0.3);
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+    border-color: #d9776e;
+    box-shadow: 0 10px 20px rgba(217, 119, 110, 0.8);
   }
 
   .gradient-text-hover {
@@ -57,7 +52,7 @@ const { title, items: faqs = [] } = FaqData;
 
   .faq-item:focus .gradient-text-hover,
   .faq-item:has(input:checked) .gradient-text-hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d9776e 0%, #d9776e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

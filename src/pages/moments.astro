@@ -48,7 +48,7 @@ try {
       <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
         Moments
       </h1>
-      <p class="text-lg text-base-content/70">
+      <p class="text-base-content/70 text-lg">
         Catch up on the latest from our channel.
       </p>
     </div>
@@ -80,7 +80,7 @@ try {
               href={video.link}
               target="_blank"
               rel="noopener noreferrer"
-              class="card bg-base-100 shadow-xl transition-transform hover:scale-105 hover:shadow-2xl duration-300"
+              class="card bg-base-100 shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
             >
               <figure class="relative aspect-video overflow-hidden">
                 <img
@@ -90,20 +90,26 @@ try {
                   loading="lazy"
                 />
                 <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                   <svg class="w-16 h-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                   </svg>
+                  <svg
+                    class="h-16 w-16 text-white drop-shadow-lg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </div>
               </figure>
               <div class="card-body">
-                <h2 class="card-title text-lg leading-snug line-clamp-2">
+                <h2 class="card-title line-clamp-2 text-lg leading-snug">
                   {video.title}
                 </h2>
-                <div class="card-actions justify-end mt-4">
-                    <span class="text-xs text-base-content/60 font-mono self-center mr-auto">
-                        {video.published}
-                    </span>
-                   <div class="badge badge-primary">Watch</div>
+                <div class="card-actions mt-4 justify-end">
+                  <span class="text-base-content/60 mr-auto self-center font-mono text-xs">
+                    {video.published}
+                  </span>
+                  <div class="badge rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]">
+                    Watch
+                  </div>
                 </div>
               </div>
             </a>

@@ -132,7 +132,7 @@ if (!products.length && import.meta.env.DEV && error) {
                   </p>
                   <div class="card-actions mt-4">
                     <button
-                      class="btn btn-primary open-product-modal"
+                      class="btn open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
                       data-id={product.id}
                     >
                       Choose Options
@@ -173,7 +173,10 @@ if (!products.length && import.meta.env.DEV && error) {
           >
 
           <h3 class="mb-2 text-3xl font-bold" id="modal-title">Product Name</h3>
-          <p class="text-primary mb-6 text-2xl font-semibold" id="modal-price">
+          <p
+            class="mb-6 text-2xl font-semibold text-[#d9776e]"
+            id="modal-price"
+          >
             $0.00
           </p>
 
@@ -208,7 +211,7 @@ if (!products.length && import.meta.env.DEV && error) {
           </div>
 
           <button
-            class="btn btn-primary btn-block btn-lg"
+            class="btn btn-block btn-lg rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
             id="modal-add-btn"
             disabled>Add to Cart</button
           >
@@ -274,8 +277,9 @@ if (!products.length && import.meta.env.DEV && error) {
           <span>Total</span>
           <span id="cart-total">$0.00</span>
         </div>
-        <button class="btn btn-primary btn-block" id="checkout-btn"
-          >Checkout</button
+        <button
+          class="btn btn-block bg-[#D9776E] text-white hover:bg-[#c5665d]"
+          id="checkout-btn">Checkout</button
         >
       </div>
     </div>
@@ -285,7 +289,7 @@ if (!products.length && import.meta.env.DEV && error) {
   <button
     slot="overlay"
     id="open-cart-btn"
-    class="btn btn-primary btn-circle btn-lg fixed right-8 bottom-8 z-40 shadow-lg"
+    class="btn btn-primary btn-circle btn-lg fixed right-8 bottom-8 z-40 shadow-lg transition-all duration-300 hover:scale-105"
   >
     <div class="indicator">
       <svg

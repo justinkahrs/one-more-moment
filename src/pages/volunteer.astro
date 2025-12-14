@@ -7,39 +7,45 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
 ---
 
 <Base title="Volunteer">
-  <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <div class="text-center mb-16">
-      <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">Volunteer</h1>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">
+  <div class="container mx-auto max-w-4xl px-4 py-12">
+    <div class="mb-16 text-center">
+      <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
+        Volunteer
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg opacity-80">
         Join us in making a difference.
       </p>
     </div>
 
     {/* Upcoming Events */}
     <section class="mb-16">
-      <h2 class="text-2xl font-serif mb-6">Upcoming Volunteer Opportunities</h2>
+      <h2 class="mb-6 font-serif text-2xl">Upcoming Volunteer Opportunities</h2>
       {
         upcomingEvents.length > 0 ? (
           <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             {upcomingEvents.map((event) => (
               <a
                 href={`/events/${event.slug}`}
-                class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 border border-base-200"
+                class="card bg-base-100 border-base-200 border shadow-sm transition-all duration-300 hover:shadow-md"
               >
-                  {event.image && (
-                      <figure class="h-48 overflow-hidden">
-                          <img src={event.image} alt={event.title} class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                      </figure>
-                  )}
+                {event.image && (
+                  <figure class="h-48 overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </figure>
+                )}
                 <div class="card-body">
-                  <h3 class="card-title text-xl font-medium leading-tight">
+                  <h3 class="card-title text-xl leading-tight font-medium">
                     {event.title}
                   </h3>
-                   <div class="text-sm opacity-70 mt-2 font-mono">
-                      {event.date}
+                  <div class="mt-2 font-mono text-sm opacity-70">
+                    {event.date}
                   </div>
-                  <div class="card-actions justify-end mt-4">
-                      <div class="badge badge-neutral">Details</div>
+                  <div class="card-actions mt-4 justify-end">
+                    <div class="badge bg-[#D9776E] text-white rounded-md hover:bg-[#c5665d]">Details</div>
                   </div>
                 </div>
               </a>
@@ -53,28 +59,28 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
       }
     </section>
 
-    {/* Recent Events */}
+    {/* Past Events */}
     <section class="mb-20">
-      <h2 class="text-2xl font-serif mb-6">Recent Volunteer Opportunities</h2>
+      <h2 class="mb-6 font-serif text-2xl">Past Opportunities</h2>
       <div class="space-y-8">
         {
           pastEvents.map((event) => (
             <a
               href={`/events/${event.slug}`}
-              class="flex flex-col sm:flex-row gap-6 group"
+              class="group flex flex-col gap-6 sm:flex-row"
             >
               <div class="flex-1 space-y-2">
-                <div class="text-sm opacity-60 font-mono">{event.date}</div>
-                <h3 class="text-2xl font-serif font-medium group-hover:underline decoration-1 underline-offset-4 leading-tight">
+                <div class="font-mono text-sm opacity-60">{event.date}</div>
+                <h3 class="font-serif text-2xl leading-tight font-medium decoration-1 underline-offset-4 group-hover:underline">
                   {event.title}
                 </h3>
               </div>
-              <div class="sm:w-48 aspect-[4/3] bg-base-200 rounded-2xl overflow-hidden shrink-0">
+              <div class="bg-base-200 aspect-[4/3] shrink-0 overflow-hidden rounded-2xl sm:w-48">
                 {event.image && (
                   <img
                     src={event.image}
                     alt={event.title}
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 )}
@@ -87,7 +93,7 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
 
     {/* Get Involved Form */}
     <section>
-      <h2 class="text-4xl font-serif mb-8">Get Involved</h2>
+      <h2 class="mb-8 font-serif text-4xl">Get Involved</h2>
       <form
         action="#"
         method="POST"
@@ -102,7 +108,7 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
             type="text"
             name="name"
             placeholder="Type here"
-            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+            class="input input-bordered w-full rounded-md focus:outline-offset-0"
             required
           />
         </div>
@@ -115,7 +121,7 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
             type="email"
             name="email"
             placeholder="Type here"
-            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+            class="input input-bordered w-full rounded-md focus:outline-offset-0"
             required
           />
         </div>
@@ -126,9 +132,8 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
           </label>
           <textarea
             name="help"
-            class="textarea textarea-bordered h-32 rounded-none focus:outline-offset-0 w-full"
-            placeholder="Tell us about your skills and interests"
-          ></textarea>
+            class="textarea textarea-bordered h-32 w-full rounded-md focus:outline-offset-0"
+            placeholder="Tell us about your skills and interests"></textarea>
         </div>
 
         <div class="form-control w-full">
@@ -139,12 +144,12 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
             type="text"
             name="availability"
             placeholder="e.g. Weekends, Tuesday evenings"
-            class="input input-bordered w-full rounded-none focus:outline-offset-0"
+            class="input input-bordered w-full rounded-md focus:outline-offset-0"
           />
         </div>
 
         <div class="mt-4">
-          <button type="submit" class="btn btn-neutral px-8 min-w-[120px]">
+          <button type="submit" class="btn bg-[#D9776E] text-white rounded-md hover:bg-[#c5665d] min-w-[120px] px-8">
             Submit
           </button>
         </div>
