@@ -13,7 +13,7 @@ const { overlay = false } = Astro.props;
   class={clsx(
     "navbar z-100 shadow-lg backdrop-blur-md transition-all duration-300",
     overlay
-      ? "fixed top-0 w-full bg-white/90 border-b border-white/20"
+      ? "fixed top-0 w-full bg-white border-b border-white/20"
       : "bg-base-100/90",
     !overlay && sticky && "sticky top-0",
   )}
@@ -73,7 +73,7 @@ const { overlay = false } = Astro.props;
       <img
         src={Logo.src}
         alt={companyName}
-        class="h-24 w-auto object-contain lg:h-32 rounded-lg"
+        class="h-24 w-auto rounded-lg object-contain lg:h-32"
         loading="eager"
       />
     </a>
