@@ -155,173 +155,168 @@ const { cta, title, subTitle } = metadata.merchPage;
         })
       }
     </div>
+  </main>
 
-    <slot name="overlay" />
-
-    <!-- Product Modal -->
-    <dialog id="product_modal" class="modal" slot="overlay">
-      <div class="modal-box bg-base-100 w-11/12 max-w-4xl overflow-hidden p-0">
-        <div class="flex h-full max-h-[85vh] flex-col md:flex-row">
-          <!-- Image Section -->
-          <div
-            class="bg-base-200 flex w-full items-center justify-center p-6 md:w-1/2"
-          >
-            <img
-              id="modal-image"
-              src=""
-              alt="Product"
-              class="max-h-[50vh] rounded-lg object-contain shadow-sm"
-            />
-          </div>
-
-          <!-- Details Section -->
-          <div class="flex w-full flex-col overflow-y-auto p-8 md:w-1/2">
-            <button
-              class="btn btn-sm btn-circle btn-ghost absolute top-4 right-4 z-10"
-              onclick="product_modal.close()">✕</button
-            >
-
-            <h3 class="mb-2 text-3xl font-bold" id="modal-title">
-              Product Name
-            </h3>
-            <p
-              class="mb-6 text-2xl font-semibold text-[#d9776e]"
-              id="modal-price"
-            >
-              $0.00
-            </p>
-
-            <div id="modal-options" class="flex-1 space-y-6">
-              <!-- Dynamic Options Injected Here -->
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="form-control mb-6 w-full max-w-xs">
-              <label class="label"
-                ><span class="label-text font-bold">Quantity</span></label
-              >
-              <div class="flex items-center">
-                <button
-                  class="btn btn-square btn-outline btn-sm"
-                  onclick="window.updateModalQty(-1)">-</button
-                >
-                <input
-                  type="number"
-                  id="modal-qty"
-                  value="1"
-                  class="input input-bordered input-sm mx-2 w-20 text-center"
-                  min="1"
-                  readonly
-                />
-                <button
-                  class="btn btn-square btn-outline btn-sm"
-                  onclick="window.updateModalQty(1)">+</button
-                >
-              </div>
-            </div>
-
-            <button
-              class="btn btn-block btn-lg rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
-              id="modal-add-btn"
-              disabled>Add to Cart</button
-            >
-          </div>
-        </div>
-      </div>
-      <form method="dialog" class="modal-backdrop">
-        <button>close</button>
-      </form>
-    </dialog>
-
-    <script
-      is:inline
-      define:vars={{
-        STOREFRONT_TOKEN,
-        SHOP_URL:
-          import.meta.env.FOURTHWALL_SHOP_URL || "checkout.fourthwall.com",
-        PRODUCTS: products,
-      }}
-    >
-      window.OMM_STOREFRONT_TOKEN = STOREFRONT_TOKEN;
-      window.OMM_SHOP_URL = SHOP_URL;
-      window.OMM_PRODUCTS = PRODUCTS;
-    </script>
-
-    <script src="/js/product-modal.js" is:inline></script>
-    <!-- Shopping Cart UI (Drawer/Modal) -->
-    <div slot="overlay" id="cart-drawer" class="fixed inset-0 z-[999] hidden">
-      <div
-        class="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        id="cart-overlay"
-      >
-      </div>
-      <div
-        class="bg-base-100 absolute top-0 right-0 flex h-full w-full max-w-md translate-x-full transform flex-col p-6 shadow-2xl transition-transform"
-        id="cart-content"
-      >
-        <div class="mb-6 flex items-center justify-between">
-          <h2 class="text-2xl font-bold">Your Cart</h2>
-          <button class="btn btn-circle btn-ghost" id="close-cart">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path></svg
-            >
-          </button>
+  <!-- Product Modal -->
+  <dialog id="product_modal" class="modal" slot="overlay">
+    <div class="modal-box bg-base-100 w-11/12 max-w-4xl overflow-hidden p-0">
+      <div class="flex h-full max-h-[85vh] flex-col md:flex-row">
+        <!-- Image Section -->
+        <div
+          class="bg-base-200 flex w-full items-center justify-center p-6 md:w-1/2"
+        >
+          <img
+            id="modal-image"
+            src=""
+            alt="Product"
+            class="max-h-[50vh] rounded-lg object-contain shadow-sm"
+          />
         </div>
 
-        <div id="cart-items" class="flex-1 space-y-4 overflow-y-auto">
-          <!-- Cart items injected here -->
-          <p class="mt-10 text-center text-gray-500">Your cart is empty.</p>
-        </div>
-
-        <div class="mt-4 border-t pt-4">
-          <div class="mb-4 flex justify-between text-xl font-bold">
-            <span>Total</span>
-            <span id="cart-total">$0.00</span>
-          </div>
+        <!-- Details Section -->
+        <div class="flex w-full flex-col overflow-y-auto p-8 md:w-1/2">
           <button
-            class="btn btn-block bg-[#D9776E] text-white hover:bg-[#c5665d]"
-            id="checkout-btn">Checkout</button
+            class="btn btn-sm btn-circle btn-ghost absolute top-4 right-4 z-10"
+            onclick="product_modal.close()">✕</button
+          >
+
+          <h3 class="mb-2 text-3xl font-bold" id="modal-title">Product Name</h3>
+          <p
+            class="mb-6 text-2xl font-semibold text-[#d9776e]"
+            id="modal-price"
+          >
+            $0.00
+          </p>
+
+          <div id="modal-options" class="flex-1 space-y-6">
+            <!-- Dynamic Options Injected Here -->
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="form-control mb-6 w-full max-w-xs">
+            <label class="label"
+              ><span class="label-text font-bold">Quantity</span></label
+            >
+            <div class="flex items-center">
+              <button
+                class="btn btn-square btn-outline btn-sm"
+                onclick="window.updateModalQty(-1)">-</button
+              >
+              <input
+                type="number"
+                id="modal-qty"
+                value="1"
+                class="input input-bordered input-sm mx-2 w-20 text-center"
+                min="1"
+                readonly
+              />
+              <button
+                class="btn btn-square btn-outline btn-sm"
+                onclick="window.updateModalQty(1)">+</button
+              >
+            </div>
+          </div>
+
+          <button
+            class="btn btn-block btn-lg rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
+            id="modal-add-btn"
+            disabled>Add to Cart</button
           >
         </div>
       </div>
     </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 
-    <!-- Floating Cart Button -->
-    <button
-      slot="overlay"
-      id="open-cart-btn"
-      class="btn btn-primary btn-circle btn-lg fixed right-8 bottom-8 z-40 shadow-lg transition-all duration-300 hover:scale-105"
+  <script
+    is:inline
+    define:vars={{
+      STOREFRONT_TOKEN,
+      SHOP_URL:
+        import.meta.env.FOURTHWALL_SHOP_URL || "checkout.fourthwall.com",
+      PRODUCTS: products,
+    }}
+  >
+    window.OMM_STOREFRONT_TOKEN = STOREFRONT_TOKEN;
+    window.OMM_SHOP_URL = SHOP_URL;
+    window.OMM_PRODUCTS = PRODUCTS;
+  </script>
+
+  <script src="/js/product-modal.js" is:inline></script>
+  <!-- Shopping Cart UI (Drawer/Modal) -->
+  <div slot="overlay" id="cart-drawer" class="fixed inset-0 z-[999] hidden">
+    <div
+      class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      id="cart-overlay"
     >
-      <div class="indicator">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-          ></path></svg
-        >
-        <span class="indicator-item badge badge-secondary" id="cart-count"
-          >0</span
+    </div>
+    <div
+      class="bg-base-100 absolute top-0 right-0 flex h-full w-full max-w-md translate-x-full transform flex-col p-6 shadow-2xl transition-transform"
+      id="cart-content"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Your Cart</h2>
+        <button class="btn btn-circle btn-ghost" id="close-cart">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path></svg
+          >
+        </button>
+      </div>
+
+      <div id="cart-items" class="flex-1 space-y-4 overflow-y-auto">
+        <!-- Cart items injected here -->
+        <p class="mt-10 text-center text-gray-500">Your cart is empty.</p>
+      </div>
+
+      <div class="mt-4 border-t pt-4">
+        <div class="mb-4 flex justify-between text-xl font-bold">
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <button
+          class="btn btn-block bg-[#D9776E] text-white hover:bg-[#c5665d]"
+          id="checkout-btn">Checkout</button
         >
       </div>
-    </button>
-  </main>
+    </div>
+  </div>
+
+  <!-- Floating Cart Button -->
+  <button
+    slot="overlay"
+    id="open-cart-btn"
+    class="btn btn-primary btn-circle btn-lg fixed right-8 bottom-8 z-40 shadow-lg transition-all duration-300 hover:scale-105"
+  >
+    <div class="indicator">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+        ></path></svg
+      >
+      <span class="indicator-item badge badge-secondary" id="cart-count">0</span
+      >
+    </div>
+  </button>
 
   <script src="/js/cart.js" is:inline></script>
 </Layout>
