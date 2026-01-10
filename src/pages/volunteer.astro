@@ -96,12 +96,7 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
     {/* Get Involved Form */}
     <section>
       <h2 class="mb-8 font-serif text-4xl">Get Involved</h2>
-      <form
-        action="#"
-        method="POST"
-        class="flex flex-col gap-6"
-        onsubmit="alert('Thank you for volunteering! (This is a demo setup)'); return false;"
-      >
+      <form id="volunteer-request-form" class="flex flex-col gap-6">
         <div class="form-control w-full">
           <label class="label">
             <span class="label-text">Name</span>
@@ -162,3 +157,52 @@ const pastEvents = events.filter((e) => !e.isUpcoming);
     </section>
   </div>
 </Base>
+
+<script>
+  const form = document.getElementById(
+    "volunteer-request-form",
+  ) as HTMLFormElement;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector(
+      'button[type="submit"]',
+    ) as HTMLButtonElement;
+    if (!submitBtn) return;
+
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/submit-volunteer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("Thank you for volunteering! We will be in touch soon.");
+        form.reset();
+      } else {
+        alert(
+          result.message || "Something went wrong. Please try again later.",
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
