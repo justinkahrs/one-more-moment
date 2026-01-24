@@ -1,0 +1,78 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = "Blog";
+const description = "Latest news and updates from One More Moment.";
+---
+
+<Base title={title} description={description}>
+  <section class="bg-base-200 py-16 md:py-24">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="mb-12 text-center">
+        <h1 class="font-heading mb-4 text-4xl font-bold md:text-5xl">
+          {title}
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg opacity-80">{description}</p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          posts.map((post) => (
+            <a href={`/blog/${post.slug}/`} class="group block h-full">
+              <article class="bg-base-100 flex h-full flex-col overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 hover:shadow-xl">
+                {post.data.image && (
+                  <div class="relative aspect-video overflow-hidden">
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div class="flex flex-1 flex-col p-6">
+                  <div class="mb-3 text-xs font-semibold tracking-wider uppercase opacity-60">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString("en-us", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </div>
+                  <h2 class="group-hover:text-primary mb-3 text-2xl leading-tight font-bold transition-colors">
+                    {post.data.title}
+                  </h2>
+                  <p class="mb-4 line-clamp-3 flex-1 opacity-80 dark:opacity-70">
+                    {post.data.description}
+                  </p>
+                  <div class="text-primary flex items-center text-sm font-medium">
+                    Read more
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

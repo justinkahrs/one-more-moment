@@ -7,6 +7,12 @@ const HeaderData = metadata.header ?? {};
 const companyName = metadata.name;
 const { navItems = [], cta, sticky } = HeaderData;
 const { overlay = false } = Astro.props;
+
+interface NavItem {
+  name: string;
+  href: string;
+  children?: NavItem[];
+}
 ---
 
 <div
@@ -46,13 +52,13 @@ const { overlay = false } = Astro.props;
         class="menu menu-xl dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
       >
         {
-          navItems.map(({ children, href, name }) =>
+          navItems.map(({ children, href, name }: NavItem) =>
             children ? (
               <li>
                 <details>
                   <summary>{name}</summary>
                   <ul class="p-2">
-                    {children.map(({ href, name }) => (
+                    {children.map(({ href, name }: NavItem) => (
                       <li>
                         <a href={href}>{name}</a>
                       </li>
@@ -82,13 +88,13 @@ const { overlay = false } = Astro.props;
   <div class="navbar-end hidden w-full lg:flex">
     <ul class="menu menu-horizontal px-1 text-lg font-semibold">
       {
-        navItems.map((item) =>
+        navItems.map((item: NavItem) =>
           item.children ? (
             <li>
               <details>
                 <summary>{item.name}</summary>
                 <ul class="p-2">
-                  {item.children.map((child) => (
+                  {item.children.map((child: NavItem) => (
                     <li>
                       <a href={child.href}>{child.name}</a>
                     </li>
