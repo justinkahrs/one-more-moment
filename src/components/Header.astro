@@ -24,16 +24,23 @@ interface NavItem {
     justify-items: start;
   }
 
-  /* Transition Properties */
+  /* Individual Logos */
   .logo-unscrolled,
   .logo-scrolled {
     grid-area: logo;
     width: auto;
     object-fit: contain;
+    /* Default transition for shrinking (scrolling down) */
     transition:
       opacity 0.5s ease-in-out,
       transform 0.5s ease-in-out,
       height 0.5s ease-in-out;
+  }
+
+  /* Rapid return transition (scrolling back up) */
+  #navbar-header:not(.scrolled) .logo-unscrolled,
+  #navbar-header:not(.scrolled) .logo-scrolled {
+    transition-duration: 0.15s;
   }
 
   /* Desktop Default State (Large) */
@@ -93,7 +100,11 @@ interface NavItem {
     #navbar-header {
       padding-top: 1rem;
       padding-bottom: 1rem;
+      /* Shrink padding slowly, grow back quickly */
       transition: padding 0.5s ease-in-out;
+    }
+    #navbar-header:not(.scrolled) {
+      transition-duration: 0.15s;
     }
     #navbar-header.scrolled {
       padding-top: 0.5rem;
@@ -105,7 +116,7 @@ interface NavItem {
 <script>
   function handleScroll() {
     const header = document.getElementById("navbar-header");
-    if (window.scrollY > 150) {
+    if (window.scrollY > 100) {
       header?.classList.add("scrolled");
     } else {
       header?.classList.remove("scrolled");
