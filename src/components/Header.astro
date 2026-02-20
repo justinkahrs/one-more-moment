@@ -2,6 +2,7 @@
 import { frontmatter as metadata } from "../data/metadata.mdx";
 import clsx from "clsx";
 import Logo from "../assets/omm-new-logo.png";
+import LogoScrolled from "../assets/omm-horz-logo.png";
 
 const HeaderData = metadata.header ?? {};
 const companyName = metadata.name;
@@ -15,9 +16,110 @@ interface NavItem {
 }
 ---
 
+<style>
+  .logo-container {
+    display: inline-grid;
+    grid-template-areas: "logo";
+    align-items: center;
+    justify-items: start;
+  }
+
+  /* Transition Properties */
+  .logo-unscrolled,
+  .logo-scrolled {
+    grid-area: logo;
+    width: auto;
+    object-fit: contain;
+    transition:
+      opacity 0.5s ease-in-out,
+      transform 0.5s ease-in-out,
+      height 0.5s ease-in-out;
+  }
+
+  /* Desktop Default State (Large) */
+  @media (min-width: 1024px) {
+    #navbar-header:not(.scrolled) .logo-unscrolled {
+      height: 12rem; /* h-48 */
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #navbar-header:not(.scrolled) .logo-scrolled {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+
+    /* Desktop Scrolled State (Small) */
+    #navbar-header.scrolled .logo-unscrolled {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+    }
+    #navbar-header.scrolled .logo-scrolled {
+      height: 5rem; /* 80px */
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile Default State */
+  @media (max-width: 1023px) {
+    #navbar-header:not(.scrolled) .logo-unscrolled {
+      height: 6rem; /* h-24 */
+      opacity: 1;
+    }
+    #navbar-header:not(.scrolled) .logo-scrolled {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Mobile Scrolled State */
+    #navbar-header.scrolled .logo-unscrolled {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #navbar-header.scrolled .logo-scrolled {
+      height: 3rem; /* h-12 */
+      opacity: 1;
+    }
+  }
+
+  /* Desktop Header Padding Transition */
+  @media (min-width: 1024px) {
+    #navbar-header {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      transition: padding 0.5s ease-in-out;
+    }
+    #navbar-header.scrolled {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  function handleScroll() {
+    const header = document.getElementById("navbar-header");
+    if (window.scrollY > 150) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  // Check once on load
+  handleScroll();
+</script>
 <div
+  id="navbar-header"
   class={clsx(
-    "navbar z-100 shadow-lg backdrop-blur-md transition-all duration-300",
+    "navbar z-100 shadow-lg backdrop-blur-md transition-all duration-500",
     overlay
       ? "fixed top-0 w-full bg-white border-b border-white/20"
       : "bg-base-100/90",
@@ -75,11 +177,17 @@ interface NavItem {
         }
       </ul>
     </div>
-    <a href="/" class="flex items-center gap-2 text-xl font-bold lg:mx-4">
+    <a href="/" class="logo-container text-xl font-bold lg:mx-4">
       <img
         src={Logo.src}
         alt={companyName}
-        class="h-24 w-auto rounded-lg object-contain lg:h-48"
+        class="logo-unscrolled rounded-lg"
+        loading="eager"
+      />
+      <img
+        src={LogoScrolled.src}
+        alt={companyName}
+        class="logo-scrolled rounded-lg"
         loading="eager"
       />
     </a>
@@ -113,7 +221,7 @@ interface NavItem {
     {
       cta && (
         <a
-          class="btn btn-lg ml-4 rounded-md border-0 bg-[#D9776E] px-6 text-white hover:bg-[#c5665d]"
+          class="btn btn-lg mx-4 mr-20 rounded-md border-0 bg-[#D9776E] px-6 text-white hover:bg-[#c5665d]"
           href={cta.href}
         >
           {cta.label}
