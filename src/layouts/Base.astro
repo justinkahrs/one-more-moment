@@ -5,7 +5,11 @@ import Footer from "../components/Footer.astro";
 import { fade } from "astro:transitions";
 import { frontmatter as meta } from "../data/metadata.mdx";
 
-const { title = "Site", overlayHeader = false } = Astro.props;
+const {
+  title = "Site",
+  overlayHeader = false,
+  image = meta.seo?.ogImage || "/og-image.png",
+} = Astro.props;
 
 const seo = meta.seo || {};
 
@@ -51,11 +55,13 @@ const keywords = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:site_name" content={meta.name} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
   </head>
 
   <body class="bg-base-100 text-base-content flex min-h-screen flex-col">

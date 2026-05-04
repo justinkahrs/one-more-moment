@@ -6,12 +6,15 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 
 import vercel from "@astrojs/vercel";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
+  site: "https://onemoremoment.org",
   vite: {
     plugins: [basicSsl(), tailwindcss()],
   },
 
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   adapter: vercel(),
 });

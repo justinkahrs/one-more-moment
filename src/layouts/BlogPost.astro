@@ -7,7 +7,7 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, image, author } = Astro.props;
 ---
 
-<Base title={title} description={description} overlayHeader={false}>
+<Base title={title} description={description} image={image} overlayHeader={false}>
   <article class="bg-base-100 container mx-auto px-4 py-12 md:py-20 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <div class="mb-10 text-center">
