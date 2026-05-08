@@ -3,12 +3,18 @@ title: "Can Adults With Cancer Get a Wish Granted in Michigan?"
 description: "Adults with Stage IV, advanced, or metastatic cancer may qualify for a wish experience through One More Moment in Michigan."
 pubDate: "2026-05-08"
 author: "One More Moment Team"
+authorRole: "Michigan nonprofit wish-granting organization"
+reviewer: "Jason Pohlonski"
+reviewerRole: "Founder, One More Moment"
+image: "/blog/adult-cancer-wish-program-michigan-one-more-moment.jpg"
 tags: ["wish granting", "cancer support", "Michigan"]
 ---
 
 Yes. Adults with cancer can get a wish granted in Michigan through One More Moment if they meet the eligibility guidelines for a Moment.
 
 One More Moment helps individuals facing late-stage cancer create meaningful experiences with the people they love. We call these experiences Moments. They may be simple, like sharing coffee with family, or more involved, like attending a game, visiting a favorite place, or taking a meaningful trip within Michigan.
+
+This article was prepared by the One More Moment team and reviewed by Jason Pohlonski, founder of One More Moment, for alignment with the organization's eligibility guidelines and request process.
 
 ## Who can receive a cancer wish in Michigan?
 
@@ -27,6 +33,8 @@ For the full eligibility details, visit [Who Qualifies](/#who-qualifies).
 
 A Moment is personal to the person receiving it. It does not need to look like anyone else's idea of a wish.
 
+One More Moment was founded from a deeply personal experience: Jason Pohlonski wanted to help his mother, who was weakened by advanced cancer, leave home for one more coffee date at a local shop. That simple wish became the model for the organization: remove practical barriers so cancer warriors and their loved ones can share meaningful time together.
+
 Some Moments may include:
 
 - Visiting a long-lost friend
@@ -37,15 +45,23 @@ Some Moments may include:
 
 If the wish involves travel, One More Moment specializes in trips within the state of Michigan. We fund Moments that include the cancer warrior and up to three family members or friends. Additional people may be able to join if space allows, though they are responsible for their own expenses.
 
+In practice, a Moment might be as simple as making a favorite meal or coffee outing possible, or as involved as coordinating tickets, transportation, and lodging for a meaningful in-state experience. The goal is not extravagance. The goal is presence, dignity, and time with the people who matter most.
+
+You can also see shared Moment videos and updates on the [Moments page](/moments), where One More Moment collects stories from the people and families this work is meant to support.
+
 ## How do I request a wish?
 
 If you know someone in Michigan with Stage IV, advanced, or metastatic cancer who may qualify, you can start by submitting a [Request a Moment](/moments#request-a-moment).
 
 The request form asks for basic contact information and space to share the situation. After the request is submitted, our team reviews the information and follows up about next steps.
 
+Requests are reviewed by the One More Moment team based on eligibility, available resources, timing, safety, logistics, and the requested Moment. Submitting a request does not guarantee approval or funding. One More Moment does not provide medical care, ambulance transportation, oxygen, medical equipment, nursing support, dialysis, or hospice care away from home.
+
+Please share only the information needed for the team to understand the request. Medical details are used to evaluate eligibility and coordinate next steps, and applicants should avoid sending unnecessary private health information through the initial form.
+
 ## Can I help grant a wish for an adult with cancer?
 
-Yes. One More Moment is a 501(c)(3) nonprofit, and donations help cover the costs that make Moments possible. Gifts support experiences for Michigan cancer warriors and their loved ones, including logistics, tickets, travel-related costs, meals, and other needs connected to a specific Moment.
+Yes. One More Moment is a 501(c)(3) nonprofit; you can view its public nonprofit profile on [Idealist](https://www.idealist.org/en/nonprofit/1086a97803cc4069b08fc2d3a7af8ebf-one-more-moment-grand-rapids). Donations help cover the costs that make Moments possible. Gifts support experiences for Michigan cancer warriors and their loved ones, including logistics, tickets, travel-related costs, meals, and other needs connected to a specific Moment.
 
 If you want to help make these experiences possible, you can [Donate](/donate).
 

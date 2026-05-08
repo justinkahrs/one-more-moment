@@ -4,10 +4,63 @@ import Base from "./Base.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, image, author } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  image,
+  author,
+  authorRole,
+  reviewer,
+  reviewerRole,
+} = Astro.props;
+
+const organizationSchema = {
+  "@type": "Organization",
+  name: "One More Moment",
+  url: "https://www.onemoremoment.org/",
+  logo: new URL("/og-image.png", Astro.url).toString(),
+  nonprofitStatus: "Nonprofit501c3",
+};
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    image: image ? new URL(image, Astro.url).toString() : undefined,
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate || pubDate).toISOString(),
+    author: {
+      "@type": "Organization",
+      name: author || "One More Moment",
+      description: authorRole,
+    },
+    reviewedBy: reviewer
+      ? {
+          "@type": "Person",
+          name: reviewer,
+          jobTitle: reviewerRole,
+        }
+      : undefined,
+    publisher: organizationSchema,
+    mainEntityOfPage: Astro.url.toString(),
+  },
+  {
+    "@context": "https://schema.org",
+    ...organizationSchema,
+  },
+];
 ---
 
 <Base title={title} description={description} image={image} overlayHeader={false}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
   <article class="bg-base-100 container mx-auto px-4 py-12 md:py-20 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <div class="mb-10 text-center">
@@ -51,6 +104,23 @@ const { title, description, pubDate, updatedDate, image, author } = Astro.props;
           {author && <span class="mx-2">•</span>}
           {author && <span>{author}</span>}
         </div>
+        {
+          (authorRole || reviewer) && (
+            <div class="mx-auto mb-5 max-w-2xl text-sm opacity-75">
+              {authorRole && author && (
+                <p>
+                  Written by {author}, {authorRole}.
+                </p>
+              )}
+              {reviewer && (
+                <p>
+                  Reviewed by {reviewer}
+                  {reviewerRole ? `, ${reviewerRole}` : ""}.
+                </p>
+              )}
+            </div>
+          )
+        }
         <h1 class="text-4xl leading-tight font-bold md:text-5xl">{title}</h1>
       </div>
 
