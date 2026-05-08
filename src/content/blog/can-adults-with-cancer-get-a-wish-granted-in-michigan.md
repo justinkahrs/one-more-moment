@@ -2,7 +2,7 @@
 title: "Can Adults With Cancer Get a Wish Granted in Michigan?"
 description: "Adults with Stage IV, advanced, or metastatic cancer may qualify for a wish experience through One More Moment in Michigan."
 pubDate: "2026-05-08"
-author: "One More Moment Team"
+author: "Jason Pohlonski, Founder & Executive Director"
 authorRole: "Michigan nonprofit wish-granting organization"
 reviewer: "Jason Pohlonski"
 reviewerRole: "Founder, One More Moment"
@@ -49,6 +49,12 @@ In practice, a Moment might be as simple as making a favorite meal or coffee out
 
 You can also see shared Moment videos and updates on the [Moments page](/moments), where One More Moment collects stories from the people and families this work is meant to support.
 
+## Why These Moments Matter
+
+One completed Moment involved helping a Michigan adult with late-stage cancer spend meaningful time with loved ones in a way the family could not have arranged on their own. The details are kept private to protect the family, but the purpose was simple: remove the barriers, create the space, and give the family one more memory together.
+
+That is the heart of One More Moment. The wish does not have to be extravagant. Sometimes the most meaningful Moments are quiet, familiar, and deeply personal.
+
 ## How do I request a wish?
 
 If you know someone in Michigan with Stage IV, advanced, or metastatic cancer who may qualify, you can start by submitting a [Request a Moment](/moments#request-a-moment).
@@ -70,3 +76,44 @@ If you want to help make these experiences possible, you can [Donate](/donate).
 For adults facing late-stage cancer, a wish is not about extravagance. It is about removing barriers so a person and their loved ones can share something meaningful together.
 
 If you are looking for adult cancer wish granting in Michigan, One More Moment may be able to help. Start with [Who Qualifies](/#who-qualifies), then submit a [Request a Moment](/moments#request-a-moment) when you are ready.
+
+---
+
+## About the Author
+
+**Jason Pohlonski is the Founder and Executive Director of One More Moment**, a Michigan-based nonprofit created to help adults facing Stage IV, advanced, or metastatic cancer experience meaningful Moments with the people they love.
+
+One More Moment was inspired by Jason’s personal experience with his mother’s cancer journey and the realization that, near the end of life, even a simple moment together can mean everything. Through One More Moment, Jason and the organization work to provide dignity, connection, and meaningful experiences for adults and families navigating late-stage cancer.
+
+## About One More Moment
+
+**One More Moment** grants meaningful wish experiences for adults in Michigan who are facing Stage IV, advanced, or metastatic cancer and who lack the resources to create that Moment on their own.
+
+Every request is reviewed with care. Eligibility may include Michigan residency, a qualifying cancer diagnosis, financial or logistical need, and confirmation from an oncology provider.
+
+## Nonprofit Verification
+
+One More Moment is a registered nonprofit organization. Visitors can verify the organization through official nonprofit resources, including the IRS Tax Exempt Organization Search and Candid/GuideStar.
+
+- IRS Tax Exempt Organization Search: [Search for One More Moment, EIN 47-4466426](https://apps.irs.gov/app/eos/details/)
+- Candid/GuideStar profile: [One More Moment nonprofit profile](https://app.candid.org/profile/9492389/one-more-moment-47-4466426)
+
+## Privacy and Medical Information
+
+One More Moment respects the privacy of every applicant, family, and referral partner. Medical and personal information submitted through a Moment request is used only to review eligibility and coordinate the request.
+
+For more details, please review our [Privacy Policy](/privacy-policy/).
+
+## Helpful Links
+
+- [Request a Moment](/request-a-moment/)
+- [Who Qualifies](/who-qualifies/)
+- [Donate to One More Moment](/donate/)
+- [Partner With Us](/partner-with-us/)
+- [Contact One More Moment](/contact/)
+
+## Contact
+
+**One More Moment**  
+Founder & Executive Director: Jason Pohlonski  
+Website: [https://www.onemoremoment.org](https://www.onemoremoment.org)
