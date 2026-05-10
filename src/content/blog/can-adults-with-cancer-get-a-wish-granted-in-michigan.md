@@ -47,7 +47,7 @@ If the wish involves travel, One More Moment specializes in trips within the sta
 
 In practice, a Moment might be as simple as making a favorite meal or coffee outing possible, or as involved as coordinating tickets, transportation, and lodging for a meaningful in-state experience. The goal is not extravagance. The goal is presence, dignity, and time with the people who matter most.
 
-You can also see shared Moment videos and updates on the [Moments page](/moments), where One More Moment collects stories from the people and families this work is meant to support.
+You can also see shared Moment videos and updates on the [Moments page](/moments/), where One More Moment collects stories from the people and families this work is meant to support.
 
 ## Why These Moments Matter
 
@@ -57,7 +57,7 @@ That is the heart of One More Moment. The wish does not have to be extravagant. 
 
 ## How do I request a wish?
 
-If you know someone in Michigan with Stage IV, advanced, or metastatic cancer who may qualify, you can start by submitting a [Request a Moment](/moments#request-a-moment).
+If you know someone in Michigan with Stage IV, advanced, or metastatic cancer who may qualify, you can start by submitting a [Request a Moment](/moments/#request-a-moment).
 
 The request form asks for basic contact information and space to share the situation. After the request is submitted, our team reviews the information and follows up about next steps.
 
@@ -69,13 +69,13 @@ Please share only the information needed for the team to understand the request.
 
 Yes. One More Moment is a 501(c)(3) nonprofit; you can view its public nonprofit profile on [Idealist](https://www.idealist.org/en/nonprofit/1086a97803cc4069b08fc2d3a7af8ebf-one-more-moment-grand-rapids). Donations help cover the costs that make Moments possible. Gifts support experiences for Michigan cancer warriors and their loved ones, including logistics, tickets, travel-related costs, meals, and other needs connected to a specific Moment.
 
-If you want to help make these experiences possible, you can [Donate](/donate).
+If you want to help make these experiences possible, you can [Donate](/donate/).
 
 ## One more meaningful moment
 
 For adults facing late-stage cancer, a wish is not about extravagance. It is about removing barriers so a person and their loved ones can share something meaningful together.
 
-If you are looking for adult cancer wish granting in Michigan, One More Moment may be able to help. Start with [Who Qualifies](/#who-qualifies), then submit a [Request a Moment](/moments#request-a-moment) when you are ready.
+If you are looking for adult cancer wish granting in Michigan, One More Moment may be able to help. Start with [Who Qualifies](/#who-qualifies), then submit a [Request a Moment](/moments/#request-a-moment) when you are ready.
 
 ---
 
@@ -106,11 +106,11 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 
 ## Helpful Links
 
-- [Request a Moment](/request-a-moment/)
-- [Who Qualifies](/who-qualifies/)
+- [Request a Moment](/moments/#request-a-moment)
+- [Who Qualifies](/#who-qualifies)
 - [Donate to One More Moment](/donate/)
-- [Partner With Us](/partner-with-us/)
-- [Contact One More Moment](/contact/)
+- [Partner With Us](/volunteer/#volunteer-request-form)
+- [Contact One More Moment](mailto:contactus@onemoremoment.org)
 
 ## Contact
 

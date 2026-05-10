@@ -147,11 +147,11 @@ A Moment does not have to be big to be unforgettable.
 
 Sometimes, one more simple day together is everything.
 
-[Request a Moment](/request-a-moment/)  
-[Who Qualifies](/who-qualifies/)  
+[Request a Moment](/moments/#request-a-moment)  
+[Who Qualifies](/#who-qualifies)  
 [Donate to One More Moment](/donate/)  
-[Partner With Us](/partner-with-us/)  
-[Contact One More Moment](/contact/)
+[Partner With Us](/volunteer/#volunteer-request-form)  
+[Contact One More Moment](mailto:contactus@onemoremoment.org)
 
 ---
 
@@ -182,11 +182,11 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 
 ## Helpful Links
 
-- [Request a Moment](/request-a-moment/)
-- [Who Qualifies](/who-qualifies/)
+- [Request a Moment](/moments/#request-a-moment)
+- [Who Qualifies](/#who-qualifies)
 - [Donate to One More Moment](/donate/)
-- [Partner With Us](/partner-with-us/)
-- [Contact One More Moment](/contact/)
+- [Partner With Us](/volunteer/#volunteer-request-form)
+- [Contact One More Moment](mailto:contactus@onemoremoment.org)
 
 ## Contact
 
