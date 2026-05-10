@@ -10,14 +10,19 @@ const {
   description: pageDescription,
   overlayHeader = false,
   image = meta.seo?.ogImage || "/og-image.png",
+  ogType = "website",
+  canonicalUrl,
 } = Astro.props;
 
 const seo = meta.seo || {};
+const siteUrl = Astro.site || new URL("https://www.onemoremoment.org");
 
 const pageTitle =
   title || seo.title || `${meta.name}${meta.primaryService ? ` | ${meta.primaryService}` : ""}`;
 
 const description = pageDescription || seo.description || (meta.hero && meta.hero.content) || "";
+const canonical = new URL(canonicalUrl || Astro.url.pathname, siteUrl).toString();
+const socialImage = new URL(image, siteUrl).toString();
 
 const keywords = [
   seo.cityKeyword,
@@ -54,13 +59,14 @@ const keywords = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:site_name" content={meta.name} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:image" content={socialImage} />
     <slot name="head" />
   </head>
 

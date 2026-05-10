@@ -55,7 +55,14 @@ const schema = [
 ];
 ---
 
-<Base title={title} description={description} image={image} overlayHeader={false}>
+<Base
+  title={title}
+  description={description}
+  image={image}
+  ogType="article"
+  canonicalUrl={Astro.url.pathname}
+  overlayHeader={false}
+>
   <script
     slot="head"
     type="application/ld+json"
