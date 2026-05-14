@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build --force",
     "preview": "astro preview",
+    "indexnow": "node scripts/submit-indexnow.mjs",
     "astro": "astro",
     "format": "prettier --write \"**/*.{astro,js,jsx,ts,tsx,css,md}\"",
     "prepare": "husky"
