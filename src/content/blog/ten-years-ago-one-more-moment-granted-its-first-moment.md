@@ -130,10 +130,10 @@ One more memory matters.
 
 And sometimes, one Moment can echo for ten years.
 
-[Request a Moment](/request-a-moment/)  
+[Request a Moment](/moments/#request-a-moment)  
 [Donate to One More Moment](/donate/)  
-[Partner With Us](/partner-with-us/)  
-[Contact One More Moment](/contact/)
+[Partner With Us](/volunteer/#volunteer-request-form)  
+[Contact One More Moment](mailto:contactus@onemoremoment.org)
 
 ---
 
@@ -164,11 +164,11 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 
 ## Helpful Links
 
-- [Request a Moment](/request-a-moment/)
-- [Who Qualifies](/who-qualifies/)
+- [Request a Moment](/moments/#request-a-moment)
+- [Who Qualifies](/#who-qualifies)
 - [Donate to One More Moment](/donate/)
-- [Partner With Us](/partner-with-us/)
-- [Contact One More Moment](/contact/)
+- [Partner With Us](/volunteer/#volunteer-request-form)
+- [Contact One More Moment](mailto:contactus@onemoremoment.org)
 
 ## Contact
 
