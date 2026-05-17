@@ -6,6 +6,7 @@ author: "Jason Pohlonski"
 authorRole: "Founder & Executive Director"
 reviewer: "Jason Pohlonski"
 reviewerRole: "Founder, One More Moment"
+draft: true
 tags: ["One More Moment", "Adult Cancer Wishes", "Michigan Nonprofit", "Late-Stage Cancer", "Cancer Support"]
 image: "/blog/who-qualifies-for-one-more-moment-wish.jpg"
 ---
