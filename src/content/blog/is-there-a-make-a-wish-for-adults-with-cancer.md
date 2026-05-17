@@ -59,7 +59,7 @@ One More Moment exists to help remove practical barriers so adults with late-sta
 
 A Moment request may begin with the person facing cancer, a family member, a caregiver, or a referral partner such as a social worker, nurse, oncology team member, or hospice professional.
 
-If you know someone in Michigan who may qualify, you can start with the [Request a Moment](/request-a-moment/) page. If you are unsure whether a situation fits, you can read [Who Qualifies](/who-qualifies/) or [contact One More Moment](/contact/) before submitting a request.
+If you know someone in Michigan who may qualify, you can start with the [Request a Moment](/request-a-moment/) page. If you are unsure whether a situation fits, you can read [Who Qualifies](/who-qualifies/) or [contact One More Moment](mailto:contactus@onemoremoment.org) before submitting a request.
 
 Please share only the information needed for the team to understand the request. Medical and personal details are used to review eligibility and coordinate next steps.
 
@@ -91,7 +91,7 @@ Yes. A request may be started by the person facing cancer, a family member, care
 
 ### How can someone support One More Moment?
 
-The most direct way to support the mission is to [donate](/donate/). You can also share the organization with a family, care team, or community member who may need support, or [contact One More Moment](/contact/) with questions about getting involved.
+The most direct way to support the mission is to [donate](/donate/). You can also share the organization with a family, care team, or community member who may need support, or [contact One More Moment](mailto:contactus@onemoremoment.org) with questions about getting involved.
 
 ---
 

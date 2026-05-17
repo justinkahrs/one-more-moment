@@ -15,7 +15,7 @@ An adult in Michigan facing Stage IV, advanced, or metastatic cancer may qualify
 
 Every request is reviewed with care. Submitting a request does not guarantee approval, funding, or availability, but it does give the One More Moment team a chance to understand the person's situation, the Moment being requested, and what support may be needed.
 
-If you are ready to begin, you can visit [Request a Moment](/request-a-moment/). If you are unsure whether a situation fits, you can [contact One More Moment](/contact/) before submitting a request.
+If you are ready to begin, you can visit [Request a Moment](/request-a-moment/). If you are unsure whether a situation fits, you can [contact One More Moment](mailto:contactus@onemoremoment.org) before submitting a request.
 
 This article was written by Jason Pohlonski, Founder and Executive Director of One More Moment, and reviewed by Jason for alignment with the organization's eligibility guidelines and request process. It is informational only and is not medical advice.
 
@@ -88,7 +88,7 @@ A referral or request may come from:
 - A social worker
 - A church or community contact
 
-If you know someone who may qualify, you can share the [Request a Moment](/request-a-moment/) page with them or help them begin the process. If you are a referral partner and have questions before submitting information, you can [contact One More Moment](/contact/).
+If you know someone who may qualify, you can share the [Request a Moment](/request-a-moment/) page with them or help them begin the process. If you are a referral partner and have questions before submitting information, you can [contact One More Moment](mailto:contactus@onemoremoment.org).
 
 ## What Happens After a Request Is Submitted
 
@@ -107,7 +107,7 @@ One More Moment does not provide medical advice, medical care, emergency support
 If you believe someone may qualify, the next step is to submit a request or reach out with questions.
 
 - Start a request: [Request a Moment](/request-a-moment/)
-- Ask a question: [Contact One More Moment](/contact/)
+- Ask a question: [Contact One More Moment](mailto:contactus@onemoremoment.org)
 - Help make Moments possible: [Donate to One More Moment](/donate/)
 - Review privacy information: [Privacy Policy](/privacy-policy/)
 
@@ -121,7 +121,7 @@ One More Moment supports adults in Michigan who are facing Stage IV, advanced, o
 
 ### Does the applicant need to have Stage IV cancer?
 
-One More Moment supports adults facing Stage IV, advanced, or metastatic cancer. If you are unsure whether a diagnosis fits, you can [contact One More Moment](/contact/) before submitting a request. Confirmation from an oncology provider may be requested.
+One More Moment supports adults facing Stage IV, advanced, or metastatic cancer. If you are unsure whether a diagnosis fits, you can [contact One More Moment](mailto:contactus@onemoremoment.org) before submitting a request. Confirmation from an oncology provider may be requested.
 
 ### Can a family member request a Moment?
 
@@ -174,7 +174,7 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 
 - [Request a Moment](/request-a-moment/)
 - [Donate to One More Moment](/donate/)
-- [Contact One More Moment](/contact/)
+- [Contact One More Moment](mailto:contactus@onemoremoment.org)
 - [Privacy Policy](/privacy-policy/)
 
 ## Contact
