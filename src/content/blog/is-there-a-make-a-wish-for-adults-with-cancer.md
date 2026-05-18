@@ -122,6 +122,7 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 
 ## Helpful Links
 
+- For a broader overview of adult cancer wishes in Michigan, visit our guide to [wish granting for adults with cancer in Michigan](/adult-cancer-wishes-michigan/).
 - [Request a Moment](/moments/#request-a-moment)
 - [Who Qualifies](/#who-qualifies)
 - [Donate to One More Moment](/donate/)
