@@ -1,0 +1,302 @@
+---
+import Base from "../layouts/Base.astro";
+
+const title = "Wish Granting for Adults With Cancer in Michigan";
+const description =
+  "Learn how One More Moment helps adults in Michigan facing Stage IV, advanced, or metastatic cancer create meaningful Moments with loved ones.";
+
+const siteUrl = "https://www.onemoremoment.org";
+const pageUrl = `${siteUrl}/adult-cancer-wishes-michigan/`;
+
+const requestLink = "/moments/#request-a-moment";
+const whoQualifiesLink = "/#who-qualifies";
+const donateLink = "/donate/";
+const contactLink = "mailto:contactus@onemoremoment.org";
+const privacyLink = "/privacy-policy/";
+
+const faqs = [
+  {
+    question: "Is there wish granting for adults with cancer in Michigan?",
+    answer:
+      "Yes. One More Moment is a Michigan nonprofit that helps adults facing Stage IV, advanced, or metastatic cancer create meaningful Moments with loved ones. Every request is reviewed with care, and submitting a request does not guarantee approval.",
+  },
+  {
+    question: "Is One More Moment the same as Make-A-Wish?",
+    answer:
+      "No. Make-A-Wish is widely known for helping children with critical illnesses. One More Moment is a separate nonprofit focused on adults in Michigan who are facing Stage IV, advanced, or metastatic cancer.",
+  },
+  {
+    question: "Who may qualify for a One More Moment request?",
+    answer:
+      "An adult in Michigan facing Stage IV, advanced, or metastatic cancer may qualify if they are requesting a meaningful Moment with loved ones and need support because cost, timing, logistics, health, or resources make that Moment difficult to create alone. Confirmation from an oncology provider may be requested.",
+  },
+  {
+    question: "Can a family member or friend request a Moment?",
+    answer:
+      "Yes. The individual, a family member, friend, oncology team member, hospice worker, social worker, church contact, or community contact may help begin a request.",
+  },
+  {
+    question: "Does every request get approved?",
+    answer:
+      "No. Every request is reviewed with care, but approval, funding, timing, and availability cannot be guaranteed. One More Moment reviews eligibility, logistics, safety, resources, and the requested Moment.",
+  },
+  {
+    question: "How can donors help adult cancer wishes in Michigan?",
+    answer:
+      "Donors help make Moments possible by supporting the practical costs connected to approved requests, such as experience-related needs, travel-related support, meals, tickets, lodging, and other needs connected to a meaningful Moment.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: title,
+    description,
+    url: pageUrl,
+    about: {
+      "@type": "NonprofitOrganization",
+      name: "One More Moment",
+      url: siteUrl,
+      nonprofitStatus: "Nonprofit501c3",
+      taxID: "47-4466426",
+      email: "contactus@onemoremoment.org",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "NonprofitOrganization",
+    name: "One More Moment",
+    url: siteUrl,
+    nonprofitStatus: "Nonprofit501c3",
+    taxID: "47-4466426",
+    email: "contactus@onemoremoment.org",
+    sameAs: [
+      "https://app.candid.org/profile/9492389/one-more-moment-47-4466426",
+      "https://apps.irs.gov/app/eos/details/",
+    ],
+  },
+];
+---
+
+<Base
+  title={`${title} | One More Moment`}
+  description={description}
+  canonicalUrl="/adult-cancer-wishes-michigan/"
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+
+  <section class="bg-[#FFFBF6] px-4 py-12 md:py-20">
+    <article class="prose prose-lg mx-auto max-w-4xl">
+      <p class="font-semibold text-[#D9776E]">
+        Adult cancer wishes Michigan
+      </p>
+      <h1>Wish Granting for Adults With Cancer in Michigan</h1>
+
+      <p>
+        Adults with cancer can find wish granting support in Michigan through
+        One More Moment if they meet the organization's eligibility guidelines.
+        One More Moment helps adults in Michigan facing Stage IV, advanced, or
+        metastatic cancer create meaningful Moments with loved ones.
+      </p>
+
+      <p>
+        These Moments are not guaranteed, and every request is reviewed with
+        care. The goal is to help families protect time, connection, dignity,
+        and memory when those things matter deeply.
+      </p>
+
+      <p>
+        If you are ready to begin, visit
+        <a href={requestLink}>Request a Moment</a>. If you want to understand
+        eligibility first, review <a href={whoQualifiesLink}>Who Qualifies</a>.
+      </p>
+
+      <h2>What One More Moment Does</h2>
+
+      <p>
+        One More Moment is a Michigan nonprofit that grants meaningful wish
+        experiences, called Moments, for adults facing Stage IV, advanced, or
+        metastatic cancer. A Moment may be simple, quiet, personal, or more
+        involved. What matters most is that it is meaningful to the person and
+        the people they love.
+      </p>
+
+      <p>
+        Many people search for "Make-A-Wish for adults with cancer Michigan"
+        because they know Make-A-Wish as a widely recognized wish-granting
+        organization for children with critical illnesses. One More Moment is
+        not Make-A-Wish and is not affiliated with Make-A-Wish. One More Moment
+        is a separate nonprofit focused on adult wish granting in Michigan for
+        people facing late-stage cancer.
+      </p>
+
+      <h2>Who May Qualify</h2>
+
+      <p>
+        One More Moment reviews each request individually. A person may be
+        eligible to request a Moment if they meet the organization's guidelines,
+        including:
+      </p>
+
+      <ul>
+        <li>The applicant is an adult.</li>
+        <li>The applicant lives in Michigan.</li>
+        <li>
+          The applicant is facing Stage IV, advanced, or metastatic cancer.
+        </li>
+        <li>The request is for a meaningful Moment with loved ones.</li>
+        <li>
+          Support is needed because cost, timing, logistics, health, or
+          resources make the Moment difficult to create alone.
+        </li>
+        <li>Confirmation from an oncology provider may be requested.</li>
+      </ul>
+
+      <p>
+        Submitting a request does not guarantee approval, funding, timing, or
+        availability. For current eligibility information, visit
+        <a href={whoQualifiesLink}>Who Qualifies</a>.
+      </p>
+
+      <h2>What a Moment Can Look Like</h2>
+
+      <p>
+        A Moment does not have to be extravagant to matter. Some wishes for
+        adults with Stage 4 cancer may involve a favorite meal, a family
+        gathering, a short outing, a sporting event, a visit to a meaningful
+        place, or one more quiet afternoon with the people who matter most.
+      </p>
+
+      <p>
+        The heart of a Moment is not the size of the experience. It is the
+        meaning behind it.
+      </p>
+
+      <h2>Who Can Refer Someone</h2>
+
+      <p>
+        A request may come from the person facing cancer, but they do not have
+        to begin the process alone. A referral may come from:
+      </p>
+
+      <ul>
+        <li>The individual</li>
+        <li>A family member</li>
+        <li>A friend</li>
+        <li>An oncology team member</li>
+        <li>A hospice worker</li>
+        <li>A social worker</li>
+        <li>A church or community contact</li>
+      </ul>
+
+      <h2>How to Request a Moment</h2>
+
+      <p>
+        To begin, submit a request through the
+        <a href={requestLink}>Request a Moment</a> form. The One More Moment
+        team may review eligibility, timing, logistics, safety, available
+        resources, and the requested Moment. The team may also follow up for
+        more information, including confirmation from an oncology provider.
+      </p>
+
+      <p>
+        Personal and medical information should be shared carefully. One More
+        Moment uses submitted information to review eligibility and coordinate
+        requests. Learn more in the <a href={privacyLink}>Privacy Policy</a>.
+      </p>
+
+      <h2>How Donors and Partners Can Help</h2>
+
+      <p>
+        Adult cancer wishes in Michigan are possible because people choose to
+        help. Donations may support practical costs connected to approved
+        Moments, including experience-related needs, travel-related support,
+        meals, tickets, lodging, and other needs tied to a specific request.
+      </p>
+
+      <p>
+        If you want to help create meaningful Moments for adults with cancer,
+        you can <a href={donateLink}>donate to One More Moment</a> or
+        <a href="/volunteer/#volunteer-request-form">partner with us</a>. If
+        you have questions, <a href={contactLink}>contact One More Moment</a>.
+      </p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      {
+        faqs.map((faq) => (
+          <>
+            <h3>{faq.question}</h3>
+            <p>{faq.answer}</p>
+          </>
+        ))
+      }
+
+      <h2>About One More Moment</h2>
+
+      <p>
+        <strong>One More Moment</strong> grants meaningful wish experiences for
+        adults in Michigan who are facing Stage IV, advanced, or metastatic
+        cancer and who lack the resources to create that Moment on their own.
+      </p>
+
+      <p>
+        Every request is reviewed with care. Eligibility may include Michigan
+        residency, a qualifying cancer diagnosis, financial or logistical need,
+        and confirmation from an oncology provider.
+      </p>
+
+      <h2>Nonprofit Verification</h2>
+
+      <p>
+        One More Moment is a registered nonprofit organization. EIN:
+        47-4466426. Visitors can verify the organization through official
+        nonprofit resources, including the IRS Tax Exempt Organization Search
+        and Candid/GuideStar.
+      </p>
+
+      <ul>
+        <li>
+          IRS Tax Exempt Organization Search:
+          <a href="https://apps.irs.gov/app/eos/details/"
+            >Search for One More Moment, EIN 47-4466426</a
+          >
+        </li>
+        <li>
+          Candid/GuideStar profile:
+          <a href="https://app.candid.org/profile/9492389/one-more-moment-47-4466426"
+            >One More Moment nonprofit profile</a
+          >
+        </li>
+      </ul>
+
+      <h2>Helpful Links</h2>
+
+      <ul>
+        <li><a href={requestLink}>Request a Moment</a></li>
+        <li><a href={whoQualifiesLink}>Who Qualifies</a></li>
+        <li><a href={donateLink}>Donate to One More Moment</a></li>
+        <li><a href="/volunteer/#volunteer-request-form">Partner With Us</a></li>
+        <li><a href={contactLink}>Contact One More Moment</a></li>
+        <li><a href={privacyLink}>Privacy Policy</a></li>
+      </ul>
+    </article>
+  </section>
+</Base>
