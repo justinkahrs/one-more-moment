@@ -136,6 +136,7 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 - [Request a Moment](/moments/#request-a-moment)
 - [Who Qualifies](/#who-qualifies)
 - [Donate to One More Moment](/donate/)
+- [Partner With Us](/volunteer/#volunteer-request-form)
 - [Contact One More Moment](mailto:contactus@onemoremoment.org)
 - [Privacy Policy](/privacy-policy/)
 

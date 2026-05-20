@@ -170,6 +170,7 @@ For more details, please review our [Privacy Policy](/privacy-policy/).
 - [Donate to One More Moment](/donate/)
 - [Partner With Us](/volunteer/#volunteer-request-form)
 - [Contact One More Moment](mailto:contactus@onemoremoment.org)
+- [Privacy Policy](/privacy-policy/)
 
 ## Contact
 

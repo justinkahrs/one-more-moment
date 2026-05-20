@@ -13,6 +13,9 @@ import dianeImg from "../assets/ChatGPT Image May 8, 2026, 10_08_46 PM.jpg";
 
 const { about } = metadata;
 const { mission, story, whatWeDo, team } = about;
+const pageTitle = "Our Mission | One More Moment";
+const pageDescription =
+  "Learn about One More Moment's mission, founding story, and team helping adults with late-stage cancer create meaningful Moments with loved ones.";
 
 const teamImages = {
   jasonImg,
@@ -23,7 +26,7 @@ const teamImages = {
 };
 ---
 
-<Base title={about.title}>
+<Base title={pageTitle} description={pageDescription}>
   <div class="prose-h1:font-normal flex justify-center p-12">
     <article class="prose md:prose-lg max-w-6xl">
       <h1

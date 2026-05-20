@@ -11,9 +11,11 @@ export function getStaticPaths() {
 }
 
 const { event } = Astro.props;
+const pageTitle = `${event.title} | One More Moment Volunteer Event`;
+const pageDescription = `${event.description} Event date: ${event.date}. Location: ${event.location}.`;
 ---
 
-<Base title={event.title}>
+<Base title={pageTitle} description={pageDescription}>
   <div class="container mx-auto max-w-4xl px-4 py-12">
     {
       event.image && (

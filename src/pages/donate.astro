@@ -4,9 +4,12 @@ import { frontmatter as metadata } from "../data/metadata.mdx";
 
 const { title, subTitle } = metadata.donationPage;
 const { name } = metadata;
+const pageTitle = "Donate to One More Moment | Help Grant Adult Cancer Wishes";
+const pageDescription =
+  "Make a donation to One More Moment and help adults facing late-stage cancer create meaningful Moments with loved ones.";
 ---
 
-<Base title={`Donate | ${name}`} description={subTitle}>
+<Base title={pageTitle} description={pageDescription}>
   <main class="container mx-auto">
     <div class="min-h-screen bg-[#FFFBF6] pt-12 pb-12 text-center">
       <div class="mx-auto max-w-6xl">

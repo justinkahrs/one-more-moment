@@ -6,8 +6,9 @@ const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const title = "Blog";
-const description = "Latest news and updates from One More Moment.";
+const title = "One More Moment Blog | Adult Cancer Wishes and Family Stories";
+const description =
+  "Read One More Moment stories, nonprofit updates, and plain-English guides about adult cancer wishes and meaningful Moments in Michigan.";
 ---
 
 <Base title={title} description={description}>

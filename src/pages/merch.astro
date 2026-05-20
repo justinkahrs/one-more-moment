@@ -74,9 +74,12 @@ if (!products.length && import.meta.env.DEV && error) {
 }
 
 const { cta, title, subTitle } = metadata.merchPage;
+const pageTitle = "Shop One More Moment | Support Adult Cancer Wishes";
+const pageDescription =
+  "Shop One More Moment merchandise and support meaningful wish experiences for adults facing late-stage cancer.";
 ---
 
-<Layout title="Merch | One More Moment">
+<Layout title={pageTitle} description={pageDescription}>
   <main class="container mx-auto px-4 py-12">
     <div class="mb-16 text-center">
       <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
