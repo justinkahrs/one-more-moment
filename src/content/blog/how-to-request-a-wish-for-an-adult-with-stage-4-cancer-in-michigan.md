@@ -5,7 +5,6 @@ pubDate: "2026-05-27"
 author: "Jason Pohlonski, Founder & Executive Director"
 tags: ["One More Moment", "Adult Cancer Wishes", "Michigan Nonprofit", "Stage 4 Cancer", "Late-Stage Cancer", "Wish Granting", "Cancer Support"]
 image: "/blog/how-to-request-a-wish-for-an-adult-with-stage-4-cancer-in-michigan.jpg"
-draft: true
 ---
 
 If someone you love is an adult in Michigan facing Stage IV, advanced, or metastatic cancer, a One More Moment request can begin with a simple form or message. The request does not have to be perfect. It just needs to begin.
