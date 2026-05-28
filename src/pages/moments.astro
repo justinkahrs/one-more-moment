@@ -21,8 +21,52 @@ const localMoments = [
   },
 ];
 
+const fallbackVideos: Video[] = [
+  {
+    id: "Xp35_5XtgJg",
+    title: "Polo Fields Golf Outing Video",
+    link: "https://www.youtube.com/watch?v=Xp35_5XtgJg",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/Xp35_5XtgJg/maxresdefault.jpg",
+  },
+  {
+    id: "1O0sKmzn4js",
+    title: "Dennis's Moment",
+    link: "https://www.youtube.com/watch?v=1O0sKmzn4js",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/1O0sKmzn4js/maxresdefault.jpg",
+  },
+  {
+    id: "8r_UTgD-_5Q",
+    title: "Tim's Moment",
+    link: "https://www.youtube.com/watch?v=8r_UTgD-_5Q",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/8r_UTgD-_5Q/maxresdefault.jpg",
+  },
+  {
+    id: "Dd6ZcW8PF-w",
+    title: "Joshua Clark's One More Moment",
+    link: "https://www.youtube.com/watch?v=Dd6ZcW8PF-w",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/Dd6ZcW8PF-w/maxresdefault.jpg",
+  },
+  {
+    id: "BP8g7k7Y28E",
+    title: "One More Moment Wish Granting",
+    link: "https://www.youtube.com/watch?v=BP8g7k7Y28E",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/BP8g7k7Y28E/maxresdefault.jpg",
+  },
+  {
+    id: "a3Ci0O5yInU",
+    title: "Bruce's Moment",
+    link: "https://www.youtube.com/watch?v=a3Ci0O5yInU",
+    published: "YouTube",
+    thumbnail: "https://i.ytimg.com/vi/a3Ci0O5yInU/maxresdefault.jpg",
+  },
+];
+
 let videos: Video[] = [];
-let error: string | null = null;
 
 try {
   const response = await fetch(RSS_URL);
@@ -46,7 +90,10 @@ try {
   }));
 } catch (e) {
   console.error("Error fetching YouTube feed:", e);
-  error = "Unable to load videos at the moment.";
+}
+
+if (videos.length === 0) {
+  videos = fallbackVideos;
 }
 
 const { title, subTitle } = metadata.momentsPage;
@@ -137,29 +184,6 @@ const pageDescription =
         ))
       }
     </div>
-
-    {
-      error && (
-        <div class="alert alert-error mt-8 shadow-lg">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 shrink-0 stroke-current"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>{error}</span>
-          </div>
-        </div>
-      )
-    }
 
     {/* Moment Request Form */}
     <section id="request-a-moment" class="mx-auto mt-24 max-w-2xl">
