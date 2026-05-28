@@ -14,8 +14,15 @@ interface Video {
   thumbnail: string;
 }
 
+const localMoments = [
+  {
+    title: "Russlan's Moment",
+    videoSrc: "/blog/Nicholas%20Family_Disney.mp4",
+  },
+];
+
 let videos: Video[] = [];
-let error = null;
+let error: string | null = null;
 
 try {
   const response = await fetch(RSS_URL);
@@ -59,9 +66,81 @@ const pageDescription =
       </p>
     </div>
 
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        localMoments.map((moment) => (
+          <article class="card bg-base-100 shadow-xl">
+            <figure class="relative aspect-video overflow-hidden bg-black">
+              <video
+                src={moment.videoSrc}
+                class="h-full w-full object-cover"
+                controls
+                preload="metadata"
+                playsinline
+              >
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title line-clamp-2 text-lg leading-snug">
+                {moment.title}
+              </h2>
+              <div class="card-actions mt-4 justify-end">
+                <div class="badge rounded-md bg-[#D9776E] text-white">
+                  Moment
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+
+      {
+        videos.map((video) => (
+          <a
+            href={video.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card bg-base-100 shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+          >
+            <figure class="relative aspect-video overflow-hidden">
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                <svg
+                  class="h-16 w-16 text-white drop-shadow-lg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title line-clamp-2 text-lg leading-snug">
+                {video.title}
+              </h2>
+              <div class="card-actions mt-4 justify-end">
+                <span class="text-base-content/60 mr-auto self-center font-mono text-xs">
+                  {video.published}
+                </span>
+                <div class="badge rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]">
+                  Watch
+                </div>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
     {
-      error ? (
-        <div class="alert alert-error shadow-lg">
+      error && (
+        <div class="alert alert-error mt-8 shadow-lg">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,48 +157,6 @@ const pageDescription =
             </svg>
             <span>{error}</span>
           </div>
-        </div>
-      ) : (
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {videos.map((video) => (
-            <a
-              href={video.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card bg-base-100 shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <figure class="relative aspect-video overflow-hidden">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                  <svg
-                    class="h-16 w-16 text-white drop-shadow-lg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title line-clamp-2 text-lg leading-snug">
-                  {video.title}
-                </h2>
-                <div class="card-actions mt-4 justify-end">
-                  <span class="text-base-content/60 mr-auto self-center font-mono text-xs">
-                    {video.published}
-                  </span>
-                  <div class="badge rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]">
-                    Watch
-                  </div>
-                </div>
-              </div>
-            </a>
-          ))}
         </div>
       )
     }
