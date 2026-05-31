@@ -6,12 +6,16 @@ dist/
 
 # dependencies
 node_modules/
+.codex-video-tools/
 
 # logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# source video backups
+*.original.mp4
 
 
 # environment variables
