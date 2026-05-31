@@ -19,6 +19,21 @@ const localMoments = [
     title: "Russlan's Moment",
     videoSrc: "/blog/Nicholas%20Family_Disney.mp4",
   },
+  {
+    title: "Josh's Moment",
+    videoSrc: "/blog/josh-moment.mp4",
+  },
+  {
+    title: "Clyde's Moment",
+    videoSrc: "/blog/clyde-moment.mp4",
+  },
+];
+
+const localEventVideos = [
+  {
+    title: "Whitecaps Raffle",
+    videoSrc: "/blog/Whitecaps%20Raffle%201.mp4",
+  },
 ];
 
 const fallbackVideos: Video[] = [
@@ -184,6 +199,48 @@ const pageDescription =
         ))
       }
     </div>
+
+    <section class="mt-16">
+      <div class="mb-8 text-center">
+        <h2 class="mb-3 font-serif text-4xl text-[#2B2B40]">
+          Community Events
+        </h2>
+        <p class="text-base-content/70 text-lg">
+          Fun moments from the events and fundraisers that help make this work
+          possible.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          localEventVideos.map((event) => (
+            <article class="card bg-base-100 shadow-xl">
+              <figure class="relative aspect-video overflow-hidden bg-black">
+                <video
+                  src={event.videoSrc}
+                  class="h-full w-full object-cover"
+                  controls
+                  preload="metadata"
+                  playsinline
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title line-clamp-2 text-lg leading-snug">
+                  {event.title}
+                </h2>
+                <div class="card-actions mt-4 justify-end">
+                  <div class="badge rounded-md bg-[#2B2B40] text-white">
+                    Fundraiser
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
 
     {/* Moment Request Form */}
     <section id="request-a-moment" class="mx-auto mt-24 max-w-2xl">
