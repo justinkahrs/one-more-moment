@@ -214,8 +214,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if(!cartId) return;
             
             // Construct Checkout URL for the Fourthwall shop-domain checkout entry point.
-            const shopUrl = window.OMM_SHOP_URL; 
-            const baseUrl = shopUrl.startsWith("http") ? shopUrl : `https://${shopUrl}`;
+            const shopUrl =
+                window.OMM_SHOP_URL ||
+                "https://one-more-moment-fob-shop.fourthwall.com";
+            const baseUrl = (shopUrl.startsWith("http")
+                ? shopUrl
+                : `https://${shopUrl}`
+            ).replace(
+                "https://one-more-moment-fob.fourthwall.com",
+                "https://one-more-moment-fob-shop.fourthwall.com",
+            );
              
             // Get currency from first item or default to USD
             const currency = cart.items?.[0]?.variant?.unitPrice?.currency || "USD";
