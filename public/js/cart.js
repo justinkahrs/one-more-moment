@@ -213,16 +213,19 @@ document.addEventListener("DOMContentLoaded", () => {
         checkoutBtn.addEventListener("click", () => {
             if(!cartId) return;
             
-            // Construct Checkout URL
-            // Pattern: https://<domain>/checkout/?cartCurrency=<code >&cartId=<id>
+            // Construct Checkout URL for the Fourthwall shop-domain checkout entry point.
             const shopUrl = window.OMM_SHOP_URL; 
             const baseUrl = shopUrl.startsWith("http") ? shopUrl : `https://${shopUrl}`;
-            
+             
             // Get currency from first item or default to USD
             const currency = cart.items?.[0]?.variant?.unitPrice?.currency || "USD";
-            
-            const checkoutUrl = `${baseUrl}/checkout/?cartCurrency=${currency}&cartId=${cartId}`;
-            
+             
+            const params = new URLSearchParams({
+                cartId,
+                currency,
+            });
+            const checkoutUrl = `${baseUrl}/cart/checkout?${params.toString()}`;
+             
             window.location.href = checkoutUrl;
         });
     }
