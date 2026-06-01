@@ -14,18 +14,52 @@ interface Video {
   thumbnail: string;
 }
 
+const makePoster = (title: string, label: string) =>
+  `data:image/svg+xml,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2B2B40"/>
+          <stop offset="1" stop-color="#D9776E"/>
+        </linearGradient>
+        <radialGradient id="light" cx="70%" cy="22%" r="65%">
+          <stop offset="0" stop-color="#F7EFE8" stop-opacity=".18"/>
+          <stop offset=".52" stop-color="#F7EFE8" stop-opacity=".06"/>
+          <stop offset="1" stop-color="#F7EFE8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1280" height="720" fill="url(#bg)"/>
+      <rect width="1280" height="720" fill="url(#light)"/>
+      <rect x="86" y="86" width="1108" height="548" rx="24" fill="none" stroke="#FAF7F1" stroke-width="3"/>
+      <rect x="122" y="124" width="110" height="6" fill="#D9776E"/>
+      <text x="122" y="202" fill="#EEE0D7" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="2">${label.toUpperCase()}</text>
+      <text x="122" y="330" fill="#FAF7F1" font-family="Georgia, serif" font-size="78" font-weight="700">${title}</text>
+      <text x="122" y="566" fill="#EEE0D7" font-family="Arial, sans-serif" font-size="34">Watch the video</text>
+      <circle cx="1105" cy="550" r="48" fill="#FAF7F1"/>
+      <path d="M1090 522v56l44-28z" fill="#2B2B40"/>
+    </svg>
+  `)}`;
+
 const localMoments = [
   {
     title: "Russlan's Moment",
     videoSrc: "/blog/Nicholas%20Family_Disney.mp4",
+    posterSrc: makePoster("Russlan's Moment", "One More Moment"),
   },
   {
     title: "Josh's Moment",
     videoSrc: "/blog/josh-moment.mp4",
+    posterSrc: makePoster("Josh's Moment", "One More Moment"),
   },
   {
     title: "Clyde's Moment",
     videoSrc: "/blog/clyde-moment.mp4",
+    posterSrc: makePoster("Clyde's Moment", "One More Moment"),
+  },
+  {
+    title: "Bruce's Moment",
+    videoSrc: "/blog/bruce-reynolds-first-one-more-moment.mp4",
+    posterSrc: makePoster("Bruce's Moment", "One More Moment"),
   },
 ];
 
@@ -33,10 +67,11 @@ const localEventVideos = [
   {
     title: "Whitecaps Raffle",
     videoSrc: "/blog/Whitecaps%20Raffle%201.mp4",
+    posterSrc: makePoster("Whitecaps Raffle", "Community Event"),
   },
 ];
 
-const fallbackVideos: Video[] = [
+const communityEventVideos: Video[] = [
   {
     id: "Xp35_5XtgJg",
     title: "Polo Fields Golf Outing Video",
@@ -44,6 +79,15 @@ const fallbackVideos: Video[] = [
     published: "YouTube",
     thumbnail: "https://i.ytimg.com/vi/Xp35_5XtgJg/maxresdefault.jpg",
   },
+];
+
+const communityEventVideoIds = new Set(
+  communityEventVideos.map((video) => video.id),
+);
+
+const youtubeTitleExclusions = ["bruce", "clyde", "josh", "joshua clark"];
+
+const fallbackVideos: Video[] = [
   {
     id: "1O0sKmzn4js",
     title: "Dennis's Moment",
@@ -59,25 +103,11 @@ const fallbackVideos: Video[] = [
     thumbnail: "https://i.ytimg.com/vi/8r_UTgD-_5Q/maxresdefault.jpg",
   },
   {
-    id: "Dd6ZcW8PF-w",
-    title: "Joshua Clark's One More Moment",
-    link: "https://www.youtube.com/watch?v=Dd6ZcW8PF-w",
-    published: "YouTube",
-    thumbnail: "https://i.ytimg.com/vi/Dd6ZcW8PF-w/maxresdefault.jpg",
-  },
-  {
     id: "BP8g7k7Y28E",
     title: "One More Moment Wish Granting",
     link: "https://www.youtube.com/watch?v=BP8g7k7Y28E",
     published: "YouTube",
     thumbnail: "https://i.ytimg.com/vi/BP8g7k7Y28E/maxresdefault.jpg",
-  },
-  {
-    id: "a3Ci0O5yInU",
-    title: "Bruce's Moment",
-    link: "https://www.youtube.com/watch?v=a3Ci0O5yInU",
-    published: "YouTube",
-    thumbnail: "https://i.ytimg.com/vi/a3Ci0O5yInU/maxresdefault.jpg",
   },
 ];
 
@@ -96,13 +126,23 @@ try {
   const parsed = parser.parse(xmlText);
   const entries = parsed.feed.entry || [];
 
-  videos = entries.map((entry: any) => ({
-    id: entry["yt:videoId"],
-    title: entry.title,
-    link: entry.link["@_href"],
-    published: new Date(entry.published).toLocaleDateString(),
-    thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
-  }));
+  videos = entries
+    .map((entry: any) => ({
+      id: entry["yt:videoId"],
+      title: entry.title,
+      link: entry.link["@_href"],
+      published: new Date(entry.published).toLocaleDateString(),
+      thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
+    }))
+    .filter((video) => {
+      const title = video.title.toLowerCase();
+      return (
+        !communityEventVideoIds.has(video.id) &&
+        !youtubeTitleExclusions.some((excludedTitle) =>
+          title.includes(excludedTitle),
+        )
+      );
+    });
 } catch (e) {
   console.error("Error fetching YouTube feed:", e);
 }
@@ -135,6 +175,7 @@ const pageDescription =
             <figure class="relative aspect-video overflow-hidden bg-black">
               <video
                 src={moment.videoSrc}
+                poster={moment.posterSrc}
                 class="h-full w-full object-cover"
                 controls
                 preload="metadata"
@@ -218,6 +259,7 @@ const pageDescription =
               <figure class="relative aspect-video overflow-hidden bg-black">
                 <video
                   src={event.videoSrc}
+                  poster={event.posterSrc}
                   class="h-full w-full object-cover"
                   controls
                   preload="metadata"
@@ -237,6 +279,48 @@ const pageDescription =
                 </div>
               </div>
             </article>
+          ))
+        }
+
+        {
+          communityEventVideos.map((video) => (
+            <a
+              href={video.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="card bg-base-100 shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <figure class="relative aspect-video overflow-hidden">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                  <svg
+                    class="h-16 w-16 text-white drop-shadow-lg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title line-clamp-2 text-lg leading-snug">
+                  {video.title}
+                </h2>
+                <div class="card-actions mt-4 justify-end">
+                  <span class="text-base-content/60 mr-auto self-center font-mono text-xs">
+                    {video.published}
+                  </span>
+                  <div class="badge rounded-md bg-[#2B2B40] text-white">
+                    Fundraiser
+                  </div>
+                </div>
+              </div>
+            </a>
           ))
         }
       </div>
