@@ -5,7 +5,7 @@ pubDate: "2026-06-03"
 author: "Jason Pohlonski, Founder & Executive Director"
 tags: ["One More Moment", "Adult Cancer Wishes", "Michigan Nonprofit", "Late-Stage Cancer", "Cancer Support", "Family Memories", "Meaningful Moments"]
 image: "/blog/why-meaningful-moments-matter-for-families-facing-late-stage-cancer.jpg"
-draft: true
+draft: false
 ---
 
 A meaningful Moment is not only about the day itself. It is about what the person and their family are able to carry forward.
