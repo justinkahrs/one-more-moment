@@ -340,12 +340,12 @@ const pageDescription =
       <form id="moment-request-form" class="flex flex-col gap-6">
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Name</span>
+            <span class="label-text">Your name</span>
           </label>
           <input
             type="text"
-            name="name"
-            placeholder="Your Name"
+            name="requesterName"
+            placeholder="Name of the person submitting this request"
             class="input input-bordered text-red w-full rounded-md text-gray-400 focus:outline-offset-0"
             required
           />
@@ -353,12 +353,12 @@ const pageDescription =
 
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Email</span>
+            <span class="label-text">Your email</span>
           </label>
           <input
             type="email"
-            name="email"
-            placeholder="Your Email"
+            name="requesterEmail"
+            placeholder="Email for the person submitting this request"
             class="input input-bordered w-full rounded-md text-gray-400 focus:outline-offset-0"
             required
           />
@@ -366,24 +366,49 @@ const pageDescription =
 
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Phone</span>
+            <span class="label-text">Your phone</span>
           </label>
           <input
             type="tel"
-            name="phone"
-            placeholder="Your Phone Number"
+            name="requesterPhone"
+            placeholder="Phone number for the person submitting this request"
             class="input input-bordered w-full rounded-md text-gray-400 focus:outline-offset-0"
           />
         </div>
 
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Tell us about your situation</span>
+            <span class="label-text">Name of the person this Moment is for</span>
+          </label>
+          <input
+            type="text"
+            name="warriorName"
+            placeholder="Name of the person facing cancer"
+            class="input input-bordered w-full rounded-md text-gray-400 focus:outline-offset-0"
+            required
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Your relationship to them</span>
+          </label>
+          <input
+            type="text"
+            name="relationshipToWarrior"
+            placeholder="For example: spouse, child, friend, caregiver"
+            class="input input-bordered w-full rounded-md text-gray-400 focus:outline-offset-0"
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Tell us about the person and the Moment being requested</span>
           </label>
           <textarea
             name="situation"
             class="textarea textarea-bordered h-32 w-full rounded-md text-gray-400 focus:outline-offset-0"
-            placeholder="Share your story with us"
+            placeholder="Share who the Moment is for, what they are facing, and what would be meaningful to them"
             required></textarea>
         </div>
 
@@ -419,6 +444,9 @@ const pageDescription =
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    data.name = data.requesterName;
+    data.email = data.requesterEmail;
+    data.phone = data.requesterPhone;
 
     try {
       const response = await fetch("/api/submit-moment", {
