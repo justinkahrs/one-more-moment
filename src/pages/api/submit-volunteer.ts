@@ -1,24 +1,44 @@
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.MAKE_API_KEY;
   const webhookUrl = import.meta.env.MAKE_VOLUNTEER_WEBHOOK_URL;
-  
+
   if (!apiKey || !webhookUrl) {
-    console.error("Missing MAKE_API_KEY or MAKE_VOLUNTEER_WEBHOOK_URL in environment variables");
-    return new Response(JSON.stringify({ 
-      success: false, 
-      message: "Server configuration error" 
-    }), { 
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    console.error(
+      "Missing MAKE_API_KEY or MAKE_VOLUNTEER_WEBHOOK_URL in environment variables",
+    );
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Server configuration error",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   try {
     const data = await request.json();
+    const name = data.name || "";
+    const email = data.email || "";
+    const help = data.help || "";
+    const subject = name
+      ? `New Volunteer Opportunity Signup from ${name}`
+      : "New Volunteer Opportunity Signup";
+    const submission = {
+      ...data,
+      requestType: "Volunteer Opportunity",
+      subject,
+      emailSubject: subject,
+      name,
+      email,
+      help,
+    };
 
     const response = await fetch(webhookUrl, {
       method: "POST",
@@ -26,35 +46,46 @@ export const POST: APIRoute = async ({ request }) => {
         "Content-Type": "application/json",
         "x-make-apikey": apiKey,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(submission),
     });
 
     if (!response.ok) {
-      console.error(`Make.com webhook failed: ${response.status} ${response.statusText}`);
-      return new Response(JSON.stringify({ 
-        success: false,
-        message: "Failed to submit request" 
-      }), { 
-        status: response.status,
-        headers: { "Content-Type": "application/json" }
-      });
+      console.error(
+        `Make.com webhook failed: ${response.status} ${response.statusText}`,
+      );
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "Failed to submit request",
+        }),
+        {
+          status: response.status,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
 
-    return new Response(JSON.stringify({ 
-      success: true,
-      message: "Request submitted successfully" 
-    }), { 
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "Request submitted successfully",
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   } catch (error) {
     console.error("Error submitting volunteer request:", error);
-    return new Response(JSON.stringify({ 
-      success: false,
-      message: "Internal server error: " + error 
-    }), { 
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Internal server error: " + error,
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 };

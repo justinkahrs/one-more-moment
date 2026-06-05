@@ -1,103 +1,27 @@
 ---
 import Base from "../layouts/Base.astro";
-import { events } from "../data/events";
-import { Image } from "astro:assets";
 
-const upcomingEvents = events.filter((e) => e.isUpcoming);
-const pastEvents = events.filter((e) => !e.isUpcoming);
 const pageTitle = "Volunteer With One More Moment | Michigan Cancer Nonprofit";
 const pageDescription =
-  "Find volunteer opportunities with One More Moment and help create meaningful wish experiences for adults in Michigan facing late-stage cancer.";
+  "Volunteer with One More Moment and help create meaningful experiences for adults in Michigan facing late-stage cancer.";
 ---
 
 <Base title={pageTitle} description={pageDescription}>
   <div class="container mx-auto max-w-4xl px-4 py-12">
-    <div class="mb-16 text-center">
+    <div class="mb-14 text-center">
       <h1 class="mb-6 font-serif text-5xl text-[#2B2B40] md:text-6xl">
-        Volunteer
+        Volunteer With One More Moment
       </h1>
       <p class="mx-auto max-w-2xl text-lg opacity-80">
-        Join us in making a difference.
+        We are grateful for people who want to help create meaningful moments
+        for adults facing late-stage cancer and the people who love them. Share
+        your contact information and a little about how you would like to help,
+        and our team will follow up.
       </p>
     </div>
 
-    {/* Upcoming Events */}
-    <section class="mb-16">
-      <h2 class="mb-6 font-serif text-2xl">Upcoming Volunteer Opportunities</h2>
-      {
-        upcomingEvents.length > 0 ? (
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {upcomingEvents.map((event) => (
-              <a
-                href={`/events/${event.slug}`}
-                class="card bg-base-100 border-base-200 border shadow-sm transition-all duration-300 hover:shadow-md"
-              >
-                {event.image && (
-                  <figure class="h-48 overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </figure>
-                )}
-                <div class="card-body">
-                  <h3 class="card-title text-xl leading-tight font-medium">
-                    {event.title}
-                  </h3>
-                  <div class="mt-2 font-mono text-sm opacity-70">
-                    {event.date}
-                  </div>
-                  <div class="card-actions mt-4 justify-end">
-                    <div class="badge rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]">
-                      Details
-                    </div>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        ) : (
-          <p class="italic opacity-60">
-            No upcoming opportunities at the moment. Please check back later.
-          </p>
-        )
-      }
-    </section>
-
-    {/* Past Events */}
-    <section class="mb-20">
-      <h2 class="mb-6 font-serif text-2xl">Past Opportunities</h2>
-      <div class="space-y-8">
-        {
-          pastEvents.map((event) => (
-            <a
-              href={`/events/${event.slug}`}
-              class="group flex flex-col gap-6 sm:flex-row"
-            >
-              <div class="flex-1 space-y-2">
-                <div class="font-mono text-sm opacity-60">{event.date}</div>
-                <h3 class="font-serif text-2xl leading-tight font-medium decoration-1 underline-offset-4 group-hover:underline">
-                  {event.title}
-                </h3>
-              </div>
-              <div class="bg-base-200 aspect-[4/3] shrink-0 overflow-hidden rounded-2xl sm:w-48">
-                {event.image && (
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                )}
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </section>
-
     {/* Get Involved Form */}
-    <section>
+    <section class="mx-auto max-w-2xl">
       <h2 class="mb-8 font-serif text-4xl">Get Involved</h2>
       <form id="volunteer-request-form" class="flex flex-col gap-6">
         <div class="form-control w-full">
@@ -134,18 +58,6 @@ const pageDescription =
             name="help"
             class="textarea textarea-bordered h-32 w-full rounded-md focus:outline-offset-0 text-gray-400"
             placeholder="Tell us about your skills and interests"></textarea>
-        </div>
-
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Availability</span>
-          </label>
-          <input
-            type="text"
-            name="availability"
-            placeholder="e.g. Weekends, Tuesday evenings"
-            class="input input-bordered w-full rounded-md focus:outline-offset-0 text-gray-400"
-          />
         </div>
 
         <div class="mt-4">
