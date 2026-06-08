@@ -1,0 +1,115 @@
+---
+import Base from "../layouts/Base.astro";
+import { Image } from "astro:assets";
+import communityImg from "../assets/Group-Photo-1024x683.jpg";
+
+const pageTitle = "Kaycee's Wish | One More Moment";
+const pageDescription =
+  "Support Kaycee's Wish through One More Moment and help create a meaningful Moment for Kaycee and the people she loves.";
+---
+
+<Base title={pageTitle} description={pageDescription} canonicalUrl="/kaycees-wish/">
+  <script
+    slot="head"
+    is:inline
+    async
+    src="https://www.pledge.to/embed/widget.js"></script>
+
+  <section class="bg-[#FFFBF6] px-4 py-12 md:py-16">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+      <div>
+        <p class="mb-4 text-sm font-bold uppercase text-[#D9776E]">
+          One More Moment fundraiser
+        </p>
+        <h1 class="font-serif text-5xl leading-tight text-[#2B2B40] md:text-6xl">
+          Help Grant Kaycee's Wish
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#333333] md:text-xl">
+          Kaycee is 26 years old, and this fundraiser is dedicated to helping
+          create a meaningful Moment for her and the people she loves. Your gift
+          helps One More Moment remove the financial and logistical barriers
+          that can stand between a cancer warrior and one more deeply personal
+          experience.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#donate"
+            class="btn rounded-md border-0 bg-[#D9776E] px-7 text-white shadow-sm hover:bg-[#c5665d]"
+          >
+            Donate to Kaycee's Wish
+          </a>
+          <a
+            href="/moments/"
+            class="btn rounded-md border-[#2B2B40] bg-transparent px-7 text-[#2B2B40] hover:bg-[#2B2B40] hover:text-white"
+          >
+            See Other Moments
+          </a>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-lg border border-[#E5DACE] bg-white shadow-sm">
+        <Image
+          src={communityImg}
+          alt="One More Moment supporters gathered together"
+          class="aspect-[4/3] w-full object-cover"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-12 md:py-16">
+    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
+      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
+        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
+          Why This Matters
+        </h2>
+        <p class="leading-relaxed text-[#4A4A4A]">
+          A Moment can be simple, joyful, peaceful, adventurous, or familiar.
+          What matters most is that it belongs to the person and the people
+          closest to them.
+        </p>
+      </div>
+      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
+        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
+          Where Gifts Go
+        </h2>
+        <p class="leading-relaxed text-[#4A4A4A]">
+          Donations help cover the real costs of making Kaycee's Wish possible,
+          including planning, coordination, travel, lodging, meals, and other
+          wish-related needs.
+        </p>
+      </div>
+      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
+        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
+          Donate Securely
+        </h2>
+        <p class="leading-relaxed text-[#4A4A4A]">
+          The donation form below is powered by Pledge and embedded securely on
+          the One More Moment website, so supporters can give with confidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="donate" class="bg-[#FFFBF6] px-4 py-12 md:py-16">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+      <div>
+        <p class="mb-3 text-sm font-bold uppercase text-[#D9776E]">
+          Donate online
+        </p>
+        <h2 class="font-serif text-4xl leading-tight text-[#2B2B40] md:text-5xl">
+          Support Kaycee's Wish today.
+        </h2>
+        <p class="mt-5 leading-relaxed text-[#4A4A4A]">
+          Every contribution helps bring this Moment closer. After you complete
+          the form, your donation will be processed by Pledge.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-[#E5DACE] bg-white p-3 shadow-sm md:p-6">
+        <div class="plg-donate" data-widget-id="VZPM2Arx8mPFG1ZS"></div>
+      </div>
+    </div>
+  </section>
+</Base>
