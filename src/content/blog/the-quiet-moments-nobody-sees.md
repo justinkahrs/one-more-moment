@@ -5,7 +5,7 @@ pubDate: "2026-06-10"
 author: "Jason Pohlonski, Founder & Executive Director"
 tags: ["One More Moment", "Adult Cancer Wishes", "Michigan Nonprofit", "Late-Stage Cancer", "Cancer Support", "Private Moments", "Family Connection"]
 image: "/blog/the-quiet-moments-nobody-sees.png"
-draft: true
+draft: false
 ---
 
 Not every One More Moment wish is meant to become a public story.
