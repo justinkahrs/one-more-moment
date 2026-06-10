@@ -24,11 +24,15 @@ export const POST: APIRoute = async ({ request }) => {
     const requesterPhone = data.requesterPhone || data.phone || "";
     const warriorName = data.warriorName || "";
     const relationshipToWarrior = data.relationshipToWarrior || "";
+    const howDidYouHearAboutUs = data.howDidYouHearAboutUs || "";
     const situation = data.situation || "";
     const situationDetails = [
       warriorName ? `Person this Moment is for: ${warriorName}` : "",
       relationshipToWarrior
         ? `Requester relationship to this person: ${relationshipToWarrior}`
+        : "",
+      howDidYouHearAboutUs
+        ? `How they heard about us: ${howDidYouHearAboutUs}`
         : "",
       situation ? `Details: ${situation}` : "",
     ]
@@ -48,6 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
       requesterPhone,
       warriorName,
       relationshipToWarrior,
+      howDidYouHearAboutUs,
       rawSituation: situation,
       situation: situationDetails || situation,
       name: requesterName,
