@@ -10,6 +10,14 @@ const STOREFRONT_URL = "https://storefront-api.fourthwall.com/v1";
 let products = [];
 let error = null;
 
+const sortProductsForDisplay = (items: any[]) =>
+  [...items].sort((a, b) => {
+    const aIsHoodie = a.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+    const bIsHoodie = b.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+
+    return aIsHoodie - bIsHoodie;
+  });
+
 try {
   // 1. Get Collections to find a slug
   const collectionsRes = await fetch(
@@ -33,7 +41,7 @@ try {
       throw new Error(`Failed to fetch products: ${productsRes.status}`);
 
     const productsData = await productsRes.json();
-    products = productsData.results || productsData;
+    products = sortProductsForDisplay(productsData.results || productsData);
   } else {
     // If no collections, maybe try empty search? But logic implies collections exist.
     console.warn("No collections found.");
@@ -45,7 +53,7 @@ try {
 
 // Fallback/Mock data if dev environment and API fails (optional, good for UI dev)
 if (!products.length && import.meta.env.DEV && error) {
-  products = [
+  products = sortProductsForDisplay([
     {
       id: "1",
       name: "Cool T-Shirt",
@@ -70,7 +78,7 @@ if (!products.length && import.meta.env.DEV && error) {
         },
       ],
     },
-  ];
+  ]);
 }
 
 const { cta, title, subTitle } = metadata.merchPage;
@@ -115,7 +123,7 @@ const pageDescription =
 
     <div
       id="products-grid"
-      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+      class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
     >
       {
         products.map((product) => {
@@ -125,30 +133,32 @@ const pageDescription =
 
           return (
             <FadeIn>
-              <div class="card bg-base-100 shadow-xl transition-shadow duration-300 hover:shadow-2xl">
-                <figure class="px-4 pt-4">
+              <div class="card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl">
+                <figure class="px-3 pt-3">
                   {product.images?.[0]?.url ? (
                     <img
                       src={product.images[0].url}
                       alt={product.name}
-                      class="h-64 w-full rounded-xl object-cover"
+                      class="h-48 w-full rounded-lg object-cover"
                     />
                   ) : (
-                    <div class="flex h-64 w-full items-center justify-center rounded-xl bg-gray-200 text-gray-500">
+                    <div class="flex h-48 w-full items-center justify-center rounded-lg bg-gray-200 text-gray-500">
                       No Image
                     </div>
                   )}
                 </figure>
-                <div class="card-body items-center text-center">
-                  <h2 class="card-title">{product.name}</h2>
-                  <p class="text-lg font-semibold">
+                <div class="card-body items-center p-4 text-center">
+                  <h2 class="card-title text-base leading-tight">
+                    {product.name}
+                  </h2>
+                  <p class="text-base font-semibold">
                     {minPrice
                       ? `From $${minPrice.value} ${minPrice.currency}`
                       : "Price unavailable"}
                   </p>
-                  <div class="card-actions mt-4">
+                  <div class="card-actions mt-2">
                     <button
-                      class="btn open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
+                      class="btn btn-sm open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]"
                       data-id={product.id}
                     >
                       {cta}
@@ -257,6 +267,14 @@ const pageDescription =
   <script is:inline>
     const STOREFRONT_BASE_URL = "https://storefront-api.fourthwall.com/v1";
 
+    const sortProductsForDisplay = (items) =>
+      [...items].sort((a, b) => {
+        const aIsHoodie = a.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+        const bIsHoodie = b.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+
+        return aIsHoodie - bIsHoodie;
+      });
+
     const formatPrice = (price) => {
       if (!price) return "Price unavailable";
       return `From $${price.value} ${price.currency}`;
@@ -268,43 +286,43 @@ const pageDescription =
 
       const card = document.createElement("div");
       card.className =
-        "card bg-base-100 shadow-xl transition-shadow duration-300 hover:shadow-2xl";
+        "card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl";
 
       const figure = document.createElement("figure");
-      figure.className = "px-4 pt-4";
+      figure.className = "px-3 pt-3";
 
       const imageUrl = product.images?.[0]?.url;
       if (imageUrl) {
         const image = document.createElement("img");
         image.src = imageUrl;
         image.alt = product.name;
-        image.className = "h-64 w-full rounded-xl object-cover";
+        image.className = "h-48 w-full rounded-lg object-cover";
         figure.appendChild(image);
       } else {
         const emptyImage = document.createElement("div");
         emptyImage.className =
-          "flex h-64 w-full items-center justify-center rounded-xl bg-gray-200 text-gray-500";
+          "flex h-48 w-full items-center justify-center rounded-lg bg-gray-200 text-gray-500";
         emptyImage.textContent = "No Image";
         figure.appendChild(emptyImage);
       }
 
       const body = document.createElement("div");
-      body.className = "card-body items-center text-center";
+      body.className = "card-body items-center p-4 text-center";
 
       const title = document.createElement("h2");
-      title.className = "card-title";
+      title.className = "card-title text-base leading-tight";
       title.textContent = product.name;
 
       const price = document.createElement("p");
-      price.className = "text-lg font-semibold";
+      price.className = "text-base font-semibold";
       price.textContent = formatPrice(product.variants?.[0]?.unitPrice);
 
       const actions = document.createElement("div");
-      actions.className = "card-actions mt-4";
+      actions.className = "card-actions mt-2";
 
       const button = document.createElement("button");
       button.className =
-        "btn open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]";
+        "btn btn-sm open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]";
       button.dataset.id = product.id;
       button.textContent = window.OMM_MERCH_CTA || "Buy Now";
 
@@ -343,7 +361,9 @@ const pageDescription =
         if (!productsRes.ok) return;
 
         const productsData = await productsRes.json();
-        const latestProducts = productsData.results || productsData;
+        const latestProducts = sortProductsForDisplay(
+          productsData.results || productsData,
+        );
         if (!Array.isArray(latestProducts) || !latestProducts.length) return;
 
         window.OMM_PRODUCTS = latestProducts;
