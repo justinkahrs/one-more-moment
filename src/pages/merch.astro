@@ -113,7 +113,10 @@ const pageDescription =
       ) : null
     }
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div
+      id="products-grid"
+      class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+    >
       {
         products.map((product) => {
           // Find price range or starting price
@@ -242,11 +245,115 @@ const pageDescription =
         import.meta.env.FOURTHWALL_SHOP_URL ||
         "https://one-more-moment-fob-shop.fourthwall.com",
       PRODUCTS: products,
+      CTA: cta,
     }}
   >
     window.OMM_STOREFRONT_TOKEN = STOREFRONT_TOKEN;
     window.OMM_SHOP_URL = SHOP_URL;
     window.OMM_PRODUCTS = PRODUCTS;
+    window.OMM_MERCH_CTA = CTA;
+  </script>
+
+  <script is:inline>
+    const STOREFRONT_BASE_URL = "https://storefront-api.fourthwall.com/v1";
+
+    const formatPrice = (price) => {
+      if (!price) return "Price unavailable";
+      return `From $${price.value} ${price.currency}`;
+    };
+
+    const createProductCard = (product) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "animate-fade-in-up";
+
+      const card = document.createElement("div");
+      card.className =
+        "card bg-base-100 shadow-xl transition-shadow duration-300 hover:shadow-2xl";
+
+      const figure = document.createElement("figure");
+      figure.className = "px-4 pt-4";
+
+      const imageUrl = product.images?.[0]?.url;
+      if (imageUrl) {
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = product.name;
+        image.className = "h-64 w-full rounded-xl object-cover";
+        figure.appendChild(image);
+      } else {
+        const emptyImage = document.createElement("div");
+        emptyImage.className =
+          "flex h-64 w-full items-center justify-center rounded-xl bg-gray-200 text-gray-500";
+        emptyImage.textContent = "No Image";
+        figure.appendChild(emptyImage);
+      }
+
+      const body = document.createElement("div");
+      body.className = "card-body items-center text-center";
+
+      const title = document.createElement("h2");
+      title.className = "card-title";
+      title.textContent = product.name;
+
+      const price = document.createElement("p");
+      price.className = "text-lg font-semibold";
+      price.textContent = formatPrice(product.variants?.[0]?.unitPrice);
+
+      const actions = document.createElement("div");
+      actions.className = "card-actions mt-4";
+
+      const button = document.createElement("button");
+      button.className =
+        "btn open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]";
+      button.dataset.id = product.id;
+      button.textContent = window.OMM_MERCH_CTA || "Buy Now";
+
+      actions.appendChild(button);
+      body.append(title, price, actions);
+      card.append(figure, body);
+      wrapper.appendChild(card);
+
+      return wrapper;
+    };
+
+    async function refreshFourthwallProducts() {
+      const token = window.OMM_STOREFRONT_TOKEN;
+      const grid = document.getElementById("products-grid");
+      if (!token || !grid) return;
+
+      try {
+        const collectionsRes = await fetch(
+          `${STOREFRONT_BASE_URL}/collections?storefront_token=${token}`,
+          { cache: "no-store" },
+        );
+        if (!collectionsRes.ok) return;
+
+        const collectionsData = await collectionsRes.json();
+        const collections = collectionsData.results || collectionsData;
+        const allCollection = collections.find(
+          (collection) => collection.slug === "all",
+        );
+        const targetCollection = allCollection || collections[0];
+        if (!targetCollection?.slug) return;
+
+        const productsRes = await fetch(
+          `${STOREFRONT_BASE_URL}/collections/${targetCollection.slug}/products?storefront_token=${token}&limit=500`,
+          { cache: "no-store" },
+        );
+        if (!productsRes.ok) return;
+
+        const productsData = await productsRes.json();
+        const latestProducts = productsData.results || productsData;
+        if (!Array.isArray(latestProducts) || !latestProducts.length) return;
+
+        window.OMM_PRODUCTS = latestProducts;
+        grid.replaceChildren(...latestProducts.map(createProductCard));
+      } catch (error) {
+        console.error("Unable to refresh Fourthwall products:", error);
+      }
+    }
+
+    refreshFourthwallProducts();
   </script>
 
   <script src="/js/product-modal.js" is:inline></script>

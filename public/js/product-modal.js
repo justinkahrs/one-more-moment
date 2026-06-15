@@ -6,11 +6,14 @@ let currentQty = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
     // Open Modal Triggers
-    document.querySelectorAll(".open-product-modal").forEach(btn => {
-        btn.addEventListener("click", () => {
-             const productId = btn.dataset.id;
-             openProductModal(productId);
-        });
+    document.addEventListener("click", (event) => {
+        const btn = event.target instanceof Element
+            ? event.target.closest(".open-product-modal")
+            : null;
+        if(!btn) return;
+
+        const productId = btn.dataset.id;
+        openProductModal(productId);
     });
 
     // Add to Cart Button in Modal
