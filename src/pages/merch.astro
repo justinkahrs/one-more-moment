@@ -6,6 +6,8 @@ import { frontmatter as metadata } from "../data/metadata.mdx";
 // Fetch products from Fourthwall Storefront API
 const STOREFRONT_TOKEN = import.meta.env.FOURTHWALL_STOREFRONT_TOKEN;
 const STOREFRONT_URL = "https://storefront-api.fourthwall.com/v1";
+const STOREFRONT_PAGE_SIZE = 100;
+const PRODUCTS_PER_PAGE = 10;
 const normalizeFourthwallDomain = (value: string | null | undefined) =>
   value?.replace(/^https?:\/\//, "").replace(/\/+$/, "") || "";
 const isCustomDomain = (value: string | null | undefined) =>
@@ -26,6 +28,34 @@ const sortProductsForDisplay = (items: any[]) =>
     return aIsHoodie - bIsHoodie;
   });
 
+const fetchAllCollectionProducts = async (slug: string) => {
+  const allProducts = [];
+  let page = 0;
+
+  while (true) {
+    const productsUrl = new URL(`${STOREFRONT_URL}/collections/${slug}/products`);
+    productsUrl.searchParams.set("storefront_token", STOREFRONT_TOKEN);
+    productsUrl.searchParams.set("page", page.toString());
+    productsUrl.searchParams.set("pageSize", STOREFRONT_PAGE_SIZE.toString());
+
+    const productsRes = await fetch(productsUrl);
+    if (!productsRes.ok)
+      throw new Error(`Failed to fetch products: ${productsRes.status}`);
+
+    const productsData = await productsRes.json();
+    const pageProducts = productsData.results || productsData;
+    allProducts.push(...pageProducts);
+
+    if (!productsData.paging?.hasNextPage || !Array.isArray(productsData.results)) {
+      break;
+    }
+
+    page += 1;
+  }
+
+  return allProducts;
+};
+
 try {
   // 1. Get Collections to find a slug
   const collectionsRes = await fetch(
@@ -42,14 +72,7 @@ try {
     const targetCollection = allCollection || collections[0];
     const slug = targetCollection.slug;
 
-    const productsRes = await fetch(
-      `${STOREFRONT_URL}/collections/${slug}/products?storefront_token=${STOREFRONT_TOKEN}&limit=500`,
-    );
-    if (!productsRes.ok)
-      throw new Error(`Failed to fetch products: ${productsRes.status}`);
-
-    const productsData = await productsRes.json();
-    products = sortProductsForDisplay(productsData.results || productsData);
+    products = sortProductsForDisplay(await fetchAllCollectionProducts(slug));
   } else {
     // If no collections, maybe try empty search? But logic implies collections exist.
     console.warn("No collections found.");
@@ -119,6 +142,9 @@ const { cta, title, subTitle } = metadata.merchPage;
 const pageTitle = "Shop One More Moment | Support Adult Cancer Wishes";
 const pageDescription =
   "Shop One More Moment merchandise and support meaningful wish experiences for adults facing late-stage cancer.";
+const initialProducts = products.slice(0, PRODUCTS_PER_PAGE);
+const initialVisibleCount = Math.min(PRODUCTS_PER_PAGE, products.length);
+const initialTotalPages = Math.max(1, Math.ceil(products.length / PRODUCTS_PER_PAGE));
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -160,7 +186,7 @@ const pageDescription =
       class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
     >
       {
-        products.map((product) => {
+        initialProducts.map((product) => {
           // Find price range or starting price
           const firstVar = product.variants?.[0];
           const minPrice = firstVar?.unitPrice;
@@ -204,6 +230,31 @@ const pageDescription =
           );
         })
       }
+    </div>
+
+    <div
+      id="products-pagination-shell"
+      class:list={[
+        "mt-10 flex flex-col items-center gap-4",
+        initialTotalPages > 1 ? "" : "hidden",
+      ]}
+    >
+      <p
+        id="products-pagination-status"
+        class="text-sm font-medium tracking-wide text-[#2B2B40]/75"
+        aria-live="polite"
+      >
+        {
+          products.length
+            ? `Showing 1-${initialVisibleCount} of ${products.length} products`
+            : "No products available"
+        }
+      </p>
+      <div
+        id="products-pagination"
+        class="flex flex-wrap items-center justify-center gap-2"
+      >
+      </div>
     </div>
   </main>
 
@@ -286,6 +337,7 @@ const pageDescription =
     define:vars={{
       STOREFRONT_TOKEN,
       SHOP_DOMAIN: checkoutDomain,
+      PRODUCTS_PER_PAGE,
       PRODUCTS: products,
       CTA: cta,
     }}
@@ -293,6 +345,7 @@ const pageDescription =
     window.OMM_STOREFRONT_TOKEN = STOREFRONT_TOKEN;
     window.OMM_SHOP_DOMAIN = SHOP_DOMAIN;
     window.OMM_SHOP_URL = SHOP_DOMAIN;
+    window.OMM_PRODUCTS_PER_PAGE = PRODUCTS_PER_PAGE;
     window.OMM_PRODUCTS = PRODUCTS;
     window.OMM_MERCH_CTA = CTA;
   </script>
@@ -300,6 +353,20 @@ const pageDescription =
   <script is:inline>
     (() => {
       const storefrontBaseUrl = "https://storefront-api.fourthwall.com/v1";
+      const storefrontPageSize = 100;
+      const productsPerPage = window.OMM_PRODUCTS_PER_PAGE || 10;
+      const grid = document.getElementById("products-grid");
+      const paginationShell = document.getElementById(
+        "products-pagination-shell",
+      );
+      const paginationStatus = document.getElementById(
+        "products-pagination-status",
+      );
+      const pagination = document.getElementById("products-pagination");
+      let merchProducts = Array.isArray(window.OMM_PRODUCTS)
+        ? window.OMM_PRODUCTS
+        : [];
+      let currentPage = 1;
 
       const sortProductsForDisplay = (items) =>
         [...items].sort((a, b) => {
@@ -368,9 +435,190 @@ const pageDescription =
         return wrapper;
       };
 
+      const getTotalPages = (items) =>
+        Math.max(1, Math.ceil(items.length / productsPerPage));
+
+      const getRequestedPage = () => {
+        const page = Number.parseInt(
+          new URL(window.location.href).searchParams.get("page") || "1",
+          10,
+        );
+
+        return Number.isFinite(page) && page > 0 ? page : 1;
+      };
+
+      const syncPageInUrl = (page) => {
+        const url = new URL(window.location.href);
+        if (page <= 1) {
+          url.searchParams.delete("page");
+        } else {
+          url.searchParams.set("page", page.toString());
+        }
+
+        window.history.replaceState({}, "", url);
+      };
+
+      const updatePaginationStatus = () => {
+        if (!paginationStatus) return;
+
+        if (!merchProducts.length) {
+          paginationStatus.textContent = "No products available";
+          return;
+        }
+
+        const start = (currentPage - 1) * productsPerPage + 1;
+        const end = Math.min(start + productsPerPage - 1, merchProducts.length);
+        paginationStatus.textContent =
+          `Showing ${start}-${end} of ${merchProducts.length} products`;
+      };
+
+      const createPaginationButton = ({
+        label,
+        page,
+        disabled = false,
+        active = false,
+      }) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = label;
+        button.disabled = disabled;
+        button.className = active
+          ? "btn btn-sm border-[#D9776E] bg-[#D9776E] text-white hover:border-[#c5665d] hover:bg-[#c5665d]"
+          : "btn btn-sm btn-outline border-[#D9776E]/35 text-[#2B2B40] hover:border-[#D9776E] hover:bg-[#D9776E] hover:text-white";
+
+        if (active) {
+          button.setAttribute("aria-current", "page");
+        }
+
+        if (!disabled) {
+          button.addEventListener("click", () => {
+            setPage(page, { updateUrl: true, scroll: true });
+          });
+        }
+
+        return button;
+      };
+
+      const renderPaginationControls = () => {
+        if (!pagination || !paginationShell) return;
+
+        pagination.replaceChildren();
+
+        if (merchProducts.length <= productsPerPage) {
+          paginationShell.classList.add("hidden");
+          updatePaginationStatus();
+          return;
+        }
+
+        paginationShell.classList.remove("hidden");
+        const totalPages = getTotalPages(merchProducts);
+
+        pagination.appendChild(
+          createPaginationButton({
+            label: "Previous",
+            page: currentPage - 1,
+            disabled: currentPage === 1,
+          }),
+        );
+
+        for (let page = 1; page <= totalPages; page += 1) {
+          pagination.appendChild(
+            createPaginationButton({
+              label: page.toString(),
+              page,
+              active: page === currentPage,
+            }),
+          );
+        }
+
+        pagination.appendChild(
+          createPaginationButton({
+            label: "Next",
+            page: currentPage + 1,
+            disabled: currentPage === totalPages,
+          }),
+        );
+
+        updatePaginationStatus();
+      };
+
+      const renderCurrentPage = () => {
+        if (!grid) return;
+
+        const startIndex = (currentPage - 1) * productsPerPage;
+        const visibleProducts = merchProducts.slice(
+          startIndex,
+          startIndex + productsPerPage,
+        );
+
+        grid.replaceChildren(...visibleProducts.map(createProductCard));
+        renderPaginationControls();
+      };
+
+      const setPage = (
+        page,
+        { updateUrl = false, scroll = false } = {},
+      ) => {
+        currentPage = Math.min(Math.max(page, 1), getTotalPages(merchProducts));
+        renderCurrentPage();
+
+        if (updateUrl) {
+          syncPageInUrl(currentPage);
+        }
+
+        if (scroll && grid) {
+          grid.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+
+      const applyProducts = (items, { useRequestedPage = false } = {}) => {
+        merchProducts = sortProductsForDisplay(items);
+        window.OMM_PRODUCTS = merchProducts;
+        currentPage = Math.min(
+          useRequestedPage ? getRequestedPage() : currentPage,
+          getTotalPages(merchProducts),
+        );
+
+        renderCurrentPage();
+        syncPageInUrl(currentPage);
+      };
+
+      const fetchAllCollectionProducts = async (collectionSlug, token) => {
+        const allProducts = [];
+        let page = 0;
+
+        while (true) {
+          const productsUrl = new URL(
+            `${storefrontBaseUrl}/collections/${collectionSlug}/products`,
+          );
+          productsUrl.searchParams.set("storefront_token", token);
+          productsUrl.searchParams.set("page", page.toString());
+          productsUrl.searchParams.set("pageSize", storefrontPageSize.toString());
+
+          const productsRes = await fetch(productsUrl, { cache: "no-store" });
+          if (!productsRes.ok) {
+            throw new Error(`Products request failed: ${productsRes.status}`);
+          }
+
+          const productsData = await productsRes.json();
+          const pageProducts = productsData.results || productsData;
+          allProducts.push(...pageProducts);
+
+          if (
+            !productsData.paging?.hasNextPage ||
+            !Array.isArray(productsData.results)
+          ) {
+            break;
+          }
+
+          page += 1;
+        }
+
+        return allProducts;
+      };
+
       async function refreshFourthwallProducts() {
         const token = window.OMM_STOREFRONT_TOKEN;
-        const grid = document.getElementById("products-grid");
         if (!token || !grid) return;
 
         try {
@@ -388,25 +636,18 @@ const pageDescription =
           const targetCollection = allCollection || collections[0];
           if (!targetCollection?.slug) return;
 
-          const productsRes = await fetch(
-            `${storefrontBaseUrl}/collections/${targetCollection.slug}/products?storefront_token=${token}&limit=500`,
-            { cache: "no-store" },
-          );
-          if (!productsRes.ok) return;
-
-          const productsData = await productsRes.json();
           const latestProducts = sortProductsForDisplay(
-            productsData.results || productsData,
+            await fetchAllCollectionProducts(targetCollection.slug, token),
           );
           if (!Array.isArray(latestProducts) || !latestProducts.length) return;
 
-          window.OMM_PRODUCTS = latestProducts;
-          grid.replaceChildren(...latestProducts.map(createProductCard));
+          applyProducts(latestProducts);
         } catch (error) {
           console.error("Unable to refresh Fourthwall products:", error);
         }
       }
 
+      applyProducts(merchProducts, { useRequestedPage: true });
       refreshFourthwallProducts();
     })();
   </script>
