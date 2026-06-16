@@ -3,6 +3,100 @@
 let currentProduct = null;
 let selectedOptions = {}; // { Color: "Black", Size: "L" }
 let currentQty = 1;
+let currentGalleryImages = [];
+let currentImageUrl = "";
+
+function getImageUrl(image) {
+    return image?.url || image?.transformedUrl || "";
+}
+
+function getModalImageEl() {
+    return document.getElementById("modal-image");
+}
+
+function setModalImage(imageUrl) {
+    const modalImage = getModalImageEl();
+    if(!modalImage) return;
+
+    currentImageUrl = imageUrl || "";
+    modalImage.src = currentImageUrl;
+}
+
+function getGalleryImages(product, variant = null) {
+    const seen = new Set();
+    const gallery = [];
+    const imageGroups = [
+        ...(variant?.images ? [variant.images] : []),
+        ...(product?.images ? [product.images] : []),
+    ];
+
+    imageGroups.forEach((images) => {
+        images.forEach((image) => {
+            const imageUrl = getImageUrl(image);
+            if(!imageUrl || seen.has(imageUrl)) return;
+
+            seen.add(imageUrl);
+            gallery.push({
+                url: imageUrl,
+                alt: product?.name || "Product image",
+            });
+        });
+    });
+
+    return gallery;
+}
+
+function renderModalThumbnails(preferredImageUrl = "") {
+    const container = document.getElementById("modal-thumbnails");
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    if(!currentGalleryImages.length) {
+        container.classList.add("hidden");
+        setModalImage("");
+        return;
+    }
+
+    container.classList.toggle("hidden", currentGalleryImages.length <= 1);
+
+    const nextImageUrl =
+        preferredImageUrl && currentGalleryImages.some((image) => image.url === preferredImageUrl)
+            ? preferredImageUrl
+            : currentGalleryImages[0].url;
+
+    setModalImage(nextImageUrl);
+
+    currentGalleryImages.forEach((image, index) => {
+        const thumbBtn = document.createElement("button");
+        thumbBtn.type = "button";
+        thumbBtn.className =
+            image.url === currentImageUrl
+                ? "h-16 w-16 overflow-hidden rounded-xl border-2 border-[#D9776E] bg-white p-0 shadow-sm"
+                : "h-16 w-16 overflow-hidden rounded-xl border border-[#2B2B40]/15 bg-white p-0 opacity-80 transition hover:opacity-100";
+        thumbBtn.setAttribute("aria-label", `Show image ${index + 1} of ${currentGalleryImages.length}`);
+        if(image.url === currentImageUrl) {
+            thumbBtn.setAttribute("aria-current", "page");
+        }
+
+        thumbBtn.addEventListener("click", () => {
+            renderModalThumbnails(image.url);
+        });
+
+        const thumbImage = document.createElement("img");
+        thumbImage.src = image.url;
+        thumbImage.alt = image.alt;
+        thumbImage.className = "h-full w-full object-cover";
+
+        thumbBtn.appendChild(thumbImage);
+        container.appendChild(thumbBtn);
+    });
+}
+
+function syncModalGallery(variant = null) {
+    currentGalleryImages = getGalleryImages(currentProduct, variant);
+    renderModalThumbnails(currentImageUrl);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     // Open Modal Triggers
@@ -51,12 +145,13 @@ function openProductModal(productId) {
     // Reset State
     selectedOptions = {};
     currentQty = 1;
+    currentGalleryImages = [];
+    currentImageUrl = "";
     document.getElementById("modal-qty").value = 1;
 
     // Render Basic Info
     document.getElementById("modal-title").innerText = currentProduct.name;
-    const img = currentProduct.images?.[0]?.url || "";
-    document.getElementById("modal-image").src = img;
+    syncModalGallery();
     
     // Render Options
     renderOptions(currentProduct);
@@ -187,15 +282,12 @@ function updateModalState() {
          // Enable Button
          addBtn.disabled = false;
          addBtn.innerText = "Add to Cart";
-         
-         // Update Image if variant has specific image?
-         if(variant.images?.[0]?.url) {
-             document.getElementById("modal-image").src = variant.images[0].url;
-         }
+         syncModalGallery(variant);
          
     } else {
         addBtn.disabled = true;
         addBtn.innerText = allSelected ? "Unavailable" : "Select Options";
+        syncModalGallery();
         // Keep main product price or show range?
     }
 }

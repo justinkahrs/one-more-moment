@@ -264,14 +264,21 @@ const initialTotalPages = Math.max(1, Math.ceil(products.length / PRODUCTS_PER_P
       <div class="flex h-full max-h-[85vh] flex-col md:flex-row">
         <!-- Image Section -->
         <div
-          class="bg-base-200 flex w-full items-center justify-center p-6 md:w-1/2"
+          class="bg-base-200 flex w-full flex-col justify-center gap-4 p-6 md:w-1/2"
         >
-          <img
-            id="modal-image"
-            src=""
-            alt="Product"
-            class="max-h-[50vh] rounded-lg object-contain shadow-sm"
-          />
+          <div class="flex min-h-[320px] items-center justify-center">
+            <img
+              id="modal-image"
+              src=""
+              alt="Product"
+              class="max-h-[50vh] rounded-lg object-contain shadow-sm"
+            />
+          </div>
+          <div
+            id="modal-thumbnails"
+            class="flex flex-wrap justify-center gap-2"
+          >
+          </div>
         </div>
 
         <!-- Details Section -->
