@@ -298,115 +298,117 @@ const pageDescription =
   </script>
 
   <script is:inline>
-    const STOREFRONT_BASE_URL = "https://storefront-api.fourthwall.com/v1";
+    (() => {
+      const storefrontBaseUrl = "https://storefront-api.fourthwall.com/v1";
 
-    const sortProductsForDisplay = (items) =>
-      [...items].sort((a, b) => {
-        const aIsHoodie = a.name?.toLowerCase().includes("hoodie") ? 0 : 1;
-        const bIsHoodie = b.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+      const sortProductsForDisplay = (items) =>
+        [...items].sort((a, b) => {
+          const aIsHoodie = a.name?.toLowerCase().includes("hoodie") ? 0 : 1;
+          const bIsHoodie = b.name?.toLowerCase().includes("hoodie") ? 0 : 1;
 
-        return aIsHoodie - bIsHoodie;
-      });
+          return aIsHoodie - bIsHoodie;
+        });
 
-    const formatPrice = (price) => {
-      if (!price) return "Price unavailable";
-      return `From $${price.value} ${price.currency}`;
-    };
+      const formatPrice = (price) => {
+        if (!price) return "Price unavailable";
+        return `From $${price.value} ${price.currency}`;
+      };
 
-    const createProductCard = (product) => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "animate-fade-in-up";
+      const createProductCard = (product) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "animate-fade-in-up";
 
-      const card = document.createElement("div");
-      card.className =
-        "card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl";
+        const card = document.createElement("div");
+        card.className =
+          "card bg-base-100 shadow-md transition-shadow duration-300 hover:shadow-xl";
 
-      const figure = document.createElement("figure");
-      figure.className = "px-3 pt-3";
+        const figure = document.createElement("figure");
+        figure.className = "px-3 pt-3";
 
-      const imageUrl = product.images?.[0]?.url;
-      if (imageUrl) {
-        const image = document.createElement("img");
-        image.src = imageUrl;
-        image.alt = product.name;
-        image.className = "h-48 w-full rounded-lg object-cover";
-        figure.appendChild(image);
-      } else {
-        const emptyImage = document.createElement("div");
-        emptyImage.className =
-          "flex h-48 w-full items-center justify-center rounded-lg bg-gray-200 text-gray-500";
-        emptyImage.textContent = "No Image";
-        figure.appendChild(emptyImage);
+        const imageUrl = product.images?.[0]?.url;
+        if (imageUrl) {
+          const image = document.createElement("img");
+          image.src = imageUrl;
+          image.alt = product.name;
+          image.className = "h-48 w-full rounded-lg object-cover";
+          figure.appendChild(image);
+        } else {
+          const emptyImage = document.createElement("div");
+          emptyImage.className =
+            "flex h-48 w-full items-center justify-center rounded-lg bg-gray-200 text-gray-500";
+          emptyImage.textContent = "No Image";
+          figure.appendChild(emptyImage);
+        }
+
+        const body = document.createElement("div");
+        body.className = "card-body items-center p-4 text-center";
+
+        const title = document.createElement("h2");
+        title.className = "card-title text-base leading-tight";
+        title.textContent = product.name;
+
+        const price = document.createElement("p");
+        price.className = "text-base font-semibold";
+        price.textContent = formatPrice(product.variants?.[0]?.unitPrice);
+
+        const actions = document.createElement("div");
+        actions.className = "card-actions mt-2";
+
+        const button = document.createElement("button");
+        button.className =
+          "btn btn-sm open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]";
+        button.dataset.id = product.id;
+        button.textContent = window.OMM_MERCH_CTA || "Buy Now";
+
+        actions.appendChild(button);
+        body.append(title, price, actions);
+        card.append(figure, body);
+        wrapper.appendChild(card);
+
+        return wrapper;
+      };
+
+      async function refreshFourthwallProducts() {
+        const token = window.OMM_STOREFRONT_TOKEN;
+        const grid = document.getElementById("products-grid");
+        if (!token || !grid) return;
+
+        try {
+          const collectionsRes = await fetch(
+            `${storefrontBaseUrl}/collections?storefront_token=${token}`,
+            { cache: "no-store" },
+          );
+          if (!collectionsRes.ok) return;
+
+          const collectionsData = await collectionsRes.json();
+          const collections = collectionsData.results || collectionsData;
+          const allCollection = collections.find(
+            (collection) => collection.slug === "all",
+          );
+          const targetCollection = allCollection || collections[0];
+          if (!targetCollection?.slug) return;
+
+          const productsRes = await fetch(
+            `${storefrontBaseUrl}/collections/${targetCollection.slug}/products?storefront_token=${token}&limit=500`,
+            { cache: "no-store" },
+          );
+          if (!productsRes.ok) return;
+
+          const productsData = await productsRes.json();
+          const latestProducts = sortProductsForDisplay(
+            productsData.results || productsData,
+          );
+          if (!Array.isArray(latestProducts) || !latestProducts.length) return;
+
+          window.OMM_PRODUCTS = latestProducts;
+          grid.replaceChildren(...latestProducts.map(createProductCard));
+        } catch (error) {
+          console.error("Unable to refresh Fourthwall products:", error);
+        }
       }
 
-      const body = document.createElement("div");
-      body.className = "card-body items-center p-4 text-center";
-
-      const title = document.createElement("h2");
-      title.className = "card-title text-base leading-tight";
-      title.textContent = product.name;
-
-      const price = document.createElement("p");
-      price.className = "text-base font-semibold";
-      price.textContent = formatPrice(product.variants?.[0]?.unitPrice);
-
-      const actions = document.createElement("div");
-      actions.className = "card-actions mt-2";
-
-      const button = document.createElement("button");
-      button.className =
-        "btn btn-sm open-product-modal rounded-md bg-[#D9776E] text-white hover:bg-[#c5665d]";
-      button.dataset.id = product.id;
-      button.textContent = window.OMM_MERCH_CTA || "Buy Now";
-
-      actions.appendChild(button);
-      body.append(title, price, actions);
-      card.append(figure, body);
-      wrapper.appendChild(card);
-
-      return wrapper;
-    };
-
-    async function refreshFourthwallProducts() {
-      const token = window.OMM_STOREFRONT_TOKEN;
-      const grid = document.getElementById("products-grid");
-      if (!token || !grid) return;
-
-      try {
-        const collectionsRes = await fetch(
-          `${STOREFRONT_BASE_URL}/collections?storefront_token=${token}`,
-          { cache: "no-store" },
-        );
-        if (!collectionsRes.ok) return;
-
-        const collectionsData = await collectionsRes.json();
-        const collections = collectionsData.results || collectionsData;
-        const allCollection = collections.find(
-          (collection) => collection.slug === "all",
-        );
-        const targetCollection = allCollection || collections[0];
-        if (!targetCollection?.slug) return;
-
-        const productsRes = await fetch(
-          `${STOREFRONT_BASE_URL}/collections/${targetCollection.slug}/products?storefront_token=${token}&limit=500`,
-          { cache: "no-store" },
-        );
-        if (!productsRes.ok) return;
-
-        const productsData = await productsRes.json();
-        const latestProducts = sortProductsForDisplay(
-          productsData.results || productsData,
-        );
-        if (!Array.isArray(latestProducts) || !latestProducts.length) return;
-
-        window.OMM_PRODUCTS = latestProducts;
-        grid.replaceChildren(...latestProducts.map(createProductCard));
-      } catch (error) {
-        console.error("Unable to refresh Fourthwall products:", error);
-      }
-    }
-
-    refreshFourthwallProducts();
+      refreshFourthwallProducts();
+    })();
   </script>
 
   <script src="/js/product-modal.js" is:inline></script>
