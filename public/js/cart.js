@@ -21,6 +21,10 @@ function getUrl(path) {
   return `${STOREFRONT_BASE_URL}${path}?storefront_token=${token}`;
 }
 
+function normalizeDomain(value) {
+  return (value || "").replace(/^https?:\/\//, "").replace(/\/+$/, "");
+}
+
 async function fetchCart() {
   if (!cartId) return;
   try {
@@ -212,29 +216,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if(checkoutBtn) {
         checkoutBtn.addEventListener("click", () => {
             if(!cartId) return;
-            
-            // Construct Checkout URL for the Fourthwall shop-domain checkout entry point.
-            const shopUrl =
+
+            const shopDomain = normalizeDomain(
+              window.OMM_SHOP_DOMAIN ||
                 window.OMM_SHOP_URL ||
-                "https://one-more-moment-fob-shop.fourthwall.com";
-            const baseUrl = (shopUrl.startsWith("http")
-                ? shopUrl
-                : `https://${shopUrl}`
+                "one-more-moment-fob-shop.fourthwall.com",
             ).replace(
-                "https://one-more-moment-fob.fourthwall.com",
-                "https://one-more-moment-fob-shop.fourthwall.com",
+              "one-more-moment-fob.fourthwall.com",
+              "one-more-moment-fob-shop.fourthwall.com",
             );
-             
+
+            if (!shopDomain) {
+                alert("Checkout is temporarily unavailable. Please try again in a moment.");
+                return;
+            }
+
             // Get currency from first item or default to USD
             const currency = cart.items?.[0]?.variant?.unitPrice?.currency || "USD";
-             
-            const params = new URLSearchParams({
-                cartId,
-                currency,
-            });
-            const checkoutUrl = `${baseUrl}/cart/checkout?${params.toString()}`;
-             
-            window.location.href = checkoutUrl;
+
+            const checkoutUrl = new URL(`https://${shopDomain}/cart/checkout`);
+            checkoutUrl.searchParams.set("cartId", cartId);
+            checkoutUrl.searchParams.set("currency", currency);
+
+            window.location.href = checkoutUrl.toString();
         });
     }
 

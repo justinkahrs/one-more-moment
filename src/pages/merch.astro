@@ -6,9 +6,17 @@ import { frontmatter as metadata } from "../data/metadata.mdx";
 // Fetch products from Fourthwall Storefront API
 const STOREFRONT_TOKEN = import.meta.env.FOURTHWALL_STOREFRONT_TOKEN;
 const STOREFRONT_URL = "https://storefront-api.fourthwall.com/v1";
+const normalizeFourthwallDomain = (value: string | null | undefined) =>
+  value?.replace(/^https?:\/\//, "").replace(/\/+$/, "") || "";
+const isCustomDomain = (value: string | null | undefined) =>
+  Boolean(value) && !value.endsWith(".fourthwall.com");
+const configuredShopDomain = normalizeFourthwallDomain(
+  import.meta.env.FOURTHWALL_SHOP_URL,
+);
 
 let products = [];
 let error = null;
+let checkoutDomain = configuredShopDomain;
 
 const sortProductsForDisplay = (items: any[]) =>
   [...items].sort((a, b) => {
@@ -49,6 +57,32 @@ try {
 } catch (e) {
   error = e.message;
   console.error("Storefront API Error:", e);
+}
+
+if (STOREFRONT_TOKEN) {
+  try {
+    const shopRes = await fetch(
+      `${STOREFRONT_URL}/shop?storefront_token=${STOREFRONT_TOKEN}`,
+    );
+
+    if (shopRes.ok) {
+      const shopData = await shopRes.json();
+      const publicShopDomain = normalizeFourthwallDomain(
+        shopData.publicDomain || shopData.domain,
+      );
+
+      if (publicShopDomain) {
+        checkoutDomain =
+          configuredShopDomain && isCustomDomain(configuredShopDomain)
+            ? configuredShopDomain
+            : publicShopDomain;
+      }
+    } else {
+      console.warn(`Failed to fetch shop details: ${shopRes.status}`);
+    }
+  } catch (e) {
+    console.warn("Storefront shop details error:", e);
+  }
 }
 
 // Fallback/Mock data if dev environment and API fails (optional, good for UI dev)
@@ -251,15 +285,14 @@ const pageDescription =
     is:inline
     define:vars={{
       STOREFRONT_TOKEN,
-      SHOP_URL:
-        import.meta.env.FOURTHWALL_SHOP_URL ||
-        "https://one-more-moment-fob-shop.fourthwall.com",
+      SHOP_DOMAIN: checkoutDomain,
       PRODUCTS: products,
       CTA: cta,
     }}
   >
     window.OMM_STOREFRONT_TOKEN = STOREFRONT_TOKEN;
-    window.OMM_SHOP_URL = SHOP_URL;
+    window.OMM_SHOP_DOMAIN = SHOP_DOMAIN;
+    window.OMM_SHOP_URL = SHOP_DOMAIN;
     window.OMM_PRODUCTS = PRODUCTS;
     window.OMM_MERCH_CTA = CTA;
   </script>
