@@ -12,3 +12,13 @@ export const getEasternDateKey = (date: Date) => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const getContentDateKey = (date: Date) => date.toISOString().slice(0, 10);
+
+export const formatContentDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
