@@ -1,13 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { getCollection } from "astro:content";
-import { getEasternDateKey } from "../../utils/dates";
+import { formatContentDate, getContentDateKey, getEasternDateKey } from "../../utils/dates";
 
 const today = getEasternDateKey(new Date());
 const posts = (await getCollection("blog"))
   .filter(
-    (post) =>
-      !post.data.draft && post.data.pubDate.toISOString().slice(0, 10) <= today,
+    (post) => !post.data.draft && getContentDateKey(post.data.pubDate) <= today,
   )
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -42,12 +41,8 @@ const description =
                 )}
                 <div class="flex flex-1 flex-col p-6">
                   <div class="mb-3 text-xs font-semibold tracking-wider uppercase opacity-60">
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {post.data.pubDate.toLocaleDateString("en-us", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                    <time datetime={getContentDateKey(post.data.pubDate)}>
+                      {formatContentDate(post.data.pubDate)}
                     </time>
                   </div>
                   <h2 class="group-hover:text-primary mb-3 text-2xl leading-tight font-bold transition-colors">

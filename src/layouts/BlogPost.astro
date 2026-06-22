@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Base from "./Base.astro";
+import { formatContentDate, getContentDateKey } from "../utils/dates";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -85,25 +86,15 @@ const schema = [
         <div
           class="mb-4 text-sm font-semibold tracking-wider uppercase opacity-70"
         >
-          <time datetime={pubDate.toISOString()}>
-            {
-              pubDate.toLocaleDateString("en-us", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
+          <time datetime={getContentDateKey(pubDate)}>
+            {formatContentDate(pubDate)}
           </time>
           {
             updatedDate && (
               <span class="italic">
                 {" "}
                 (Updated:{" "}
-                {updatedDate.toLocaleDateString("en-us", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {formatContentDate(updatedDate)}
                 )
               </span>
             )

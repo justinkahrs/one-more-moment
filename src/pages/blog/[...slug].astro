@@ -1,13 +1,12 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
-import { getEasternDateKey } from "../../utils/dates";
+import { getContentDateKey, getEasternDateKey } from "../../utils/dates";
 
 export async function getStaticPaths() {
   const today = getEasternDateKey(new Date());
   const posts = (await getCollection("blog")).filter(
-    (post) =>
-      !post.data.draft && post.data.pubDate.toISOString().slice(0, 10) <= today,
+    (post) => !post.data.draft && getContentDateKey(post.data.pubDate) <= today,
   );
   return posts.map((post) => ({
     params: { slug: post.slug },
