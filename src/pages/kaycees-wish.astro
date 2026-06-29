@@ -1,122 +1,345 @@
 ---
 import Base from "../layouts/Base.astro";
+import {
+  CalendarDays,
+  Car,
+  Check,
+  Gift,
+  Heart,
+  Mail,
+  MapPin,
+  ShoppingBag,
+  Sparkles,
+  Sun,
+  UtensilsCrossed,
+  Waves,
+} from "@lucide/astro";
 
-const pageTitle = "Kaycee's Wish | One More Moment";
+const pageTitle = "Kaycee's Glen Arbor Wish Update | One More Moment";
 const pageDescription =
-  "Support Kaycee's Wish through One More Moment and help create a meaningful Moment for Kaycee and the people she loves.";
+  "Kaycee's August 21–23 Glen Arbor wish weekend is taking shape. Help add meals, shopping, local experiences, and meaningful surprises for Kaycee and her loved ones.";
+
+const supportItems = [
+  {
+    icon: UtensilsCrossed,
+    title: "Meals",
+    copy: "Good food and welcoming local restaurants",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Shopping",
+    copy: "Gift cards, small gifts, and time to browse",
+  },
+  {
+    icon: Sun,
+    title: "Beach comfort",
+    copy: "Everything needed for an easy day by the water",
+  },
+  {
+    icon: MapPin,
+    title: "Local experiences",
+    copy: "Simple ways to enjoy all that Glen Arbor offers",
+  },
+  {
+    icon: Car,
+    title: "Travel costs",
+    copy: "Weekend expenses that help remove one more worry",
+  },
+  {
+    icon: Gift,
+    title: "Special surprises",
+    copy: "Personal touches for Kaycee and her family",
+  },
+];
 ---
 
-<Base title={pageTitle} description={pageDescription} canonicalUrl="/kaycees-wish/">
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl="/kaycees-wish/"
+  image="/blog/Kaycee's Glen Arbor Wish.png"
+>
   <script
     slot="head"
     is:inline
     async
     src="https://www.pledge.to/embed/widget.js"></script>
 
-  <section class="bg-[#FFFBF6] px-4 py-12 md:py-16">
-    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+  <section class="relative overflow-hidden bg-[#FFFBF6] px-4 py-12 md:py-20">
+    <div
+      class="absolute -top-28 -right-28 h-80 w-80 rounded-full bg-[#DDEBE5]/70"
+    >
+    </div>
+    <div
+      class="absolute -bottom-24 left-1/3 h-56 w-56 rounded-full bg-[#F5DED7]/50"
+    >
+    </div>
+    <div
+      class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]"
+    >
       <div>
-        <p class="mb-4 text-sm font-bold uppercase text-[#D9776E]">
-          One More Moment fundraiser
+        <p
+          class="mb-4 flex items-center gap-2 text-sm font-bold tracking-[0.18em] text-[#B65F56] uppercase"
+        >
+          <Heart class="h-4 w-4" aria-hidden="true" />
+          Kaycee's wish update
         </p>
-        <h1 class="font-serif text-5xl leading-tight text-[#2B2B40] md:text-6xl">
-          Help Grant Kaycee's Wish
+        <h1
+          class="max-w-3xl font-serif text-5xl leading-[1.05] text-[#2B2B40] md:text-6xl"
+        >
+          Help Us Make Kaycee's Glen Arbor Wish Unforgettable
         </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#333333] md:text-xl">
-          Kaycee is a 26-year-old Michigan mother facing metastatic breast cancer
-          with liver and bone involvement. She was first diagnosed while 28
-          weeks pregnant and has endured chemotherapy, childbirth, scans,
-          biopsies, surgery, radiation, hormone therapy, targeted treatment, and
-          the possibility of another treatment plan while caring for her
-          seven-month-old son. The past several months have brought terrifying
-          health, emotional, and financial burdens during what should have been
-          a tender first year of motherhood. Her wish is to spend a peaceful,
-          all-inclusive weekend in Glen Arbor, Michigan with her aunt and best
-          friend. Donations to this fundraiser will go directly toward Kaycee's
-          Wish, helping cover her stay, meals, spa treatments, excursions, gift
-          baskets, and the thoughtful details that will give her a fully
-          cared-for Moment with people who love her.
+        <p
+          class="mt-6 max-w-2xl text-lg leading-relaxed text-[#41414D] md:text-xl"
+        >
+          Kaycee's weekend getaway is coming together. Now we're raising support
+          to fill it with good food, shopping, beach time, local experiences,
+          and moments she can share with the people she loves most.
         </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
-            href="#donate"
-            class="btn rounded-md border-0 bg-[#D9776E] px-7 text-white shadow-sm hover:bg-[#c5665d]"
+        <div
+          class="mt-7 flex flex-wrap gap-3 text-sm font-semibold text-[#2B2B40]"
+        >
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-[#E5DACE]"
           >
-            Donate to Kaycee's Wish
-          </a>
-          <a
-            href="/moments/"
-            class="btn rounded-md border-[#2B2B40] bg-transparent px-7 text-[#2B2B40] hover:bg-[#2B2B40] hover:text-white"
+            <CalendarDays class="h-4 w-4 text-[#B65F56]" aria-hidden="true" />
+            August 21–23
+          </span>
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-[#E5DACE]"
           >
-            See Other Moments
-          </a>
+            <MapPin class="h-4 w-4 text-[#B65F56]" aria-hidden="true" />
+            Glen Arbor, Michigan
+          </span>
+        </div>
+        <a
+          href="#donate"
+          class="btn mt-8 min-h-12 rounded-md border-0 bg-[#B65F56] px-7 text-base text-white shadow-sm hover:bg-[#9f5149]"
+        >
+          Donate to Kaycee's Wish
+        </a>
+      </div>
+
+      <div class="relative">
+        <div
+          class="overflow-hidden rounded-2xl border-8 border-white bg-white shadow-xl shadow-[#6F594A]/10"
+        >
+          <img
+            src="/blog/Kaycee's%20Glen%20Arbor%20Wish.png"
+            alt="Kaycee's Glen Arbor wish weekend"
+            class="aspect-[4/3] w-full object-cover"
+            loading="eager"
+          />
+        </div>
+        <div
+          class="absolute right-5 -bottom-5 left-5 rounded-xl bg-[#2B2B40] px-5 py-4 text-center text-sm font-semibold text-white shadow-lg sm:right-6 sm:left-auto sm:max-w-xs"
+        >
+          <span class="text-[#F1C9BF]">The wish is happening.</span>
+          You can help make it even more special.
         </div>
       </div>
-
-      <div class="overflow-hidden rounded-lg border border-[#E5DACE] bg-white shadow-sm">
-        <img
-          src="/blog/Kaycee's%20Glen%20Arbor%20Wish.png"
-          alt="Kaycee's Glen Arbor Wish"
-          class="aspect-[4/3] w-full object-cover"
-          loading="eager"
-        />
-      </div>
     </div>
   </section>
 
-  <section class="bg-white px-4 py-12 md:py-16">
-    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
-      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
-        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
-          Why This Matters
-        </h2>
-        <p class="leading-relaxed text-[#4A4A4A]">
-          A Moment can be simple, joyful, peaceful, adventurous, or familiar.
-          What matters most is that it belongs to the person and the people
-          closest to them.
-        </p>
-      </div>
-      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
-        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
-          Where Gifts Go
-        </h2>
-        <p class="leading-relaxed text-[#4A4A4A]">
-          One More Moment directs 100% of donations toward wish granting. Gifts
-          made through this fundraiser will support the lodging, meals,
-          activities, and special touches that make Kaycee's Glen Arbor weekend
-          possible.
-        </p>
-      </div>
-      <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
-        <h2 class="mb-3 text-2xl font-bold text-[#2B2B40]">
-          Donate Securely
-        </h2>
-        <p class="leading-relaxed text-[#4A4A4A]">
-          The donation form below is powered by Pledge and embedded securely on
-          the One More Moment website, so supporters can give with confidence.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="donate" class="bg-[#FFFBF6] px-4 py-12 md:py-16">
-    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+  <section class="bg-white px-4 py-14 md:py-20">
+    <div
+      class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.72fr_1.28fr]"
+    >
       <div>
-        <p class="mb-3 text-sm font-bold uppercase text-[#D9776E]">
-          Donate online
+        <p
+          class="mb-3 text-sm font-bold tracking-[0.18em] text-[#B65F56] uppercase"
+        >
+          Wish update
         </p>
-        <h2 class="font-serif text-4xl leading-tight text-[#2B2B40] md:text-5xl">
-          Support Kaycee's Wish today.
+        <h2
+          class="font-serif text-4xl leading-tight text-[#2B2B40] md:text-5xl"
+        >
+          This beautiful weekend is officially taking shape.
         </h2>
-        <p class="mt-5 leading-relaxed text-[#4A4A4A]">
-          Every contribution helps bring this Moment closer. After you complete
-          the form, your donation will be processed by Pledge.
+      </div>
+      <div class="border-l-4 border-[#DDEBE5] pl-6 md:pl-9">
+        <p class="text-lg leading-relaxed text-[#41414D]">
+          Kaycee is a young single mother battling breast cancer. From August
+          21–23, One More Moment is helping her travel to Glen Arbor with her
+          best friend, her aunt, and her grandmother for a weekend focused on
+          rest, joy, and time together.
+        </p>
+        <p class="mt-5 text-lg leading-relaxed text-[#41414D]">
+          Accommodations are secured, and On The Narrows Marina has generously
+          donated a two-hour pontoon boat ride. Now we're working to make the
+          rest of the weekend feel as complete and stress-free as possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#EAF2EE] px-4 py-14 md:py-20">
+    <div class="mx-auto max-w-4xl text-center">
+      <Waves class="mx-auto h-10 w-10 text-[#4E7668]" aria-hidden="true" />
+      <p
+        class="mt-4 text-sm font-bold tracking-[0.18em] text-[#4E7668] uppercase"
+      >
+        What Kaycee asked for
+      </p>
+      <h2
+        class="mt-3 font-serif text-4xl leading-tight text-[#2B2B40] md:text-5xl"
+      >
+        Time away. The beach. Good food. A little shopping.
+      </h2>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[#41414D]">
+        When we asked what would make this trip meaningful, Kaycee's answer was
+        beautifully simple: time with the people who matter most. This wish
+        isn't about extravagance. It's a weekend where she can breathe, laugh,
+        be loved on, and make memories with her family.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-14 md:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-bold tracking-[0.18em] text-[#B65F56] uppercase">
+          How your donation helps
+        </p>
+        <h2 class="mt-3 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Help remove one more worry.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-[#4A4A4A]">
+          Our goal is to make the experience feel as all-inclusive as possible,
+          so Kaycee and her family can simply show up and enjoy their time
+          together.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          supportItems.map(({ icon: Icon, title, copy }) => (
+            <div class="rounded-xl border border-[#E5DACE] bg-[#FFFBF6] p-6">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F3DCD6] text-[#9F5149]">
+                <Icon class="h-5 w-5" aria-hidden="true" />
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-[#2B2B40]">{title}</h3>
+              <p class="mt-1 leading-relaxed text-[#5A5961]">{copy}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#2B2B40] px-4 py-14 text-white md:py-20">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="text-sm font-bold tracking-[0.18em] text-[#F1C9BF] uppercase">
+          Already donated
+        </p>
+        <h2 class="mt-3 font-serif text-4xl leading-tight md:text-5xl">
+          Generosity is already surrounding this wish.
+        </h2>
+        <p class="mt-5 leading-relaxed text-white/75">
+          These early gifts are turning Kaycee's wish into something real.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="flex gap-4 rounded-xl bg-white/8 p-5 ring-1 ring-white/15">
+          <Check
+            class="mt-0.5 h-6 w-6 shrink-0 text-[#A9D5C4]"
+            aria-hidden="true"
+          />
+          <div>
+            <h3 class="font-bold">Glen Arbor accommodations</h3><p
+              class="mt-1 text-white/70"
+            >
+              A comfortable home base for August 21–23
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4 rounded-xl bg-white/8 p-5 ring-1 ring-white/15">
+          <Check
+            class="mt-0.5 h-6 w-6 shrink-0 text-[#A9D5C4]"
+            aria-hidden="true"
+          />
+          <div>
+            <h3 class="font-bold">Two-hour pontoon boat ride</h3><p
+              class="mt-1 text-white/70"
+            >
+              Generously donated by On The Narrows Marina
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4 rounded-xl bg-white/8 p-5 ring-1 ring-white/15">
+          <Check
+            class="mt-0.5 h-6 w-6 shrink-0 text-[#A9D5C4]"
+            aria-hidden="true"
+          />
+          <div>
+            <h3 class="font-bold">Volunteer support</h3><p
+              class="mt-1 text-white/70"
+            >
+              Helping coordinate local experiences and outreach
+            </p>
+          </div>
+        </div>
+        <p class="pt-2 leading-relaxed text-white/80">
+          Additional support will add the meals, shopping, comfort, and personal
+          touches that make the weekend unforgettable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="donate" class="scroll-mt-20 bg-[#FFFBF6] px-4 py-14 md:py-20">
+    <div
+      class="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[0.78fr_1.22fr]"
+    >
+      <div class="lg:sticky lg:top-28">
+        <Sparkles class="h-9 w-9 text-[#B65F56]" aria-hidden="true" />
+        <p
+          class="mt-4 text-sm font-bold tracking-[0.18em] text-[#B65F56] uppercase"
+        >
+          Support Kaycee's wish
+        </p>
+        <h2
+          class="mt-3 font-serif text-4xl leading-tight text-[#2B2B40] md:text-5xl"
+        >
+          Help Us Finish the Weekend
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-[#4A4A4A]">
+          A gift of any size adds one more meaningful detail. Whether it covers
+          a meal, a shopping gift card, a local experience, or a small surprise,
+          your donation becomes part of the memory we're creating for Kaycee and
+          her family.
         </p>
       </div>
 
-      <div class="rounded-lg border border-[#E5DACE] bg-white p-3 shadow-sm md:p-6">
+      <div
+        class="rounded-2xl border border-[#E5DACE] bg-white p-3 shadow-lg shadow-[#6F594A]/10 md:p-6"
+      >
         <div class="plg-donate" data-widget-id="VZPM2Arx8mPFG1ZS"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="border-t border-[#E5DACE] bg-white px-4 py-12">
+    <div
+      class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 rounded-2xl bg-[#F3E2DC] p-7 text-center md:flex-row md:p-9 md:text-left"
+    >
+      <div>
+        <h2 class="font-serif text-3xl text-[#2B2B40]">
+          Want to help as a local business?
+        </h2>
+        <p class="mt-2 max-w-2xl leading-relaxed text-[#4A4A4A]">
+          If you're a Glen Arbor or Northern Michigan business interested in
+          helping with a meal, gift card, experience, or local surprise, we'd
+          love to connect.
+        </p>
+      </div>
+      <a
+        href="mailto:contactus@onemoremoment.org?subject=Helping%20with%20Kaycee's%20Glen%20Arbor%20Wish"
+        class="btn min-h-12 shrink-0 rounded-md border-[#2B2B40] bg-[#2B2B40] px-6 text-white hover:border-[#45455d] hover:bg-[#45455d]"
+      >
+        <Mail class="h-5 w-5" aria-hidden="true" />
+        Contact Our Team
+      </a>
     </div>
   </section>
 </Base>
