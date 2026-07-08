@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 import { getContentDateKey, getEasternDateKey } from "../../utils/dates";
 
@@ -9,14 +9,14 @@ export async function getStaticPaths() {
     (post) => !post.data.draft && getContentDateKey(post.data.pubDate) <= today,
   );
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
 type Props = CollectionEntry<"blog">;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const post = Astro.props as Props;
+const { Content } = await render(post);
 ---
 
 <BlogPost {...post.data}>

@@ -127,14 +127,14 @@ try {
   const entries = parsed.feed.entry || [];
 
   videos = entries
-    .map((entry: any) => ({
+    .map((entry: any): Video => ({
       id: entry["yt:videoId"],
       title: entry.title,
       link: entry.link["@_href"],
       published: new Date(entry.published).toLocaleDateString(),
       thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
     }))
-    .filter((video) => {
+    .filter((video: Video) => {
       const title = video.title.toLowerCase();
       return (
         !communityEventVideoIds.has(video.id) &&
