@@ -1,13 +1,24 @@
 ---
 import { frontmatter as metadata } from "../data/metadata.mdx";
 import { HeartHandshake, UsersRound, HandHeart } from "@lucide/astro";
-const servicesSection = metadata.servicesSection ?? {};
-const { title, items: services = [] } = servicesSection;
-const iconMap: Record<string, any> = {
+
+const iconMap = {
   HeartHandshake,
   UsersRound,
   HandHeart,
 };
+
+type IconName = keyof typeof iconMap;
+
+interface ServiceItem {
+  title: string;
+  description: string;
+  icon?: IconName;
+}
+
+const servicesSection = metadata.servicesSection ?? {};
+const title = servicesSection.title ?? "";
+const services = (servicesSection.items ?? []) as ServiceItem[];
 ---
 
 <section class="bg-white py-20">
@@ -18,24 +29,26 @@ const iconMap: Record<string, any> = {
 
     <div class="grid gap-12 text-center md:grid-cols-3">
       {
-        services.map((s: any, index: number) => (
-          <div class="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <>
-              <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#E5DACE] text-[#D9776E]">
-                {iconMap[s.icon] ? (
-                  <iconMap[s.icon] size={40}/>
-                ) : (
-                  <span class="text-4xl">★</span>
-                )}
-              </div>
-              <h3 class="mb-4 text-xl font-bold text-[#2B2B40]">{s.title}</h3>
-            </>
+        services.map((service) => {
+          const Icon = service.icon ? iconMap[service.icon] : undefined;
 
-            <p class="max-w-xs leading-relaxed text-[#4A4A4A]">
-              {s.description}
-            </p>
-          </div>
-        ))
+          return (
+            <div class="flex flex-col items-center transition-all duration-300 hover:scale-105">
+              <>
+                <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#E5DACE] text-[#D9776E]">
+                  {Icon ? <Icon size={40} /> : <span class="text-4xl">★</span>}
+                </div>
+                <h3 class="mb-4 text-xl font-bold text-[#2B2B40]">
+                  {service.title}
+                </h3>
+              </>
+
+              <p class="max-w-xs leading-relaxed text-[#4A4A4A]">
+                {service.description}
+              </p>
+            </div>
+          );
+        })
       }
     </div>
   </div>

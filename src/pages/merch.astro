@@ -11,13 +11,15 @@ const PRODUCTS_PER_PAGE = 10;
 const normalizeFourthwallDomain = (value: string | null | undefined) =>
   value?.replace(/^https?:\/\//, "").replace(/\/+$/, "") || "";
 const isCustomDomain = (value: string | null | undefined) =>
-  Boolean(value) && !value.endsWith(".fourthwall.com");
+  typeof value === "string" &&
+  value.length > 0 &&
+  !value.endsWith(".fourthwall.com");
 const configuredShopDomain = normalizeFourthwallDomain(
   import.meta.env.FOURTHWALL_SHOP_URL,
 );
 
-let products = [];
-let error = null;
+let products: any[] = [];
+let error: string | null = null;
 let checkoutDomain = configuredShopDomain;
 
 const sortProductsForDisplay = (items: any[]) =>
@@ -78,7 +80,7 @@ try {
     console.warn("No collections found.");
   }
 } catch (e) {
-  error = e.message;
+  error = e instanceof Error ? e.message : String(e);
   console.error("Storefront API Error:", e);
 }
 
