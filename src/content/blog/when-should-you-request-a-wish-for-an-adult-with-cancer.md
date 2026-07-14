@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Caregivers",
   ]
-image: "/blog/when-should-you-request-a-wish-for-an-adult-with-cancer.jpg"
+image: "/blog/when-should-you-request-a-wish-for-an-adult-with-cancer.png"
 draft: false
 ---
 
