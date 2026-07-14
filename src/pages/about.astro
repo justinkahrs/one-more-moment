@@ -11,12 +11,6 @@ import carrieImg from "../assets/Carrie-House-Headshot-1024x683.jpg";
 import andyImg from "../assets/Andy-Thompson-Headshot-1024x683.jpg";
 import dianeImg from "../assets/ChatGPT Image May 8, 2026, 10_08_46 PM.jpg";
 
-const { about } = metadata;
-const { mission, story, whatWeDo, team } = about;
-const pageTitle = "Our Mission | One More Moment";
-const pageDescription =
-  "Learn about One More Moment's mission, founding story, and team helping adults with late-stage cancer create meaningful Moments with loved ones.";
-
 const teamImages = {
   jasonImg,
   simoneImg,
@@ -24,6 +18,45 @@ const teamImages = {
   andyImg,
   dianeImg,
 };
+
+type TeamImageKey = keyof typeof teamImages;
+
+interface TeamMember {
+  name: string;
+  image: TeamImageKey;
+  bio: string;
+  alt?: string;
+}
+
+interface AboutData {
+  title: string;
+  mission: {
+    title: string;
+    content: string;
+  };
+  story: {
+    title: string;
+    intro: string;
+    quote: string;
+    outro: string;
+  };
+  whatWeDo: {
+    title: string;
+    content: string;
+  };
+  team: {
+    title: string;
+    video: string;
+    members: TeamMember[];
+  };
+}
+
+const { about } = metadata as { about: AboutData };
+const { mission, story, whatWeDo, team } = about;
+const pageTitle = "Our Mission | One More Moment";
+const pageDescription =
+  "Learn about One More Moment's mission, founding story, and team helping adults with late-stage cancer create meaningful Moments with loved ones.";
+const splitParagraphs = (content: string) => content.split("\n\n");
 ---
 
 <Base title={pageTitle} description={pageDescription}>
@@ -53,16 +86,16 @@ const teamImages = {
       {/* Story Section */}
       <h2>{story.title}</h2>
 
-      {story.intro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+      {splitParagraphs(story.intro).map((paragraph) => <p>{paragraph}</p>)}
 
       <blockquote>{story.quote}</blockquote>
 
-      {story.outro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+      {splitParagraphs(story.outro).map((paragraph) => <p>{paragraph}</p>)}
 
       {/* What We Do Section */}
       <h2>{whatWeDo.title}</h2>
 
-      {whatWeDo.content.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+      {splitParagraphs(whatWeDo.content).map((paragraph) => <p>{paragraph}</p>)}
 
       <iframe
         class="aspect-video w-full"
@@ -83,7 +116,7 @@ const teamImages = {
                   {index % 2 !== 0 ? (
                     <>
                       <h3>{member.name}</h3>
-                      {member.bio.split("\n\n").map((paragraph) => (
+                      {splitParagraphs(member.bio).map((paragraph) => (
                         <p>{paragraph}</p>
                       ))}
                     </>
@@ -105,7 +138,7 @@ const teamImages = {
                   ) : (
                     <>
                       <h3>{member.name}</h3>
-                      {member.bio.split("\n\n").map((paragraph) => (
+                      {splitParagraphs(member.bio).map((paragraph) => (
                         <p>{paragraph}</p>
                       ))}
                     </>
