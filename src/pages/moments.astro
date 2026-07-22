@@ -472,6 +472,22 @@ const pageDescription =
       const result = await response.json();
 
       if (response.ok && result.success) {
+        const analyticsWindow = window as Window &
+          typeof globalThis & {
+            gtag?: (
+              command: "event",
+              eventName: string,
+              parameters: Record<string, string>,
+            ) => void;
+          };
+
+        if (typeof analyticsWindow.gtag === "function") {
+          analyticsWindow.gtag("event", "moment_request_submit", {
+            form_name: "moment_request",
+            page_path: window.location.pathname,
+          });
+        }
+
         alert("Thank you for your request! We will be in touch soon.");
         form.reset();
       } else {
