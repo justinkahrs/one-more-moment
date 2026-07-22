@@ -472,14 +472,25 @@ const pageDescription =
       const result = await response.json();
 
       if (response.ok && result.success) {
-        console.info("[analytics] moment_request_submit");
+        console.info("[analytics] moment_request_submit", {
+          gtagType: typeof window.gtag,
+          dataLayerExists: Array.isArray(window.dataLayer),
+        });
 
         if (typeof window.gtag === "function") {
           window.gtag("event", "moment_request_submit", {
+            send_to: "G-9TXZJ8T4G1",
             form_name: "moment_request",
             page_path: window.location.pathname,
+            debug_mode: true,
           });
         }
+
+        console.info("[analytics] event queued", {
+          dataLayerLength: Array.isArray(window.dataLayer)
+            ? window.dataLayer.length
+            : null,
+        });
 
         alert("Thank you for your request! We will be in touch soon.");
         form.reset();
