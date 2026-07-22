@@ -47,10 +47,11 @@ const keywords = [
       src="https://www.googletagmanager.com/gtag/js?id=G-9TXZJ8T4G1"
     ></script>
     <script is:inline>
-      const dataLayer = (window["dataLayer"] = window["dataLayer"] || []);
-      function gtag(...args) {
-        dataLayer.push(args);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
       }
+      window.gtag = gtag;
       gtag("js", new Date());
       gtag("config", "G-9TXZJ8T4G1");
     </script>
