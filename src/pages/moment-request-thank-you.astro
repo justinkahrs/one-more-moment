@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+
+const pageTitle = "Thank You for Your Moment Request | One More Moment";
+const pageDescription =
+  "Confirmation that One More Moment received your Moment request.";
+---
+
+<Base title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <section class="bg-[#FFFBF6]">
+    <div class="container mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-4 py-20 text-center">
+      <p class="mb-4 text-sm font-semibold text-[#D9776E] uppercase">
+        Moment Request
+      </p>
+      <h1 class="mb-6 font-serif text-5xl leading-tight text-[#2B2B40] md:text-6xl">
+        Thank You for Reaching Out
+      </h1>
+      <div class="space-y-5 text-lg leading-relaxed text-[#333333]">
+        <p>
+          Your Moment request has been received. A member of the One More Moment
+          team will review the information and follow up with you soon.
+        </p>
+        <p>
+          If the request involves an urgent medical or safety issue, please
+          contact the appropriate healthcare provider or emergency service
+          directly.
+        </p>
+      </div>
+      <a
+        href="/"
+        class="btn mt-10 rounded-md bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+      >
+        Return to One More Moment
+      </a>
+    </div>
+  </section>
+</Base>
