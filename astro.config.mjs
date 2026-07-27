@@ -8,13 +8,23 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
+const noindexRoutes = new Set(["/moment-request-thank-you/"]);
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://onemoremoment.org",
+  site: "https://www.onemoremoment.org",
   vite: {
     plugins: [basicSsl(), tailwindcss()],
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return !noindexRoutes.has(pathname);
+      },
+    }),
+  ],
   adapter: vercel(),
 });

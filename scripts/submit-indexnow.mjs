@@ -2,7 +2,8 @@ import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { XMLParser } from "fast-xml-parser";
 
-const SITE_URL = process.env.INDEXNOW_SITE_URL || "https://onemoremoment.org";
+const SITE_URL =
+  process.env.INDEXNOW_SITE_URL || "https://www.onemoremoment.org";
 const INDEXNOW_KEY = "42152178bcbf56d650ccbcecbb285fc7";
 const INDEXNOW_ENDPOINT =
   process.env.INDEXNOW_ENDPOINT || "https://api.indexnow.org/indexnow";

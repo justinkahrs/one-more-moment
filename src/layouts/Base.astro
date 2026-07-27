@@ -12,6 +12,7 @@ const {
   image = meta.seo?.ogImage || "/og-image.png",
   ogType = "website",
   canonicalUrl,
+  robots = "index, follow",
 } = Astro.props;
 
 const seo = meta.seo || {};
@@ -70,7 +71,8 @@ const keywords = [
         <meta name="geo.region" content={meta.location.state} />
       )
     }
-    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={robots} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:site_name" content={meta.name} />
     <meta property="og:description" content={description} />
