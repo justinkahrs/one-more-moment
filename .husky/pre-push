@@ -1,1 +1,8 @@
-npm run build
+#!/usr/bin/env sh
+
+if command -v npm >/dev/null 2>&1; then
+  npm run build
+else
+  echo "npm not found on PATH; skipping pre-push build."
+  echo "Run npm run build locally when Node.js is available."
+fi
