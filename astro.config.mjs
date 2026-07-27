@@ -13,6 +13,7 @@ const noindexRoutes = new Set(["/moment-request-thank-you/"]);
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.onemoremoment.org",
+  trailingSlash: "always",
   vite: {
     plugins: [basicSsl(), tailwindcss()],
   },

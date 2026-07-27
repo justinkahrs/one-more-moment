@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.onemoremoment.org/sitemap.xml
+Sitemap: https://www.onemoremoment.org/sitemap-index.xml
