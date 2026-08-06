@@ -8,7 +8,10 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
-const noindexRoutes = new Set(["/moment-request-thank-you/"]);
+const noindexRoutes = new Set([
+  "/moment-request-thank-you/",
+  "/corporate-partnership-thank-you/",
+]);
 
 // https://astro.build/config
 export default defineConfig({

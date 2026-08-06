@@ -1,0 +1,724 @@
+---
+import Base from "../layouts/Base.astro";
+
+const pageTitle = "Corporate Partnerships | One More Moment Michigan";
+const pageDescription =
+  "Partner with One More Moment to help Michigan adults facing advanced cancer create meaningful experiences with loved ones through annual, in-kind and employee-giving support.";
+const pageUrl = "https://www.onemoremoment.org/corporate-partners/";
+
+const impactItems = [
+  "Meaningful family trips and getaways",
+  "Special dinners and celebrations",
+  "Sporting events and entertainment experiences",
+  "Reunions and time with loved ones",
+  "Lodging, dining, transportation and accessibility support",
+  "Personal touches that make each Moment meaningful",
+];
+
+const partnershipOptions = [
+  {
+    title: "Moment Partner",
+    support: "$2,500 annually",
+    description:
+      "Helps support one or more local Moments and related expenses.",
+  },
+  {
+    title: "Community Partner",
+    support: "$5,000 annually",
+    description:
+      "Provides meaningful annual support and helps One More Moment respond when new requests arrive.",
+  },
+  {
+    title: "Mission Partner",
+    support: "$10,000 annually",
+    description:
+      "Helps expand the number of Michigan families served and allows the organization to act quickly when time may be limited.",
+  },
+  {
+    title: "In-Kind Partner",
+    support: "Products, services and experiences",
+    description:
+      "Provides lodging, dining, transportation, entertainment, tickets, professional services, family gifts or other resources that help bring a Moment together.",
+  },
+];
+
+const employeeEngagement = [
+  "Employee giving",
+  "Employer matching gifts",
+  "Workplace fundraising",
+  "Volunteer outreach",
+  "In-kind collections",
+  "Professional expertise",
+  "Introductions to experience partners",
+  "Company-sponsored Moments",
+];
+
+const recognitionItems = [
+  "Recognition on the corporate partners webpage",
+  "Appropriate LinkedIn and social acknowledgment",
+  "Inclusion in annual impact updates",
+  "Periodic stories showing what support made possible",
+  "Employee-volunteer opportunities when appropriate",
+  "Recognition tied to a specific Moment only when the family permits it",
+];
+
+const trustItems = [
+  "Michigan-based nonprofit",
+  "501(c)(3) charitable organization",
+  "EIN: 47-4466426",
+  "Thoughtful request review",
+  "Respect for recipient and family privacy",
+  "Transparent communication with partners",
+  "Public donations support Moment granting",
+];
+
+const partnershipInterestOptions = [
+  "Annual financial partnership",
+  "Sponsor a Moment",
+  "Employee giving",
+  "Matching gifts",
+  "In-kind contribution",
+  "Volunteer opportunity",
+  "Hospitality or experience partnership",
+  "Professional services",
+  "Other",
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    about: {
+      "@type": "NonprofitOrganization",
+      name: "One More Moment",
+      url: "https://www.onemoremoment.org",
+      nonprofitStatus: "Nonprofit501c3",
+      taxID: "47-4466426",
+      email: "contactus@onemoremoment.org",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "NonprofitOrganization",
+    name: "One More Moment",
+    url: "https://www.onemoremoment.org",
+    nonprofitStatus: "Nonprofit501c3",
+    taxID: "47-4466426",
+    email: "contactus@onemoremoment.org",
+    sameAs: [
+      "https://app.candid.org/profile/9492389/one-more-moment-47-4466426",
+      "https://apps.irs.gov/app/eos/details/",
+    ],
+  },
+];
+---
+
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl="/corporate-partners/"
+>
+  <script
+    slot="head"
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+
+  <section class="bg-[#FFFBF6] px-4 py-14 md:py-20">
+    <div
+      class="container mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.05fr_0.95fr]"
+    >
+      <div>
+        <p
+          class="mb-4 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Corporate Partnerships
+        </p>
+        <h1
+          class="mb-6 font-serif text-5xl leading-tight text-[#2B2B40] md:text-6xl"
+        >
+          Help Create Meaningful Moments for Michigan Families
+        </h1>
+        <p class="mb-8 max-w-2xl text-xl leading-relaxed text-[#333333]">
+          One More Moment partners with Michigan businesses to create meaningful
+          experiences for adults facing advanced cancer and the people they
+          love.
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#corporate-inquiry"
+            class="btn rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+          >
+            Become a Corporate Partner
+          </a>
+          <a
+            href="#partnership-options"
+            class="btn rounded-md border-[#2B2B40] bg-transparent px-8 text-[#2B2B40] hover:border-[#2B2B40] hover:bg-[#2B2B40] hover:text-white"
+          >
+            Explore Partnership Opportunities
+          </a>
+        </div>
+      </div>
+
+      <!-- Image placeholder: ideal image is a warm, hopeful photograph of a family sharing a meaningful experience together. Avoid hospital imagery, visible medical treatment, sadness-focused imagery or anything exploitative. -->
+      <div class="rounded-lg border border-[#E5DACE] bg-white p-5 shadow-sm">
+        <div
+          class="flex aspect-[4/3] items-center justify-center rounded-md bg-[#F7EFE8] p-8 text-center"
+        >
+          <div>
+            <p
+              class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+            >
+              Approved Image Placeholder
+            </p>
+            <p
+              class="mx-auto max-w-sm text-base leading-relaxed text-[#4A4A4A]"
+            >
+              Add a warm, hopeful photograph of a family sharing a meaningful
+              experience together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-5xl">
+      <div class="max-w-3xl">
+        <p
+          class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Why Partner
+        </p>
+        <h2 class="mb-6 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          A Local Mission With a Personal Impact
+        </h2>
+        <div class="space-y-5 text-lg leading-relaxed text-[#333333]">
+          <p>
+            One More Moment gives Michigan businesses a direct way to create
+            meaningful experiences for local adults facing advanced cancer and
+            their families. Corporate support helps us respond thoughtfully when
+            new requests arrive, coordinate meaningful experiences and reduce
+            the financial or logistical barriers that may otherwise stand in the
+            way.
+          </p>
+          <p>
+            The organization supports adults in Michigan facing Stage IV,
+            advanced or metastatic cancer. Moments are designed around
+            meaningful time with loved ones, and requests are reviewed carefully
+            based on eligibility, safety, timing, logistics and available
+            resources.
+          </p>
+          <p>
+            Partnerships can include financial support, in-kind services,
+            experiences and employee engagement, helping One More Moment respond
+            when time may be limited.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          What Your Partnership Makes Possible
+        </h2>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          Every Moment is different and is shaped around the recipient, family,
+          health, timing and available resources.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          impactItems.map((item) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm">
+              <h3 class="text-xl font-bold text-[#2B2B40]">{item}</h3>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-8 max-w-3xl text-base leading-relaxed text-[#4A4A4A]">
+        Submitting or supporting a request does not guarantee that every request
+        can be granted.
+      </p>
+    </div>
+  </section>
+
+  <section id="partnership-options" class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Ways Your Company Can Partner
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          partnershipOptions.map((option) => (
+            <article class="flex h-full flex-col rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6 shadow-sm">
+              <h3 class="mb-3 text-2xl font-bold text-[#2B2B40]">
+                {option.title}
+              </h3>
+              <p class="mb-5 text-sm font-semibold tracking-wide text-[#D9776E] uppercase">
+                {option.support}
+              </p>
+              <p class="leading-relaxed text-[#333333]">{option.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-8 max-w-3xl text-lg leading-relaxed text-[#333333]">
+        Partnerships can be customized based on your company's goals,
+        community-giving priorities and available resources.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div
+      class="container mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr]"
+    >
+      <div>
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Give Your Team a Meaningful Way to Help
+        </h2>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          Companies may participate through hands-on support, workplace giving
+          and practical connections that help bring Moments together.
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          employeeEngagement.map((item) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-white p-5 text-[#2B2B40] shadow-sm">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-5xl">
+      <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+        Recognition That Respects the Mission
+      </h2>
+      <p class="mb-8 max-w-3xl text-lg leading-relaxed text-[#333333]">
+        Corporate recognition is handled with care and in a way that protects
+        the dignity of the people and families served.
+      </p>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          recognitionItems.map((item) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-5 text-[#333333]">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-8 text-xl font-bold text-[#2B2B40]">
+        Family privacy and dignity always come first.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-8 max-w-3xl">
+        <p
+          class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Featured Impact Example
+        </p>
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          The Impact Is Personal
+        </h2>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          Every partnership becomes part of a real family's story. Meaningful
+          Moments can come together through financial support, donated services,
+          local business participation, thoughtful hospitality and small
+          personal touches.
+        </p>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <article
+          class="rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm"
+        >
+          <p
+            class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+          >
+            Lori's Dinner Moment
+          </p>
+          <h3 class="mb-4 text-2xl font-bold text-[#2B2B40]">
+            A Meaningful Evening Together
+          </h3>
+          <div class="space-y-4 leading-relaxed text-[#333333]">
+            <p>
+              Not every Moment needs to be a large trip or elaborate experience.
+              Sometimes what matters most is giving someone the opportunity to
+              share a meaningful meal with the people they love.
+            </p>
+            <p>
+              Lori's Moment brought six loved ones together for dinner in Novi.
+              With help from generous supporters and a restaurant team that
+              treated the family with exceptional care, an ordinary evening
+              became something meaningful.
+            </p>
+            <p>
+              The dinner was supported by community generosity, including the
+              care of David Faulkner, manager; Manisha, server; Rashawn, host;
+              and Rahul and his wife.
+            </p>
+          </div>
+        </article>
+        <div class="grid gap-4 sm:grid-cols-3">
+          {
+            ["Photo 1", "Photo 2", "Photo 3"].map((label) => (
+              <div class="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-[#D9776E]/50 bg-white text-sm font-semibold text-[#4A4A4A]">
+                Lori {label} pending approval
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- TODO: This section may later be updated with Casey's Glen Arbor Moment after the Moment is completed, photos and videos are reviewed, publication permission is confirmed, final partner acknowledgments are confirmed, and story copy is approved. Do not publish upcoming Moment details here until then. -->
+
+      <div
+        class="mt-8 rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm"
+      >
+        <p
+          class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Future Video Placeholder
+        </p>
+        <h3 class="mb-3 text-2xl font-bold text-[#2B2B40]">Founder Video</h3>
+        <p class="leading-relaxed text-[#333333]">
+          Add a future 45-75 second founder video that introduces the mission,
+          shows how corporate partners can help, and protects recipient and
+          family privacy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          A Partnership Built on Trust
+        </h2>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          One More Moment is committed to careful stewardship, transparent
+          communication and respect for every recipient and family.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          trustItems.map((item) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-5 text-[#333333]">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-8 rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6">
+        <p class="mb-4 text-lg font-bold text-[#2B2B40]">
+          100% of public donations go directly toward wish granting because
+          corporate donors and generous supporters help cover operating
+          expenses.
+        </p>
+        <ul class="space-y-2 text-[#333333]">
+          <li>EIN: 47-4466426</li>
+          <li>
+            IRS verification:
+            <a
+              href="https://apps.irs.gov/app/eos/details/"
+              class="font-semibold text-[#D9776E] underline"
+            >
+              Search for One More Moment
+            </a>
+          </li>
+          <li>
+            Candid or GuideStar profile:
+            <a
+              href="https://app.candid.org/profile/9492389/one-more-moment-47-4466426"
+              class="font-semibold text-[#D9776E] underline"
+            >
+              One More Moment nonprofit profile
+            </a>
+          </li>
+          <li>Annual report or impact report: add link when available.</li>
+          <li>
+            Privacy:
+            <a
+              href="/privacy-policy/"
+              class="font-semibold text-[#D9776E] underline"
+            >
+              One More Moment Privacy Policy
+            </a>
+          </li>
+          <li>
+            Contact:
+            <a
+              href="mailto:contactus@onemoremoment.org"
+              class="font-semibold text-[#D9776E] underline"
+            >
+              contactus@onemoremoment.org
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="corporate-inquiry" class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-3xl">
+      <div class="mb-10 text-center">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Start a Partnership Conversation
+        </h2>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-[#333333]">
+          Tell us a little about your company and how you may be interested in
+          supporting One More Moment. We will follow up to explore the best fit.
+        </p>
+      </div>
+
+      <form
+        id="corporate-partnership-form"
+        class="flex flex-col gap-6 rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm md:p-8"
+        novalidate
+      >
+        <p
+          id="corporate-form-status"
+          class="hidden rounded-md p-4 text-sm"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+        <div class="hidden" aria-hidden="true">
+          <label for="corporate-website">Website</label>
+          <input
+            id="corporate-website"
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="form-control w-full">
+            <label class="label" for="fullName">
+              <span class="label-text">Full name</span>
+            </label>
+            <input
+              id="fullName"
+              type="text"
+              name="fullName"
+              class="input input-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+              required
+            />
+          </div>
+
+          <div class="form-control w-full">
+            <label class="label" for="companyName">
+              <span class="label-text">Company name</span>
+            </label>
+            <input
+              id="companyName"
+              type="text"
+              name="companyName"
+              class="input input-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="form-control w-full">
+            <label class="label" for="jobTitle">
+              <span class="label-text">Job title</span>
+            </label>
+            <input
+              id="jobTitle"
+              type="text"
+              name="jobTitle"
+              class="input input-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+              required
+            />
+          </div>
+
+          <div class="form-control w-full">
+            <label class="label" for="email">
+              <span class="label-text">Email address</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              class="input input-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="form-control w-full">
+            <label class="label" for="phone">
+              <span class="label-text">Phone number</span>
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              name="phone"
+              class="input input-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+            />
+          </div>
+
+          <div class="form-control w-full">
+            <label class="label" for="partnershipInterest">
+              <span class="label-text">Partnership interest</span>
+            </label>
+            <select
+              id="partnershipInterest"
+              name="partnershipInterest"
+              class="select select-bordered w-full rounded-md text-gray-500 focus:outline-offset-0"
+              required
+            >
+              <option value="">Select an option</option>
+              {
+                partnershipInterestOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label" for="message">
+            <span class="label-text">Message</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            class="textarea textarea-bordered h-36 w-full rounded-md text-gray-500 focus:outline-offset-0"
+            required></textarea>
+        </div>
+
+        <div class="form-control">
+          <label
+            class="flex items-start gap-3 text-sm leading-relaxed text-[#333333]"
+          >
+            <input
+              type="checkbox"
+              name="consent"
+              value="yes"
+              class="checkbox checkbox-sm mt-1 rounded border-[#2B2B40]"
+              required
+            />
+            <span>
+              I agree that One More Moment may contact me regarding this
+              partnership inquiry.
+            </span>
+          </label>
+        </div>
+
+        <div class="pt-2 text-center">
+          <button
+            type="submit"
+            class="btn min-w-[220px] rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+          >
+            Submit Partnership Inquiry
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById(
+    "corporate-partnership-form",
+  ) as HTMLFormElement;
+  const status = document.getElementById(
+    "corporate-form-status",
+  ) as HTMLParagraphElement;
+
+  function showStatus(message: string, type: "error" | "success") {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.remove(
+      "hidden",
+      "bg-red-50",
+      "text-red-800",
+      "bg-green-50",
+      "text-green-800",
+    );
+    status.classList.add(
+      type === "error" ? "bg-red-50" : "bg-green-50",
+      type === "error" ? "text-red-800" : "text-green-800",
+    );
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      showStatus(
+        "Please complete the required fields before submitting.",
+        "error",
+      );
+      return;
+    }
+
+    const submitBtn = form.querySelector(
+      'button[type="submit"]',
+    ) as HTMLButtonElement;
+    if (!submitBtn || submitBtn.disabled) return;
+
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/submit-corporate-partnership", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        showStatus("Thank you. Redirecting now.", "success");
+        window.location.href = "/corporate-partnership-thank-you/";
+      } else {
+        showStatus(
+          result.message || "Something went wrong. Please try again later.",
+          "error",
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      showStatus("An error occurred. Please try again.", "error");
+    } finally {
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
