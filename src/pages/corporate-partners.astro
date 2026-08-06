@@ -84,6 +84,36 @@ const partnershipInterestOptions = [
   "Other",
 ];
 
+const momentCards = [
+  {
+    title: "Russlyn's Moment",
+    image: "/blog/corporate-partners/russlyn-moment-card.webp",
+    width: 900,
+    height: 675,
+    alt: "Family enjoying a One More Moment experience together on a theme park ride",
+    caption:
+      "A meaningful One More Moment experience made possible through community support.",
+  },
+  {
+    title: "Lori's Moment",
+    image: "/blog/corporate-partners/lori-moment-card.webp",
+    width: 720,
+    height: 540,
+    alt: "Loved ones sitting together outside during a One More Moment dinner experience",
+    caption:
+      "A meaningful One More Moment experience made possible through local generosity.",
+  },
+  {
+    title: "Josh's Moment",
+    image: "/blog/corporate-partners/josh-moment-card.webp",
+    width: 900,
+    height: 675,
+    alt: "A One More Moment recipient sharing time with supporters at a basketball arena",
+    caption:
+      "A meaningful One More Moment experience made possible through community support.",
+  },
+];
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -164,25 +194,22 @@ const schema = [
         </div>
       </div>
 
-      <!-- Image placeholder: ideal image is a warm, hopeful photograph of a family sharing a meaningful experience together. Avoid hospital imagery, visible medical treatment, sadness-focused imagery or anything exploitative. -->
       <div class="rounded-lg border border-[#E5DACE] bg-white p-5 shadow-sm">
-        <div
-          class="flex aspect-[4/3] items-center justify-center rounded-md bg-[#F7EFE8] p-8 text-center"
-        >
-          <div>
-            <p
-              class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
-            >
-              Approved Image Placeholder
-            </p>
-            <p
-              class="mx-auto max-w-sm text-base leading-relaxed text-[#4A4A4A]"
-            >
-              Add a warm, hopeful photograph of a family sharing a meaningful
-              experience together.
-            </p>
-          </div>
-        </div>
+        <figure>
+          <img
+            src="/blog/corporate-partners/russlyn-moment-featured.webp"
+            width="1600"
+            height="1067"
+            alt="Family enjoying a One More Moment experience together on a theme park ride"
+            class="aspect-[3/2] w-full rounded-md object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption class="mt-4 text-sm leading-relaxed text-[#4A4A4A]">
+            A meaningful One More Moment experience made possible through
+            community support.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -380,10 +407,24 @@ const schema = [
         </article>
         <div class="grid gap-4 sm:grid-cols-3">
           {
-            ["Photo 1", "Photo 2", "Photo 3"].map((label) => (
-              <div class="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-[#D9776E]/50 bg-white text-sm font-semibold text-[#4A4A4A]">
-                Lori {label} pending approval
-              </div>
+            momentCards.map((moment) => (
+              <article class="overflow-hidden rounded-lg border border-[#E5DACE] bg-white shadow-sm">
+                <img
+                  src={moment.image}
+                  width={moment.width}
+                  height={moment.height}
+                  alt={moment.alt}
+                  class="aspect-[4/3] w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="p-4">
+                  <h4 class="mb-2 font-bold text-[#2B2B40]">{moment.title}</h4>
+                  <p class="text-sm leading-relaxed text-[#4A4A4A]">
+                    {moment.caption}
+                  </p>
+                </div>
+              </article>
             ))
           }
         </div>
@@ -397,14 +438,25 @@ const schema = [
         <p
           class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
         >
-          Future Video Placeholder
+          Moment Video
         </p>
-        <h3 class="mb-3 text-2xl font-bold text-[#2B2B40]">Founder Video</h3>
-        <p class="leading-relaxed text-[#333333]">
-          Add a future 45-75 second founder video that introduces the mission,
-          shows how corporate partners can help, and protects recipient and
-          family privacy.
+        <h3 class="mb-3 text-2xl font-bold text-[#2B2B40]">Russlyn's Moment</h3>
+        <p class="mb-5 leading-relaxed text-[#333333]">
+          This short video shows how a Moment can create space for family,
+          connection and an experience that would be difficult to coordinate
+          alone.
         </p>
+        <video
+          class="aspect-video w-full rounded-md bg-black"
+          src="/blog/Nicholas%20Family_Disney.mp4"
+          poster="/blog/corporate-partners/russlyn-moment-featured.webp"
+          controls
+          preload="metadata"
+          playsinline
+          title="Russlyn's Moment video"
+        >
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </section>
