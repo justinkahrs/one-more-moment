@@ -21,24 +21,40 @@ const partnershipOptions = [
     support: "$2,500 annually",
     description:
       "Helps support one or more local Moments and related expenses.",
+    cta: "Explore Moment Partnership",
+    interest: "Sponsor a Moment",
+    starterMessage:
+      "I'm interested in learning more about becoming a Moment Partner and helping support one or more Moments.",
   },
   {
     title: "Community Partner",
     support: "$5,000 annually",
     description:
       "Provides meaningful annual support and helps One More Moment respond when new requests arrive.",
+    cta: "Explore Community Partnership",
+    interest: "Annual financial partnership",
+    starterMessage:
+      "I'm interested in learning more about becoming a Community Partner.",
   },
   {
     title: "Mission Partner",
     support: "$10,000 annually",
     description:
       "Helps expand the number of Michigan families served and allows the organization to act quickly when time may be limited.",
+    cta: "Explore Mission Partnership",
+    interest: "Annual financial partnership",
+    starterMessage:
+      "I'm interested in learning more about becoming a Mission Partner.",
   },
   {
     title: "In-Kind Partner",
     support: "Products, services and experiences",
     description:
       "Provides lodging, dining, transportation, entertainment, tickets, professional services, family gifts or other resources that help bring a Moment together.",
+    cta: "Explore In-Kind Partnership",
+    interest: "In-kind contribution",
+    starterMessage:
+      "I'm interested in exploring an in-kind partnership with One More Moment.",
   },
 ];
 
@@ -305,6 +321,17 @@ const schema = [
                 {option.support}
               </p>
               <p class="leading-relaxed text-[#333333]">{option.description}</p>
+              <div class="mt-auto pt-6">
+                <button
+                  type="button"
+                  class="js-partnership-select btn rounded-md border-0 bg-[#D9776E] px-5 text-white hover:bg-[#c5665d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B2B40]"
+                  data-interest={option.interest}
+                  data-message={option.starterMessage}
+                  data-label={option.title}
+                >
+                  {option.cta}
+                </button>
+              </div>
             </article>
           ))
         }
@@ -313,6 +340,15 @@ const schema = [
         Partnerships can be customized based on your company's goals,
         community-giving priorities and available resources.
       </p>
+      <button
+        type="button"
+        class="js-partnership-select btn mt-6 rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B2B40]"
+        data-interest="Other"
+        data-message="I'd like to discuss a customized partnership opportunity with One More Moment."
+        data-label="Custom Partnership"
+      >
+        Discuss a Custom Partnership
+      </button>
     </div>
   </section>
 
@@ -576,6 +612,13 @@ const schema = [
           aria-live="polite"
         >
         </p>
+        <p
+          id="partnership-selection-status"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
         <div class="hidden" aria-hidden="true">
           <label for="corporate-website">Website</label>
           <input
@@ -725,6 +768,50 @@ const schema = [
   const status = document.getElementById(
     "corporate-form-status",
   ) as HTMLParagraphElement;
+  const selectionStatus = document.getElementById(
+    "partnership-selection-status",
+  ) as HTMLParagraphElement;
+  const inquirySection = document.getElementById("corporate-inquiry");
+  const partnershipSelect = document.getElementById(
+    "partnershipInterest",
+  ) as HTMLSelectElement;
+  const fullNameInput = document.getElementById("fullName") as HTMLInputElement;
+  const messageInput = document.getElementById(
+    "message",
+  ) as HTMLTextAreaElement;
+
+  const partnershipPresets = {
+    moment: {
+      label: "Moment Partner",
+      interest: "Sponsor a Moment",
+      message:
+        "I'm interested in learning more about becoming a Moment Partner and helping support one or more Moments.",
+    },
+    community: {
+      label: "Community Partner",
+      interest: "Annual financial partnership",
+      message:
+        "I'm interested in learning more about becoming a Community Partner.",
+    },
+    mission: {
+      label: "Mission Partner",
+      interest: "Annual financial partnership",
+      message:
+        "I'm interested in learning more about becoming a Mission Partner.",
+    },
+    "in-kind": {
+      label: "In-Kind Partner",
+      interest: "In-kind contribution",
+      message:
+        "I'm interested in exploring an in-kind partnership with One More Moment.",
+    },
+    custom: {
+      label: "Custom Partnership",
+      interest: "Other",
+      message:
+        "I'd like to discuss a customized partnership opportunity with One More Moment.",
+    },
+  };
 
   function showStatus(message: string, type: "error" | "success") {
     if (!status) return;
@@ -740,6 +827,69 @@ const schema = [
       type === "error" ? "bg-red-50" : "bg-green-50",
       type === "error" ? "text-red-800" : "text-green-800",
     );
+  }
+
+  function visitorPrefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function selectPartnershipOption(
+    interest: string,
+    starterMessage: string,
+    label: string,
+    shouldScroll = true,
+  ) {
+    if (!partnershipSelect || !messageInput) return;
+
+    partnershipSelect.value = interest;
+
+    if (!messageInput.value.trim()) {
+      messageInput.value = starterMessage;
+    }
+
+    if (selectionStatus) {
+      selectionStatus.textContent = `${label} selected. Partnership interest set to ${interest}.`;
+    }
+
+    if (shouldScroll && inquirySection) {
+      inquirySection.scrollIntoView({
+        behavior: visitorPrefersReducedMotion() ? "auto" : "smooth",
+        block: "start",
+      });
+    }
+
+    const focusTarget =
+      fullNameInput && !fullNameInput.value.trim()
+        ? fullNameInput
+        : messageInput;
+    window.setTimeout(
+      () => focusTarget?.focus({ preventScroll: true }),
+      shouldScroll && !visitorPrefersReducedMotion() ? 450 : 0,
+    );
+  }
+
+  document
+    .querySelectorAll<HTMLButtonElement>(".js-partnership-select")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        selectPartnershipOption(
+          button.dataset.interest || "",
+          button.dataset.message || "",
+          button.dataset.label || "Partnership option",
+        );
+      });
+    });
+
+  const interestParam = new URLSearchParams(window.location.search).get(
+    "interest",
+  );
+  if (
+    interestParam &&
+    Object.prototype.hasOwnProperty.call(partnershipPresets, interestParam)
+  ) {
+    const preset =
+      partnershipPresets[interestParam as keyof typeof partnershipPresets];
+    selectPartnershipOption(preset.interest, preset.message, preset.label);
   }
 
   form?.addEventListener("submit", async (event) => {

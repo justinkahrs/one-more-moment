@@ -125,16 +125,8 @@ export const POST: APIRoute = async ({ request }) => {
       requestType: "Corporate Partnership Inquiry",
       subject,
       emailSubject: subject,
-      fullName,
-      companyName,
-      jobTitle,
-      email,
-      phone,
-      partnershipInterest,
-      message,
-      consent,
-      readableMessage,
       name: fullName,
+      email,
       help: readableMessage,
     };
 
