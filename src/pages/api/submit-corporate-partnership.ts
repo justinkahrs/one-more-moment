@@ -28,13 +28,10 @@ const publicDeliveryError =
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.MAKE_API_KEY;
-  const webhookUrl = import.meta.env.MAKE_CORPORATE_PARTNERSHIP_WEBHOOK_URL;
-  const recipientEmail = sanitize(
-    import.meta.env.CORPORATE_INQUIRY_TO || "contactus@onemoremoment.org",
-  ).toLowerCase();
+  const webhookUrl = import.meta.env.MAKE_VOLUNTEER_WEBHOOK_URL;
   const missingConfig = [
     apiKey ? "" : "MAKE_API_KEY",
-    webhookUrl ? "" : "MAKE_CORPORATE_PARTNERSHIP_WEBHOOK_URL",
+    webhookUrl ? "" : "MAKE_VOLUNTEER_WEBHOOK_URL",
   ].filter(Boolean);
 
   if (missingConfig.length) {
@@ -108,27 +105,26 @@ export const POST: APIRoute = async ({ request }) => {
 
     const subject = `New Corporate Partnership Inquiry — ${companyName}`;
     const readableMessage = [
-      `Full name: ${fullName}`,
-      `Company name: ${companyName}`,
+      "CORPORATE PARTNERSHIP INQUIRY",
+      "",
+      `Name: ${fullName}`,
+      `Company: ${companyName}`,
       `Job title: ${jobTitle}`,
-      `Email address: ${email}`,
-      phone ? `Phone number: ${phone}` : "",
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
       `Partnership interest: ${partnershipInterest}`,
       "",
       "Message:",
       message,
       "",
-      "Consent: Contact permitted for this partnership inquiry.",
-    ]
-      .filter((line) => line !== "")
-      .join("\n");
+      "Consent confirmed: Yes, One More Moment may contact this person about the partnership inquiry.",
+    ].join("\n");
 
     const submission = {
+      formType: "Corporate Partnership Inquiry",
       requestType: "Corporate Partnership Inquiry",
       subject,
       emailSubject: subject,
-      to: recipientEmail,
-      recipientEmail,
       fullName,
       companyName,
       jobTitle,
@@ -139,6 +135,7 @@ export const POST: APIRoute = async ({ request }) => {
       consent,
       readableMessage,
       name: fullName,
+      help: readableMessage,
     };
 
     const response = await fetch(webhookUrl, {
