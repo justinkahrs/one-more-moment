@@ -23,18 +23,28 @@ const sanitize = (value: unknown) =>
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
+const publicDeliveryError =
+  "We're sorry, your inquiry could not be sent. Please try again or contact One More Moment directly.";
+
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.MAKE_API_KEY;
   const webhookUrl = import.meta.env.MAKE_CORPORATE_PARTNERSHIP_WEBHOOK_URL;
+  const recipientEmail = sanitize(
+    import.meta.env.CORPORATE_INQUIRY_TO || "contactus@onemoremoment.org",
+  ).toLowerCase();
+  const missingConfig = [
+    apiKey ? "" : "MAKE_API_KEY",
+    webhookUrl ? "" : "MAKE_CORPORATE_PARTNERSHIP_WEBHOOK_URL",
+  ].filter(Boolean);
 
-  if (!apiKey || !webhookUrl) {
+  if (missingConfig.length) {
     console.error(
-      "Missing MAKE_API_KEY or MAKE_CORPORATE_PARTNERSHIP_WEBHOOK_URL in environment variables",
+      `Corporate partnership inquiry configuration missing: ${missingConfig.join(", ")}`,
     );
     return new Response(
       JSON.stringify({
         success: false,
-        message: "Server configuration error",
+        message: publicDeliveryError,
       }),
       {
         status: 500,
@@ -96,7 +106,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const subject = `New Corporate Partnership Inquiry - ${companyName}`;
+    const subject = `New Corporate Partnership Inquiry — ${companyName}`;
     const readableMessage = [
       `Full name: ${fullName}`,
       `Company name: ${companyName}`,
@@ -117,6 +127,8 @@ export const POST: APIRoute = async ({ request }) => {
       requestType: "Corporate Partnership Inquiry",
       subject,
       emailSubject: subject,
+      to: recipientEmail,
+      recipientEmail,
       fullName,
       companyName,
       jobTitle,
@@ -140,12 +152,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!response.ok) {
       console.error(
-        `Make.com webhook failed: ${response.status} ${response.statusText}`,
+        `Corporate partnership inquiry delivery failed: ${response.status} ${response.statusText}`,
       );
       return new Response(
         JSON.stringify({
           success: false,
-          message: "Failed to submit request",
+          message: publicDeliveryError,
         }),
         {
           status: response.status,
@@ -165,11 +177,11 @@ export const POST: APIRoute = async ({ request }) => {
       },
     );
   } catch (error) {
-    console.error("Error submitting corporate partnership inquiry:", error);
+    console.error("Corporate partnership inquiry processing failed:", error);
     return new Response(
       JSON.stringify({
         success: false,
-        message: "Internal server error",
+        message: publicDeliveryError,
       }),
       {
         status: 500,
