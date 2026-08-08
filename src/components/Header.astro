@@ -9,6 +9,13 @@ const companyName = metadata.name;
 const { navItems = [], cta, sticky } = HeaderData;
 const { overlay = false } = Astro.props;
 
+const navLinkClasses =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9776E]";
+const navSummaryClasses =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D9776E]";
+const submenuClasses = "rounded-box bg-base-100 z-50 mt-2 min-w-56 p-2 shadow";
+const mobileSubmenuClasses = "p-2";
+
 interface NavItem {
   name: string;
   href: string;
@@ -126,6 +133,47 @@ interface NavItem {
   window.addEventListener("scroll", handleScroll);
   // Check once on load
   handleScroll();
+
+  const navDisclosures = Array.from(
+    document.querySelectorAll("details[data-nav-disclosure]"),
+  ).filter((disclosure) => disclosure instanceof HTMLDetailsElement);
+
+  function syncDisclosureState(disclosure: HTMLDetailsElement) {
+    const summary = disclosure.querySelector("summary");
+    summary?.setAttribute("aria-expanded", disclosure.open ? "true" : "false");
+  }
+
+  navDisclosures.forEach((disclosure) => {
+    const summary = disclosure.querySelector("summary");
+    summary?.setAttribute("aria-haspopup", "true");
+    syncDisclosureState(disclosure);
+
+    disclosure.addEventListener("toggle", () => {
+      syncDisclosureState(disclosure);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Node ? event.target : null;
+
+    navDisclosures.forEach((disclosure) => {
+      if (target && !disclosure.contains(target)) {
+        disclosure.open = false;
+        syncDisclosureState(disclosure);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    navDisclosures.forEach((disclosure) => {
+      if (disclosure.open) {
+        disclosure.open = false;
+        syncDisclosureState(disclosure);
+      }
+    });
+  });
 </script>
 <div
   id="navbar-header"
@@ -168,12 +216,14 @@ interface NavItem {
           navItems.map(({ children, href, name }: NavItem) =>
             children ? (
               <li>
-                <details>
-                  <summary>{name}</summary>
-                  <ul class="p-2">
+                <details data-nav-disclosure>
+                  <summary class={navSummaryClasses}>{name}</summary>
+                  <ul class={mobileSubmenuClasses}>
                     {children.map(({ href, name }: NavItem) => (
                       <li>
-                        <a href={href}>{name}</a>
+                        <a class={navLinkClasses} href={href}>
+                          {name}
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -181,7 +231,9 @@ interface NavItem {
               </li>
             ) : (
               <li>
-                <a href={href}>{name}</a>
+                <a class={navLinkClasses} href={href}>
+                  {name}
+                </a>
               </li>
             ),
           )
@@ -210,12 +262,14 @@ interface NavItem {
         navItems.map((item: NavItem) =>
           item.children ? (
             <li>
-              <details>
-                <summary>{item.name}</summary>
-                <ul class="p-2">
+              <details data-nav-disclosure>
+                <summary class={navSummaryClasses}>{item.name}</summary>
+                <ul class={submenuClasses}>
                   {item.children.map((child: NavItem) => (
                     <li>
-                      <a href={child.href}>{child.name}</a>
+                      <a class={navLinkClasses} href={child.href}>
+                        {child.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -223,7 +277,9 @@ interface NavItem {
             </li>
           ) : (
             <li>
-              <a href={item.href}>{item.name}</a>
+              <a class={navLinkClasses} href={item.href}>
+                {item.name}
+              </a>
             </li>
           ),
         )
