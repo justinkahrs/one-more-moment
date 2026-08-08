@@ -1,0 +1,484 @@
+---
+import Base from "../layouts/Base.astro";
+
+const pageTitle =
+  "Refer a Moment | Adult Cancer Wish Referrals in Michigan | One More Moment";
+const pageDescription =
+  "Refer an adult in Michigan facing advanced, Stage IV or metastatic cancer to One More Moment. Family, caregivers and healthcare professionals can help start a Moment request.";
+const pageUrl = "https://www.onemoremoment.org/refer-a-moment/";
+const requestLink = "/moments/#request-a-moment";
+const missionLink = "/about/";
+
+const referrers = [
+  "Family member",
+  "Caregiver",
+  "Oncology social worker",
+  "Nurse navigator",
+  "Hospice or palliative care professional",
+  "Hospital social worker or case manager",
+  "Friend",
+  "Cancer support organization",
+  "Community or faith organization",
+];
+
+const eligibilityItems = [
+  "The person is an adult.",
+  "The person lives in Michigan.",
+  "The person is facing Stage IV, advanced, or metastatic cancer.",
+  "The request is for a meaningful Moment with loved ones.",
+  "Support is needed because cost, timing, logistics, health, or resources make the Moment difficult to create alone.",
+  "Confirmation from an oncology provider may be requested.",
+];
+
+const momentExamples = [
+  "A meaningful dinner with loved ones",
+  "A relaxing weekend away",
+  "A special family experience",
+  "Attending a sporting event",
+  "Meeting someone meaningful",
+  "Help making an important experience possible",
+  "A simple request that removes a financial or logistical barrier",
+];
+
+const processSteps = [
+  {
+    title: "Start the Request",
+    text: "Tell us about the individual and the Moment they are hoping for.",
+  },
+  {
+    title: "We Review the Request",
+    text: "Our team reviews eligibility, timing and the basic details.",
+  },
+  {
+    title: "We Connect With the Family",
+    text: "If the request may be a fit, we follow up to learn more and confirm details.",
+  },
+  {
+    title: "We Work to Create the Moment",
+    text: "When possible, we coordinate with families, volunteers, donors and community partners to bring the Moment together.",
+  },
+];
+
+const professionalGroups = [
+  "Oncology teams",
+  "Social workers",
+  "Hospice teams",
+  "Palliative care teams",
+  "Nurse navigators",
+  "Case managers",
+];
+
+const momentPhotos = [
+  {
+    title: "A sporting event Moment",
+    image: "/blog/corporate-partners/josh-moment-card.webp",
+    alt: "A One More Moment recipient sharing time with supporters at a basketball arena",
+  },
+  {
+    title: "A practical barrier removed",
+    image: "/blog/corporate-partners/clyde-moment-card-v2.webp",
+    alt: "Clyde at a restaurant holding a privacy-protected page from a One More Moment experience",
+  },
+  {
+    title: "A family experience together",
+    image: "/blog/corporate-partners/russlyn-moment-card.webp",
+    alt: "Family enjoying a One More Moment experience together on a theme park ride",
+  },
+  {
+    title: "A meaningful dinner",
+    image: "/blog/corporate-partners/lori-moment-card.webp",
+    alt: "A One More Moment dinner experience for Lori and loved ones",
+  },
+];
+
+const faqs = [
+  {
+    question: "Can I submit a request for someone else?",
+    answer:
+      "Yes. Family members, caregivers, friends and healthcare or support professionals may help begin the process.",
+  },
+  {
+    question: "Does the person need to live in Michigan?",
+    answer:
+      "Yes. One More Moment currently serves adults in Michigan facing Stage IV, advanced, or metastatic cancer. Requests are reviewed individually.",
+  },
+  {
+    question: "Does every request get approved?",
+    answer:
+      "No. Each request is reviewed based on eligibility, timing, logistics, safety and available resources.",
+  },
+  {
+    question: "Do I need all the details before reaching out?",
+    answer:
+      "No. Start with what you know. The One More Moment team can follow up if additional information is needed.",
+  },
+  {
+    question: "Can a healthcare professional make the referral?",
+    answer:
+      "Yes. Healthcare and support professionals may help connect patients and families with One More Moment.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    about: {
+      "@type": "NonprofitOrganization",
+      name: "One More Moment",
+      url: "https://www.onemoremoment.org",
+      nonprofitStatus: "Nonprofit501c3",
+      taxID: "47-4466426",
+      email: "contactus@onemoremoment.org",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+];
+---
+
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl="/refer-a-moment/"
+  image="/blog/carrie-house-bruce-reynolds-jason-pohlonski.jpg"
+>
+  <script
+    slot="head"
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+
+  <section class="bg-[#FFFBF6] px-4 py-14 md:py-20">
+    <div
+      class="container mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.05fr_0.95fr]"
+    >
+      <div>
+        <p
+          class="mb-4 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Refer a Moment
+        </p>
+        <h1
+          class="mb-6 font-serif text-5xl leading-tight text-[#2B2B40] md:text-6xl"
+        >
+          Know Someone Who Could Use One More Moment?
+        </h1>
+        <p class="mb-5 max-w-2xl text-xl leading-relaxed text-[#333333]">
+          One More Moment helps adults in Michigan facing advanced, Stage IV or
+          metastatic cancer create meaningful Moments with the people they love.
+        </p>
+        <p class="mb-8 max-w-2xl text-lg leading-relaxed text-[#4A4A4A]">
+          If you are a family member, caregiver, healthcare professional, friend
+          or community supporter, you can help connect someone with us.
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a
+            href={requestLink}
+            class="btn rounded-md border-0 bg-[#D9776E] px-8 text-white shadow-sm hover:bg-[#c5665d]"
+          >
+            Refer Someone for a Moment
+          </a>
+          <a
+            href="#eligibility"
+            class="btn rounded-md border-[#2B2B40] bg-transparent px-8 text-[#2B2B40] hover:border-[#2B2B40] hover:bg-[#2B2B40] hover:text-white"
+          >
+            Learn Who May Qualify
+          </a>
+        </div>
+      </div>
+
+      <figure class="rounded-lg border border-[#E5DACE] bg-white p-5 shadow-sm">
+        <img
+          src="/blog/carrie-house-bruce-reynolds-jason-pohlonski.jpg"
+          width="1452"
+          height="1024"
+          alt="A One More Moment recipient standing outside with team members during a meaningful Moment"
+          class="aspect-[4/3] w-full rounded-md object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption class="mt-4 text-sm leading-relaxed text-[#4A4A4A]">
+          A real One More Moment experience made possible through connection and
+          community support.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          You Don't Have to Be the Patient to Reach Out
+        </h2>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          A Moment request can begin with someone who cares about the individual
+          and wants to help make a meaningful experience possible.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          referrers.map((referrer) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-5 font-semibold text-[#2B2B40] shadow-sm">
+              {referrer}
+            </div>
+          ))
+        }
+      </div>
+
+      <div
+        class="mt-8 rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6 shadow-sm"
+      >
+        <p class="text-lg leading-relaxed font-bold text-[#2B2B40]">
+          Healthcare and support professionals do not need to coordinate the
+          entire Moment. Helping a patient or family connect with One More
+          Moment is enough to get the process started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="eligibility" class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div
+      class="container mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr]"
+    >
+      <div>
+        <p
+          class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Who We Serve
+        </p>
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Who May Qualify for a Moment?
+        </h2>
+        <p class="mb-6 text-lg leading-relaxed text-[#333333]">
+          One More Moment currently serves adults in Michigan facing advanced,
+          Stage IV or metastatic cancer. Every request is reviewed individually
+          with care.
+        </p>
+        <a
+          href={requestLink}
+          class="btn rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+        >
+          Review Eligibility & Start a Request
+        </a>
+      </div>
+
+      <div class="rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm">
+        <ul class="space-y-4 text-[#333333]">
+          {
+            eligibilityItems.map((item) => (
+              <li class="flex gap-3 leading-relaxed">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#D9776E]" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          Every Moment Is Personal
+        </h2>
+        <p class="mb-5 text-lg leading-relaxed text-[#333333]">
+          Moments do not need to be elaborate. A meaningful request may be
+          simple, practical, joyful, quiet or deeply personal.
+        </p>
+        <p class="text-lg leading-relaxed text-[#333333]">
+          Each request is reviewed individually based on eligibility, timing,
+          safety, logistics and available resources.
+        </p>
+      </div>
+
+      <div class="mb-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          momentExamples.map((example) => (
+            <div class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-5 text-[#333333]">
+              {example}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          momentPhotos.map((moment) => (
+            <article class="overflow-hidden rounded-lg border border-[#E5DACE] bg-white shadow-sm">
+              <img
+                src={moment.image}
+                width="900"
+                height="675"
+                alt={moment.alt}
+                class="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-[#2B2B40]">{moment.title}</h3>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          What Happens After You Reach Out?
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          processSteps.map((step, index) => (
+            <article class="flex h-full flex-col rounded-lg border border-[#E5DACE] bg-white p-6 shadow-sm">
+              <p class="mb-4 text-sm font-semibold tracking-wide text-[#D9776E] uppercase">
+                Step {index + 1}
+              </p>
+              <h3 class="mb-3 text-2xl font-bold text-[#2B2B40]">
+                {step.title}
+              </h3>
+              <p class="leading-relaxed text-[#333333]">{step.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div
+      class="container mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]"
+    >
+      <div>
+        <p
+          class="mb-3 text-sm font-semibold tracking-wide text-[#D9776E] uppercase"
+        >
+          Healthcare & Support Professionals
+        </p>
+        <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+          A Simple Resource for the People You Serve
+        </h2>
+        <div class="space-y-5 text-lg leading-relaxed text-[#333333]">
+          <p>
+            If you work with adults facing advanced cancer, One More Moment can
+            be another resource you share with patients and families.
+          </p>
+          <p>
+            You do not need to manage the request or coordinate logistics. A
+            simple introduction or referral can help a family learn whether a
+            Moment may be possible.
+          </p>
+        </div>
+        <a
+          href={requestLink}
+          class="btn mt-8 rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+        >
+          Refer a Patient or Family
+        </a>
+      </div>
+
+      <div
+        class="rounded-lg border border-[#E5DACE] bg-[#FFFBF6] p-6 shadow-sm"
+      >
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            professionalGroups.map((group) => (
+              <div class="rounded-lg border border-[#E5DACE] bg-white p-5 font-semibold text-[#2B2B40]">
+                {group}
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-6 leading-relaxed text-[#4A4A4A]">
+          If a professional prefers, they may share the One More Moment website
+          directly with the patient or family and allow them to complete the
+          request themselves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#FFFBF6] px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-4xl">
+      <h2 class="mb-8 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+        Frequent Questions
+      </h2>
+      <div class="space-y-4">
+        {
+          faqs.map((faq) => (
+            <details class="rounded-lg border border-[#E5DACE] bg-white p-5 shadow-sm">
+              <summary class="cursor-pointer text-lg font-bold text-[#2B2B40]">
+                {faq.question}
+              </summary>
+              <p class="mt-4 leading-relaxed text-[#333333]">{faq.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 md:py-20">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="mb-5 font-serif text-4xl text-[#2B2B40] md:text-5xl">
+        Help Someone Find One More Moment
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-[#333333]">
+        If someone you know is facing advanced cancer, reaching out is the first
+        step.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href={requestLink}
+          class="btn rounded-md border-0 bg-[#D9776E] px-8 text-white hover:bg-[#c5665d]"
+        >
+          Start a Moment Request
+        </a>
+        <a
+          href={missionLink}
+          class="btn rounded-md border-[#2B2B40] bg-transparent px-8 text-[#2B2B40] hover:border-[#2B2B40] hover:bg-[#2B2B40] hover:text-white"
+        >
+          Learn More About One More Moment
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+        <a
+          class="font-semibold text-[#D9776E] underline"
+          href="/corporate-partners/"
+        >
+          Corporate Partners
+        </a>
+        <a class="font-semibold text-[#D9776E] underline" href="/volunteer/">
+          Volunteer
+        </a>
+        <a class="font-semibold text-[#D9776E] underline" href="/donate/">
+          Donate
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
