@@ -7,6 +7,7 @@ type Props = CollectionEntry<"blog">["data"];
 
 const {
   title,
+  seoTitle,
   description,
   pubDate,
   updatedDate,
@@ -57,7 +58,7 @@ const schema = [
 ---
 
 <Base
-  title={title}
+  title={seoTitle || title}
   description={description}
   image={image}
   imageAlt={title}

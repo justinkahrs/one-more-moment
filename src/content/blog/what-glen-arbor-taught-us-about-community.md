@@ -1,5 +1,6 @@
 ---
 title: "What Glen Arbor Taught Us About Community"
+seoTitle: "What Glen Arbor Taught Us About Community | One More Moment"
 description: "See how Glen Arbor businesses, employees, and community members came together to create an unforgettable weekend for a young Michigan woman living with cancer."
 pubDate: "2026-08-24"
 author: "Jason Pohlonski, Founder & Executive Director"
