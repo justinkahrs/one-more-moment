@@ -4,7 +4,16 @@ seoTitle: "What Glen Arbor Taught Us About Community | One More Moment"
 description: "See how Glen Arbor businesses, employees, and community members came together to create an unforgettable weekend for a young Michigan woman living with cancer."
 pubDate: "2026-08-24"
 author: "Jason Pohlonski, Founder & Executive Director"
-tags: ["One More Moment", "Kaycee", "Glen Arbor", "Community", "Adult Cancer Wishes", "Michigan Nonprofit", "Metastatic Breast Cancer"]
+tags:
+  [
+    "One More Moment",
+    "Kaycee",
+    "Glen Arbor",
+    "Community",
+    "Adult Cancer Wishes",
+    "Michigan Nonprofit",
+    "Metastatic Breast Cancer",
+  ]
 image: "/blog/kaycee-glen-arbor-community-one-more-moment.png"
 draft: false
 ---
@@ -220,3 +229,27 @@ A reminder of what community can look like when people choose to care.
 **Glen Arbor created it.**
 
 And we will never forget it.
+
+## Consent and Privacy
+
+Details from this Moment are shared with care and permission. One More Moment respects the privacy and dignity of every warrior and family we serve. Some Moments are shared publicly only when permission is given, while many remain private.
+
+## Community Support Behind This Moment
+
+This Moment was made possible through the generosity of Glen Arbor businesses, employees, community members, donors and volunteers who helped create a meaningful weekend for Kaycee and the people she loves.
+
+## About the Author
+
+**Jason Pohlonski is the Founder and Executive Director of One More Moment**, a Michigan nonprofit organization helping adults facing Stage IV, advanced, or metastatic cancer create meaningful Moments with the people they love.
+
+## About One More Moment
+
+**One More Moment** is a Michigan nonprofit organization helping adults in Michigan facing Stage IV, advanced, or metastatic cancer create meaningful Moments with loved ones.
+
+To learn more about [adult cancer wishes in Michigan](/adult-cancer-wishes-michigan/), visit the One More Moment website. Families, caregivers and referral partners can also [request a Moment](/moments/#request-a-moment), review [who qualifies for a One More Moment wish](/blog/who-qualifies-for-a-one-more-moment-wish/), or [donate](/donate/) to help create future Moments.
+
+- Website: [https://www.onemoremoment.org/](https://www.onemoremoment.org/)
+- Email: [contactus@onemoremoment.org](mailto:contactus@onemoremoment.org)
+- EIN: 47-4466426
+- Candid/GuideStar profile: [https://app.candid.org/profile/9492389/one-more-moment-47-4466426](https://app.candid.org/profile/9492389/one-more-moment-47-4466426)
+- Privacy Policy: [https://www.onemoremoment.org/privacy-policy/](https://www.onemoremoment.org/privacy-policy/)

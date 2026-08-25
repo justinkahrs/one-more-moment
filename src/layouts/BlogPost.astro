@@ -22,9 +22,23 @@ const organizationSchema = {
   "@type": "Organization",
   name: "One More Moment",
   url: "https://www.onemoremoment.org/",
+  email: "contactus@onemoremoment.org",
   logo: new URL("/og-image.png", Astro.url).toString(),
+  founder: {
+    "@type": "Person",
+    name: "Jason Pohlonski",
+  },
+  areaServed: {
+    "@type": "State",
+    name: "Michigan",
+  },
   nonprofitStatus: "Nonprofit501c3",
 };
+
+const authorName = author?.split(",")[0]?.trim();
+const authorJobTitle = author?.includes(",")
+  ? author.split(",").slice(1).join(",").trim()
+  : authorRole;
 
 const schema = [
   {
@@ -35,11 +49,13 @@ const schema = [
     image: image ? new URL(image, Astro.url).toString() : undefined,
     datePublished: pubDate.toISOString(),
     dateModified: (updatedDate || pubDate).toISOString(),
-    author: {
-      "@type": "Organization",
-      name: author || "One More Moment",
-      description: authorRole,
-    },
+    author: author
+      ? {
+          "@type": "Person",
+          name: authorName || author,
+          jobTitle: authorJobTitle || authorRole,
+        }
+      : organizationSchema,
     reviewedBy: reviewer
       ? {
           "@type": "Person",
@@ -98,9 +114,7 @@ const schema = [
             updatedDate && (
               <span class="italic">
                 {" "}
-                (Updated:{" "}
-                {formatContentDate(updatedDate)}
-                )
+                (Updated: {formatContentDate(updatedDate)})
               </span>
             )
           }
