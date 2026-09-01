@@ -1,7 +1,7 @@
 ---
 title: "What If I'm Not Sure Someone Qualifies for an Adult Cancer Wish?"
 description: "If you are not sure someone qualifies for an adult cancer wish, learn what information helps One More Moment review requests for adults in Michigan facing Stage IV, advanced, or metastatic cancer."
-pubDate: "2026-09-02"
+pubDate: "2026-09-01"
 author: "Jason Pohlonski, Founder & Executive Director"
 tags:
   [
