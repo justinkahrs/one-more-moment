@@ -42,6 +42,15 @@ const makePoster = (title: string, label: string) =>
 
 const localMoments = [
   {
+    title: "Tony's Detroit Tigers Moment",
+    videoSrc: "/blog/tonys-moment-detroit-tigers.mp4",
+    posterSrc: "/blog/tonys-moment-detroit-tigers-poster.jpg",
+    videoLabel:
+      "Tony and Helen enjoying Tony's One More Moment at a Detroit Tigers game with family",
+    description:
+      "Tony is facing inoperable pancreatic cancer and recently completed chemotherapy. With comfort, accessibility, and limited mobility in mind, One More Moment helped Tony attend a Detroit Tigers game with his wife, Helen, and family. The day also became an anniversary celebration for Tony and Helen, who had never really had the opportunity to celebrate one together. A special message at Comerica Park, a visit from Paws, Tigers surprises, and a late comeback win made room for what mattered most: a comfortable day together with family.",
+  },
+  {
     title: "Russlan's Moment",
     videoSrc: "/blog/Nicholas%20Family_Disney.mp4",
     posterSrc: makePoster("Russlan's Moment", "One More Moment"),
@@ -127,13 +136,15 @@ try {
   const entries = parsed.feed.entry || [];
 
   videos = entries
-    .map((entry: any): Video => ({
-      id: entry["yt:videoId"],
-      title: entry.title,
-      link: entry.link["@_href"],
-      published: new Date(entry.published).toLocaleDateString(),
-      thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
-    }))
+    .map(
+      (entry: any): Video => ({
+        id: entry["yt:videoId"],
+        title: entry.title,
+        link: entry.link["@_href"],
+        published: new Date(entry.published).toLocaleDateString(),
+        thumbnail: `https://i.ytimg.com/vi/${entry["yt:videoId"]}/maxresdefault.jpg`,
+      }),
+    )
     .filter((video: Video) => {
       const title = video.title.toLowerCase();
       return (
@@ -176,6 +187,8 @@ const pageDescription =
               <video
                 src={moment.videoSrc}
                 poster={moment.posterSrc}
+                aria-label={moment.videoLabel ?? `${moment.title} video`}
+                title={moment.videoLabel ?? `${moment.title} video`}
                 class="h-full w-full object-cover"
                 controls
                 preload="metadata"
@@ -188,6 +201,11 @@ const pageDescription =
               <h2 class="card-title line-clamp-2 text-lg leading-snug">
                 {moment.title}
               </h2>
+              {moment.description && (
+                <p class="text-base-content/75 text-sm leading-relaxed">
+                  {moment.description}
+                </p>
+              )}
               <div class="card-actions mt-4 justify-end">
                 <div class="badge rounded-md bg-[#D9776E] text-white">
                   Moment
@@ -378,7 +396,8 @@ const pageDescription =
 
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Name of the person this Moment is for</span>
+            <span class="label-text">Name of the person this Moment is for</span
+            >
           </label>
           <input
             type="text"
@@ -415,7 +434,9 @@ const pageDescription =
 
         <div class="form-control w-full">
           <label class="label">
-            <span class="label-text">Tell us about the person and the Moment being requested</span>
+            <span class="label-text"
+              >Tell us about the person and the Moment being requested</span
+            >
           </label>
           <textarea
             name="situation"
