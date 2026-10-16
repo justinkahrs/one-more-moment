@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Request a Moment",
   ]
-image: "/blog/what-happens-after-you-request-an-adult-cancer-wish.png"
+image: "/blog/what-happens-after-you-request-an-adult-cancer-wish.webp"
 imageAlt: "A family member reviewing a phone and notebook in a warm home setting, representing the next steps after submitting an adult cancer wish request."
 draft: false
 ---

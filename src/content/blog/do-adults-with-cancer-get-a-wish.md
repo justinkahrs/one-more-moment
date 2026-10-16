@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/do-adults-with-cancer-get-a-wish.png"
+image: "/blog/do-adults-with-cancer-get-a-wish.webp"
 imageAlt: "A warm family moment in a peaceful home setting, representing an adult cancer wish centered on time with loved ones."
 draft: false
 ---

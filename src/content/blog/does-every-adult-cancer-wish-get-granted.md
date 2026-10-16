@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/does-every-adult-cancer-wish-get-granted.png"
+image: "/blog/does-every-adult-cancer-wish-get-granted.webp"
 imageAlt: "A family member and loved one having a thoughtful conversation in a warm, hopeful setting, representing the planning and possibilities behind an adult cancer wish."
 draft: false
 ---

@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/make-a-wish-for-adults-with-stage-4-cancer.png"
+image: "/blog/make-a-wish-for-adults-with-stage-4-cancer.webp"
 imageAlt: "A warm family moment in a peaceful Michigan-style setting, representing an adult cancer wish centered on time with loved ones."
 draft: false
 ---

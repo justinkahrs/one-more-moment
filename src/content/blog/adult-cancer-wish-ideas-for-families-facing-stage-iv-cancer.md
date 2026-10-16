@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/adult-cancer-wish-ideas-for-families-facing-stage-iv-cancer.png"
+image: "/blog/adult-cancer-wish-ideas-for-families-facing-stage-iv-cancer.webp"
 draft: false
 ---
 

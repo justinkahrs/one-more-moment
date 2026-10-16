@@ -14,7 +14,7 @@ tags:
     "Oncology",
     "Wish Granting",
   ]
-image: "/blog/can-hospice-or-oncology-teams-refer-someone-for-an-adult-cancer-wish.png"
+image: "/blog/can-hospice-or-oncology-teams-refer-someone-for-an-adult-cancer-wish.webp"
 draft: false
 ---
 

@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/wish-programs-for-adults-with-cancer-in-michigan.png"
+image: "/blog/wish-programs-for-adults-with-cancer-in-michigan.webp"
 imageAlt: "A warm family moment in a peaceful Michigan-style setting, representing wish programs for adults with cancer."
 draft: false
 ---

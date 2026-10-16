@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Request a Moment",
   ]
-image: "/blog/help-someone-with-cancer-request-a-wish.png"
+image: "/blog/help-someone-with-cancer-request-a-wish.webp"
 draft: false
 ---
 

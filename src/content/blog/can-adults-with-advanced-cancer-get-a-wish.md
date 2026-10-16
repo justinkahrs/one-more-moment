@@ -13,7 +13,7 @@ tags:
     "Cancer Support",
     "Wish Granting",
   ]
-image: "/blog/can-adults-with-advanced-cancer-get-a-wish.png"
+image: "/blog/can-adults-with-advanced-cancer-get-a-wish.webp"
 draft: false
 ---
 

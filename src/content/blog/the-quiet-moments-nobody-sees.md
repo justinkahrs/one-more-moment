@@ -4,7 +4,7 @@ description: "Not every Moment is public or photographed. Learn why quiet, priva
 pubDate: "2026-06-10"
 author: "Jason Pohlonski, Founder & Executive Director"
 tags: ["One More Moment", "Adult Cancer Wishes", "Michigan Nonprofit", "Late-Stage Cancer", "Cancer Support", "Private Moments", "Family Connection"]
-image: "/blog/the-quiet-moments-nobody-sees.png"
+image: "/blog/the-quiet-moments-nobody-sees.webp"
 draft: false
 ---
 

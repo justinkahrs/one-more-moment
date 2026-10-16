@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/wish-program-for-older-adults-with-cancer.png"
+image: "/blog/wish-program-for-older-adults-with-cancer.webp"
 draft: false
 ---
 

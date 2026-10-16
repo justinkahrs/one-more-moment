@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/how-families-can-find-wish-support-for-adults-with-cancer.png"
+image: "/blog/how-families-can-find-wish-support-for-adults-with-cancer.webp"
 imageAlt: "A family member helping an adult facing cancer search for support on a laptop in a warm home setting."
 draft: false
 ---

@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/adults-in-hospice-receive-cancer-wish.png"
+image: "/blog/adults-in-hospice-receive-cancer-wish.webp"
 draft: false
 ---
 

@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Request a Moment",
   ]
-image: "/blog/information-needed-to-request-an-adult-cancer-wish.png"
+image: "/blog/information-needed-to-request-an-adult-cancer-wish.webp"
 draft: false
 ---
 
