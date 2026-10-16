@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Family Memories",
   ]
-image: "/blog/why-adult-cancer-wishes-are-about-more-than-the-experience.png"
+image: "/blog/why-adult-cancer-wishes-are-about-more-than-the-experience.webp"
 draft: false
 ---
 

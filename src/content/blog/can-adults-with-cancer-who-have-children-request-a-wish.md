@@ -13,7 +13,7 @@ tags:
     "Stage IV Cancer",
     "Meaningful Moments",
   ]
-image: "/blog/adults-with-cancer-who-have-children-request-a-wish.png"
+image: "/blog/adults-with-cancer-who-have-children-request-a-wish.webp"
 imageAlt: "A parent and child sitting together in a quiet, warm home setting, representing an adult cancer wish centered on family time."
 draft: false
 ---

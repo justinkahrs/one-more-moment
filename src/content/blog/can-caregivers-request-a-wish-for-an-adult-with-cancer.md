@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/caregivers-requesting-an-adult-cancer-wish.png"
+image: "/blog/caregivers-requesting-an-adult-cancer-wish.webp"
 draft: false
 ---
 

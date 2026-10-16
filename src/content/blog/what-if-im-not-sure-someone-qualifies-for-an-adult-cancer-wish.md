@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Caregivers",
   ]
-image: "/blog/not-sure-someone-qualifies-adult-cancer-wish.png"
+image: "/blog/not-sure-someone-qualifies-adult-cancer-wish.webp"
 imageAlt: "A loved one sitting with an adult facing cancer in a warm home setting, representing support while asking whether someone qualifies for an adult cancer wish."
 draft: false
 ---

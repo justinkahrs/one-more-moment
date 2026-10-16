@@ -12,7 +12,7 @@ tags:
     "Michigan Nonprofit",
     "Adult Cancer Wishes",
   ]
-image: "/blog/how-to-help-an-adult-with-cancer-during-the-holidays.png"
+image: "/blog/how-to-help-an-adult-with-cancer-during-the-holidays.webp"
 imageAlt: "Family and friends spending quiet time together during the holiday season, representing practical ways to support an adult with cancer."
 draft: false
 ---

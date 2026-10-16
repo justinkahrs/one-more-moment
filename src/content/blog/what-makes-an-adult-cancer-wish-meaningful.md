@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/adult-make-a-wish-for-people-with-cancer-michigan.png"
+image: "/blog/adult-make-a-wish-for-people-with-cancer-michigan.webp"
 draft: false
 ---
 

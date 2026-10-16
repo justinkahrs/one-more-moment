@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/types-of-wishes-adults-with-cancer-can-request.png"
+image: "/blog/types-of-wishes-adults-with-cancer-can-request.webp"
 draft: false
 ---
 

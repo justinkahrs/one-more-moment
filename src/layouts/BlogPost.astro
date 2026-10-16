@@ -24,7 +24,7 @@ const organizationSchema = {
   name: "One More Moment",
   url: "https://www.onemoremoment.org/",
   email: "contactus@onemoremoment.org",
-  logo: new URL("/og-image.png", Astro.url).toString(),
+  logo: new URL("/og-image.webp", Astro.url).toString(),
   founder: {
     "@type": "Person",
     name: "Jason Pohlonski",
@@ -100,6 +100,7 @@ const schema = [
               width={1020}
               height={510}
               src={image}
+              decoding="async"
               alt={imageAlt || title}
               class="mb-8 h-auto w-full rounded-2xl shadow-lg"
             />

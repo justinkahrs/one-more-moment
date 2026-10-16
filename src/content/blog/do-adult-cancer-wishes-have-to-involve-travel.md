@@ -13,7 +13,7 @@ tags:
     "Cancer Support",
     "Wish Granting",
   ]
-image: "/blog/do-adult-cancer-wishes-have-to-involve-travel.png"
+image: "/blog/do-adult-cancer-wishes-have-to-involve-travel.webp"
 imageAlt: "A family enjoying a meaningful local experience together in Michigan, representing an adult cancer wish that does not require long-distance travel."
 draft: false
 ---

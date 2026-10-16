@@ -14,7 +14,7 @@ tags:
     "Michigan Nonprofit",
     "Metastatic Breast Cancer",
   ]
-image: "/blog/kaycee-glen-arbor-community-one-more-moment.png"
+image: "/blog/kaycee-glen-arbor-community-one-more-moment.webp"
 draft: false
 ---
 

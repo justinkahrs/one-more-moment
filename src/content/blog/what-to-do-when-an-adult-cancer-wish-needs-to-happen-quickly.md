@@ -13,7 +13,7 @@ tags:
     "Cancer Support",
     "Meaningful Moments",
   ]
-image: "/blog/what-to-do-when-an-adult-cancer-wish-needs-to-happen-quickly.png"
+image: "/blog/what-to-do-when-an-adult-cancer-wish-needs-to-happen-quickly.webp"
 imageAlt: "A loved one and caregiver quietly coordinating plans by phone in a warm home setting, representing an urgent adult cancer wish request."
 draft: false
 ---

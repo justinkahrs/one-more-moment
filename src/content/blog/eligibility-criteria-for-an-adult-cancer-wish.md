@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Eligibility",
   ]
-image: "/blog/eligibility-criteria-for-an-adult-cancer-wish.png"
+image: "/blog/eligibility-criteria-for-an-adult-cancer-wish.webp"
 draft: false
 ---
 

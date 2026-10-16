@@ -14,7 +14,7 @@ tags:
     "Cancer Support",
     "Make-A-Wish for Adults",
   ]
-image: "/blog/can-adults-with-cancer-receive-a-wish-during-the-holidays.png"
+image: "/blog/can-adults-with-cancer-receive-a-wish-during-the-holidays.webp"
 imageAlt: "A warm holiday family moment in a cozy home setting, representing an adult cancer wish during the holiday season."
 draft: false
 ---

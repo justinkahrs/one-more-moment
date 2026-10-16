@@ -10,7 +10,7 @@ tags:
   - Stage IV Cancer
   - Cancer Support
   - Wish Granting
-image: "/blog/can-you-receive-an-adult-cancer-wish-while-still-in-treatment.png"
+image: "/blog/can-you-receive-an-adult-cancer-wish-while-still-in-treatment.webp"
 imageAlt: "An adult facing cancer spending meaningful time with loved ones during treatment, representing that a wish may still be possible while treatment continues."
 draft: false
 ---

@@ -13,7 +13,7 @@ tags:
     "Wish Granting",
     "Meaningful Moments",
   ]
-image: "/blog/adult-cancer-wish-sporting-event.png"
+image: "/blog/adult-cancer-wish-sporting-event.webp"
 draft: false
 ---
 

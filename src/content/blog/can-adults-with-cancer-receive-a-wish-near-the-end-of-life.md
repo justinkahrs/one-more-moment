@@ -13,7 +13,7 @@ tags:
     "Cancer Support",
     "Meaningful Moments",
   ]
-image: "/blog/adults-with-cancer-receive-wish-near-end-of-life.png"
+image: "/blog/adults-with-cancer-receive-wish-near-end-of-life.webp"
 draft: false
 ---
 

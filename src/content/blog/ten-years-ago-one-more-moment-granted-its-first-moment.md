@@ -39,7 +39,7 @@ For Bruce, meeting her was the Moment.
 
 For One More Moment, it was the beginning.
 
-<video controls class="w-full rounded-lg my-8">
+<video controls preload="none" class="w-full rounded-lg my-8">
   <source src="/blog/bruce-reynolds-first-one-more-moment.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
