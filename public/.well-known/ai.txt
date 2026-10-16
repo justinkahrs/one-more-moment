@@ -1,0 +1,13 @@
+# AI discovery for One More Moment
+# Public site content is available for indexing and citation.
+
+User-Agent: *
+Allow: /
+Disallow: /moment-request-thank-you/
+Disallow: /corporate-partnership-thank-you/
+
+Sitemap: https://www.onemoremoment.org/sitemap-index.xml
+LLMs: https://www.onemoremoment.org/llms.txt
+Full-Index: https://www.onemoremoment.org/llms-full.txt
+Summary: https://www.onemoremoment.org/ai/summary.json
+FAQs: https://www.onemoremoment.org/ai/faq.json
