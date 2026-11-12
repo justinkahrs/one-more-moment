@@ -1,10 +1,13 @@
 ---
 import Base from "../layouts/Base.astro";
 
+const eventDate = "2026-12-22";
 const event = {
   name: "A Christmas Moment at Butterworth",
   date: "December 22, 2026",
-  startDate: "2026-12-22",
+  time: "11:00 AM\u20131:00 PM",
+  startDate: `${eventDate}T11:00:00-05:00`,
+  endDate: `${eventDate}T13:00:00-05:00`,
   hospital: "Corewell Health Butterworth Hospital",
   city: "Grand Rapids",
   state: "Michigan",
@@ -53,6 +56,7 @@ const schema = {
       url: new URL(route, site).href,
       image: new URL(heroImage, site).href,
       startDate: event.startDate,
+      endDate: event.endDate,
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: {
         "@type": "Place",
@@ -90,6 +94,7 @@ const gifts = [
 
 const details = [
   { label: "Date", value: event.date },
+  { label: "Time", value: event.time },
   {
     label: "Location",
     value: `${event.hospital}, ${event.city}, ${event.state}`,
@@ -122,6 +127,9 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
 <Base
   title="Christmas Moment for Adults With Cancer | One More Moment"
   description={description}
+  pageKeywords="Christmas Moment, Grand Rapids, Michigan, adult cancer support, oncology support"
+  geoPlacename={`${event.city}, ${event.state}`}
+  geoRegion="US-MI"
   canonicalUrl={route}
   image={heroImage}
   imageAlt={heroAlt}
@@ -150,7 +158,7 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
       >
         <div class="space-y-5">
           <p class="text-sm font-semibold text-[#974A43]">
-            {event.name} · <time datetime={event.startDate}>{event.date}</time>
+            {event.name} · <time datetime={eventDate}>{event.date}</time>
           </p>
           <h1
             class="max-w-2xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"

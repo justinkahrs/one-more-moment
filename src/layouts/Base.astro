@@ -20,6 +20,9 @@ const {
   publishedTime,
   modifiedTime,
   author,
+  pageKeywords,
+  geoPlacename = meta.location?.cityState,
+  geoRegion = meta.location?.state,
 } = Astro.props;
 
 const seo = meta.seo || {};
@@ -41,17 +44,19 @@ const resolvedImageType =
         ? "image/webp"
         : undefined);
 
-const keywords = [
-  seo.cityKeyword,
-  seo.serviceKeyword,
-  meta.serviceCategory,
-  meta.primaryService,
-  meta.primaryAudience,
-  meta.industryNiche,
-  meta.regionsServed,
-]
-  .filter(Boolean)
-  .join(", ");
+const keywords =
+  pageKeywords ??
+  [
+    seo.cityKeyword,
+    seo.serviceKeyword,
+    meta.serviceCategory,
+    meta.primaryService,
+    meta.primaryAudience,
+    meta.industryNiche,
+    meta.regionsServed,
+  ]
+    .filter(Boolean)
+    .join(", ");
 ---
 
 <html lang="en" data-theme="light">
@@ -77,16 +82,8 @@ const keywords = [
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="author" content={meta.name} />
     <meta name="msvalidate.01" content="D5B4BA51F2F2AC205901468B0C2EB509" />
-    {
-      meta.location?.cityState && (
-        <meta name="geo.placename" content={meta.location.cityState} />
-      )
-    }
-    {
-      meta.location?.state && (
-        <meta name="geo.region" content={meta.location.state} />
-      )
-    }
+    {geoPlacename && <meta name="geo.placename" content={geoPlacename} />}
+    {geoRegion && <meta name="geo.region" content={geoRegion} />}
     <link rel="canonical" href={canonical} />
     <link
       rel="alternate"
