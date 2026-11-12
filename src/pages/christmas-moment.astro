@@ -1,0 +1,449 @@
+---
+import Base from "../layouts/Base.astro";
+
+const event = {
+  name: "A Christmas Moment at Butterworth",
+  date: "December 22, 2026",
+  startDate: "2026-12-22",
+  hospital: "Corewell Health Butterworth Hospital",
+  city: "Grand Rapids",
+  state: "Michigan",
+  reach: 75,
+  attendance: "75–100",
+  sponsorship: 50,
+};
+
+const formatDollars = (amount: number) => `$${amount.toLocaleString("en-US")}`;
+const sponsorship = formatDollars(event.sponsorship);
+const goal = formatDollars(event.reach * event.sponsorship);
+const route = "/christmas-moment/";
+const email = "contactus@onemoremoment.org";
+const contact = `mailto:${email}`;
+const pledge = "#donation";
+const candid =
+  "https://app.candid.org/profile/9492389/one-more-moment-47-4466426";
+const ein = "47-4466426";
+const description = `Help One More Moment create a special Christmas Moment for ${event.reach} adults receiving cancer care at Butterworth Hospital in Grand Rapids. Sponsor a warrior, donate items, or help support the event.`;
+
+const heroImage = `${route}holiday-gathering.webp`;
+const heroAlt =
+  "Santa, student carolers, a nurse holding a weighted sloth, and a therapy dog in reindeer antlers in a holiday gathering illustration";
+const site = Astro.site!;
+const organizationId = new URL("#organization", site).href;
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NonprofitOrganization",
+      "@id": organizationId,
+      name: "One More Moment",
+      url: site.href,
+      founder: { "@type": "Person", name: "Jason Pohlonski" },
+      areaServed: { "@type": "State", name: event.state },
+      taxID: ein,
+      email,
+      sameAs: [candid],
+    },
+    {
+      "@type": "Event",
+      name: event.name,
+      description,
+      url: new URL(route, site).href,
+      image: new URL(heroImage, site).href,
+      startDate: event.startDate,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: {
+        "@type": "Place",
+        name: event.hospital,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: event.city,
+          addressRegion: "MI",
+          addressCountry: "US",
+        },
+      },
+      organizer: { "@id": organizationId },
+    },
+  ],
+};
+
+const gifts = [
+  {
+    title: "Weighted Stuffy",
+    copy: "A soft weighted stuffed animal to tuck into each Christmas package.",
+  },
+  {
+    title: "Christmas Stocking",
+    copy: "A mix of comfort items, useful everyday items, and a little holiday fun.",
+  },
+  {
+    title: "Personalized Card",
+    copy: "A handwritten Christmas card made for each person receiving a gift.",
+  },
+  {
+    title: "Holiday Experience",
+    copy: "Plans may include lunch, Santa, caroling and holiday music, a therapy dog dressed as a reindeer, and a few holiday surprises.",
+  },
+];
+
+const details = [
+  { label: "Date", value: event.date },
+  {
+    label: "Location",
+    value: `${event.hospital}, ${event.city}, ${event.state}`,
+  },
+  {
+    label: "Who",
+    value:
+      "Adults receiving inpatient oncology care, along with caregivers, families, staff, and volunteers",
+  },
+  {
+    label: "Expected reach",
+    value: `Approximately ${event.reach} adults facing cancer`,
+  },
+  {
+    label: "Expected attendance",
+    value: `Approximately ${event.attendance} people, including patients, caregivers, staff, and volunteers`,
+  },
+];
+
+const section = "px-5 py-12 sm:px-8 md:py-18";
+const wrapper = "mx-auto max-w-6xl";
+const heading = "font-serif text-3xl leading-tight md:text-4xl";
+const card = "rounded-2xl border border-[#2B2B40]/10 bg-white p-6 shadow-sm";
+const button =
+  "inline-flex min-h-12 items-center justify-center rounded-xl px-5 py-3 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#A84D44]";
+const primary = `${button} bg-[#D9776E] text-[#201C2B] hover:bg-[#E48F87]`;
+const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
+---
+
+<Base
+  title="Christmas Moment for Adults With Cancer | One More Moment"
+  description={description}
+  canonicalUrl={route}
+  image={heroImage}
+  imageAlt={heroAlt}
+  imageWidth={1122}
+  imageHeight={1402}
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+
+  <div class="bg-[#FFFBF6] leading-relaxed text-[#2B2B40]">
+    <section class={section}>
+      <div
+        class:list={[
+          wrapper,
+          "grid items-center gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-16",
+        ]}
+      >
+        <div class="space-y-5">
+          <p class="text-sm font-semibold text-[#974A43]">
+            {event.name} · <time datetime={event.startDate}>{event.date}</time>
+          </p>
+          <h1
+            class="max-w-2xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"
+          >
+            Help Us Create a Christmas Moment for {event.reach} Adults Facing Cancer
+          </h1>
+          <p class="max-w-xl text-lg">
+            This Christmas, One More Moment is bringing a little extra holiday
+            joy to adults receiving oncology care at Butterworth Hospital.
+          </p>
+          <p class="max-w-xl">
+            We’re planning a special Christmas Moment with gifts, comfort items,
+            food, music, handwritten cards, and a few holiday surprises. Event
+            details are still being finalized.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+            <a class={secondary} href="#ways-to-help">Help With the Event</a>
+          </div>
+        </div>
+        <img
+          class="aspect-[4/5] w-full rounded-2xl object-cover shadow-sm"
+          src={heroImage}
+          srcset={`${route}holiday-gathering-small.webp 640w, ${heroImage} 1122w`}
+          sizes="(min-width: 1216px) 510px, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"
+          alt={heroAlt}
+          width="1122"
+          height="1402"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <section class:list={[section, "bg-white"]}>
+      <div class="mx-auto max-w-3xl space-y-4">
+        <h2 class={heading}>Why We’re Doing This</h2>
+        <p>
+          Spending part of the holidays in the hospital can mean missing the
+          meals, music, and traditions that make Christmas feel like Christmas.
+          We want adults facing cancer to feel remembered, too.
+        </p>
+        <p>
+          A warm meal, a thoughtful gift, or a handwritten card can offer a
+          welcome break in a hospital day. That’s what we hope to create on
+          December 22.
+        </p>
+      </div>
+    </section>
+
+    <section class:list={[section, "bg-[#2B2B40] text-white"]}>
+      <div
+        class:list={[
+          wrapper,
+          "grid items-center gap-8 md:grid-cols-2 lg:gap-16",
+        ]}
+      >
+        <div class="space-y-4">
+          <h2 class={heading}>
+            Sponsor One Christmas Moment for {sponsorship}
+          </h2>
+          <p>
+            A {sponsorship} donation helps provide a Christmas package for one adult
+            facing cancer and contributes to the cost of putting on the event.
+          </p>
+          <ul class="list-disc space-y-1 pl-5">
+            <li>A weighted stuffed animal</li>
+            <li>A Christmas stocking with comfort and practical items</li>
+            <li>A personalized handwritten Christmas card</li>
+            <li>A portion of the additional event costs</li>
+          </ul>
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a class={primary} href={pledge}
+              >Sponsor a Warrior · {sponsorship}</a
+            >
+            <a class={secondary} href={pledge}>Give Any Amount</a>
+          </div>
+        </div>
+        <div
+          id="fundraiser-progress"
+          class="rounded-2xl bg-[#FFFBF6] p-6 text-[#2B2B40] sm:p-8"
+        >
+          <h3 class="font-serif text-2xl">
+            Help Fund {event.reach} Christmas Moments
+          </h3>
+          <dl class="my-6 grid grid-cols-3 gap-3">
+            <div>
+              <dt class="text-sm">Warriors</dt><dd
+                class="text-xl font-semibold sm:text-3xl"
+              >
+                {event.reach}
+              </dd>
+            </div>
+            <div>
+              <dt class="text-sm">Per Moment</dt><dd
+                class="text-xl font-semibold sm:text-3xl"
+              >
+                {sponsorship}
+              </dd>
+            </div>
+            <div>
+              <dt class="text-sm">Goal</dt><dd
+                class="text-xl font-semibold sm:text-3xl"
+              >
+                {goal}
+              </dd>
+            </div>
+          </dl>
+          <!-- PLEDGE FUNDRAISER PROGRESS TRACKER GOES HERE (replace the placeholder below). -->
+          <div class="h-3 rounded-full bg-[#2B2B40]/10" aria-hidden="true">
+          </div>
+          <p class="mt-2 text-sm">
+            Fundraising progress will appear here once the event fundraiser is
+            live.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class={section}>
+      <div
+        class:list={[
+          wrapper,
+          "grid items-center gap-8 md:grid-cols-[1.15fr_1fr]",
+        ]}
+      >
+        <div>
+          <h2 class={heading}>What’s Included</h2>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {
+              gifts.map(({ title, copy }) => (
+                <article class={card}>
+                  <h3 class="font-serif text-xl">{title}</h3>
+                  <p class="mt-2">{copy}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+        <img
+          class="aspect-square w-full rounded-2xl object-cover shadow-sm"
+          src={`${route}stocking-drive.webp`}
+          alt="Illustration of volunteers filling Christmas stockings beside a nurse, a weighted sloth, handwritten cards, and a therapy dog"
+          width="900"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <section class:list={[section, "bg-white"]}>
+      <div class="mx-auto max-w-3xl space-y-4">
+        <h2 class={heading}>A Little Help From Some Pretty Great Kids</h2>
+        <p>
+          The Forest Hills Central men’s varsity lacrosse team has volunteered
+          to help with setup, decorate stockings, write personalized Christmas
+          cards, and prepare gifts. We’re grateful to have them be part of the
+          day.
+        </p>
+      </div>
+    </section>
+
+    <section id="ways-to-help" class:list={[section, "scroll-mt-28"]}>
+      <div class={wrapper}>
+        <h2 class={heading}>Ways You Can Help</h2>
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          <article class:list={[card, "flex flex-col items-start gap-4"]}>
+            <h3 class="font-serif text-2xl">Sponsor a Warrior</h3>
+            <p class="grow">
+              {sponsorship} helps create one Christmas Moment for an adult receiving
+              oncology care.
+            </p>
+            <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+          </article>
+          <article class:list={[card, "flex flex-col items-start gap-4"]}>
+            <h3 class="font-serif text-2xl">Donate Items</h3>
+            <p class="grow">
+              We’re looking for lip balm, unscented lotion, playing cards, small
+              games, beanies, cozy socks, small gift cards, and other practical
+              stocking items. Company-branded items may be welcome when
+              appropriate.
+            </p>
+            <a class={secondary} href={contact}
+              >Contact Us About Donating Items</a
+            >
+          </article>
+          <article class:list={[card, "flex flex-col items-start gap-4"]}>
+            <h3 class="font-serif text-2xl">Help Provide Lunch</h3>
+            <p class="grow">
+              We’re looking for a local restaurant, caterer, or business to help
+              provide a buffet-style lunch for approximately {event.attendance} patients,
+              caregivers, staff, and volunteers.
+            </p>
+            <a class={secondary} href={contact}>Help With Lunch</a>
+          </article>
+        </div>
+        <aside class="mt-6 rounded-2xl bg-[#F9E9E3] p-6 sm:p-8">
+          <h3 class="font-serif text-2xl">Businesses Can Help Too</h3>
+          <p class="my-4 max-w-3xl">
+            Sometimes the perfect donation is already in your supply closet. If
+            your business has quality promotional items, personal-care products,
+            small games, or something else that would fit in a stocking, we’d
+            love to hear from you. A contribution to any part of the event
+            helps.
+          </p>
+          <a class={secondary} href={contact}>Tell Us How You Can Help</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class:list={[section, "bg-white"]}>
+      <div class={wrapper}>
+        <h2 class={heading}>Event Details</h2>
+        <dl class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            details.map(({ label, value }) => (
+              <div class={card}>
+                <dt class="font-semibold">{label}</dt>
+                <dd class="mt-1">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="mt-4 text-sm">
+          Participation and event plans may change as details are finalized.
+        </p>
+      </div>
+    </section>
+
+    <section
+      id="donation"
+      class:list={[section, "scroll-mt-28 bg-[#F9E9E3] text-center"]}
+    >
+      <div class="mx-auto max-w-3xl space-y-4">
+        <h2 class={heading}>Help Us Create {event.reach} Christmas Moments</h2>
+        <p>
+          Every gift helps us bring a little more comfort, fun, and Christmas
+          spirit to adults facing cancer. {sponsorship} helps sponsor one Christmas
+          Moment, and gifts of any size help us put the event together.
+        </p>
+        <div id="pledge-donation-form" class={card}>
+          <!-- PLEDGE DONATION FORM EMBED GOES HERE (replace the placeholder below). -->
+          <p class="mb-4">
+            The event donation form is coming soon. Email us if you’d like to
+            sponsor a Christmas Moment.
+          </p>
+          <a
+            class={primary}
+            href={`${contact}?subject=Christmas%20Moment%20sponsorship`}
+            >Ask About Sponsorship</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class:list={[section, "text-center"]}>
+      <div class="mx-auto max-w-3xl space-y-4">
+        <h2 class={heading}>Help Us Make December 22 Something Special</h2>
+        <p>
+          If you’d like to sponsor a warrior, donate stocking items, help with
+          lunch, or connect us with someone who can, we’d love to hear from you.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+          <a class={secondary} href={contact}>Contact One More Moment</a>
+        </div>
+      </div>
+    </section>
+
+    <aside
+      aria-label="About One More Moment"
+      class="border-t border-[#2B2B40]/10 bg-white px-5 py-8 text-sm"
+    >
+      <div class:list={[wrapper, "space-y-2"]}>
+        <p>
+          One More Moment is a Michigan nonprofit helping adults facing Stage
+          IV, advanced, or metastatic cancer create meaningful Moments with the
+          people they love. EIN {ein}.
+        </p>
+        <ul class="flex flex-wrap gap-x-5 gap-y-2">
+          <li>
+            <a class="underline underline-offset-4" href="/">One More Moment</a>
+          </li>
+          <li>
+            <a class="underline underline-offset-4" href={contact}>{email}</a>
+          </li>
+          <li>
+            <a class="underline underline-offset-4" href={candid}
+              >Candid profile</a
+            >
+          </li>
+          <li>
+            <a class="underline underline-offset-4" href="/privacy-policy/"
+              >Privacy policy</a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</Base>
