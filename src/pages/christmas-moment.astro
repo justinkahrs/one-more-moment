@@ -22,7 +22,6 @@ const goal = formatDollars(event.reach * event.sponsorship);
 const route = "/christmas-moment/";
 const email = "contactus@onemoremoment.org";
 const contact = `mailto:${email}`;
-const pledge = "#donation";
 const fundraiserUrl =
   "https://www.pledge.to/sponsor-a-christmas-moment-for-an-adult-facing-cancer";
 const candid =
@@ -175,7 +174,9 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
             details are still being finalized.
           </p>
           <div class="flex flex-wrap gap-3">
-            <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+            <a class={primary} href={fundraiserUrl}
+              >Sponsor a Christmas Moment</a
+            >
             <a class={secondary} href="#ways-to-help">Help With the Event</a>
           </div>
         </div>
@@ -232,10 +233,10 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
             <li>A portion of the additional event costs</li>
           </ul>
           <div class="flex flex-wrap gap-3 pt-2">
-            <a class={primary} href={pledge}
+            <a class={primary} href={fundraiserUrl}
               >Sponsor a Warrior · {sponsorship}</a
             >
-            <a class={secondary} href={pledge}>Give Any Amount</a>
+            <a class={secondary} href={fundraiserUrl}>Give Any Amount</a>
           </div>
         </div>
         <div
@@ -333,7 +334,9 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
               {sponsorship} helps create one Christmas Moment for an adult receiving
               oncology care.
             </p>
-            <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+            <a class={primary} href={fundraiserUrl}
+              >Sponsor a Christmas Moment</a
+            >
           </article>
           <article class:list={[card, "flex flex-col items-start gap-4"]}>
             <h3 class="font-serif text-2xl">Donate Items</h3>
@@ -402,20 +405,9 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
           Moment, and gifts of any size help us put the event together.
         </p>
         <div
-          id="pledge-donation-form"
           class="min-w-0 rounded-2xl border border-[#2B2B40]/10 bg-white px-2 py-6 shadow-sm sm:px-6"
         >
-          <div
-            class="plg-donate mx-auto w-full min-w-0"
-            data-widget-id="clmahYX7VX6VygeV"
-          >
-          </div>
-          <p class="mt-5 text-sm">
-            Prefer to donate directly through Pledge?
-            <a class="underline underline-offset-4" href={fundraiserUrl}
-              >Visit our fundraiser.</a
-            >
-          </p>
+          <a class={primary} href={fundraiserUrl}>Donate Through Pledge</a>
         </div>
       </div>
     </section>
@@ -428,7 +420,7 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
           lunch, or connect us with someone who can, we’d love to hear from you.
         </p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a class={primary} href={pledge}>Sponsor a Christmas Moment</a>
+          <a class={primary} href={fundraiserUrl}>Sponsor a Christmas Moment</a>
           <a class={secondary} href={contact}>Contact One More Moment</a>
         </div>
       </div>
