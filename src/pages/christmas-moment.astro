@@ -20,6 +20,8 @@ const route = "/christmas-moment/";
 const email = "contactus@onemoremoment.org";
 const contact = `mailto:${email}`;
 const pledge = "#donation";
+const fundraiserUrl =
+  "https://www.pledge.to/sponsor-a-christmas-moment-for-an-adult-facing-cancer";
 const candid =
   "https://app.candid.org/profile/9492389/one-more-moment-47-4466426";
 const ein = "47-4466426";
@@ -132,6 +134,11 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
     type="application/ld+json"
     set:html={JSON.stringify(schema)}
   />
+  <script
+    is:inline
+    slot="head"
+    src="https://www.pledge.to/embed/widget.js"
+    async></script>
 
   <div class="bg-[#FFFBF6] leading-relaxed text-[#2B2B40]">
     <section class={section}>
@@ -225,7 +232,7 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
         </div>
         <div
           id="fundraiser-progress"
-          class="rounded-2xl bg-[#FFFBF6] p-6 text-[#2B2B40] sm:p-8"
+          class="min-w-0 rounded-2xl bg-[#FFFBF6] p-4 text-[#2B2B40] sm:p-8"
         >
           <h3 class="font-serif text-2xl">
             Help Fund {event.reach} Christmas Moments
@@ -253,13 +260,13 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
               </dd>
             </div>
           </dl>
-          <!-- PLEDGE FUNDRAISER PROGRESS TRACKER GOES HERE (replace the placeholder below). -->
-          <div class="h-3 rounded-full bg-[#2B2B40]/10" aria-hidden="true">
+          <div
+            class="plg-goal mx-auto w-full min-w-0"
+            data-partner-key="cc6a1f1440052a8376cbf8786c84fac9"
+            data-item-id="0dff932864f3ab9e877e4aa7ab20f71d"
+            data-show-donate-action="link"
+          >
           </div>
-          <p class="mt-2 text-sm">
-            Fundraising progress will appear here once the event fundraiser is
-            live.
-          </p>
         </div>
       </div>
     </section>
@@ -386,17 +393,21 @@ const secondary = `${button} border border-current hover:bg-[#D9776E]/15`;
           spirit to adults facing cancer. {sponsorship} helps sponsor one Christmas
           Moment, and gifts of any size help us put the event together.
         </p>
-        <div id="pledge-donation-form" class={card}>
-          <!-- PLEDGE DONATION FORM EMBED GOES HERE (replace the placeholder below). -->
-          <p class="mb-4">
-            The event donation form is coming soon. Email us if you’d like to
-            sponsor a Christmas Moment.
-          </p>
-          <a
-            class={primary}
-            href={`${contact}?subject=Christmas%20Moment%20sponsorship`}
-            >Ask About Sponsorship</a
+        <div
+          id="pledge-donation-form"
+          class="min-w-0 rounded-2xl border border-[#2B2B40]/10 bg-white px-2 py-6 shadow-sm sm:px-6"
+        >
+          <div
+            class="plg-donate mx-auto w-full min-w-0"
+            data-widget-id="clmahYX7VX6VygeV"
           >
+          </div>
+          <p class="mt-5 text-sm">
+            Prefer to donate directly through Pledge?
+            <a class="underline underline-offset-4" href={fundraiserUrl}
+              >Visit our fundraiser.</a
+            >
+          </p>
         </div>
       </div>
     </section>
